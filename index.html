@@ -3,221 +3,255 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya — Celebrate 🎉</title>
+<title>Happy Birthday Aadya — Ultra Premium</title>
 <style>
   :root{
-    --bg1:#080019; --bg2:#0b0630;
+    --bg1:#060018; --bg2:#0b0630;
+    --gold-1: #ffd47a; --gold-2:#ffb84d;
     --accent1:#8ef0ff; --accent2:#ff9de6;
-    --gold1:#ffd47a; --gold2:#ffb84d;
   }
   *{box-sizing:border-box}
   body{
-    margin:0; font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-    background: radial-gradient(1200px 600px at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
-    color:#fff; -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
+    margin:0; font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background: radial-gradient(circle at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
   }
 
-  /* Page container */
-  .wrap { max-width:1100px; margin:28px auto; padding:20px; }
+  .wrap{max-width:1150px;margin:28px auto;padding:18px}
+  header{text-align:center;margin-bottom:8px}
+  h1{font-size:44px;margin:6px 0;background:linear-gradient(90deg,var(--accent1),#d89bff,var(--accent2));
+      -webkit-background-clip:text;color:transparent;font-weight:900}
+  .tagline{color:rgba(255,255,255,0.87);margin-bottom:12px;font-size:16px}
+  .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+  .pill{background:rgba(255,255,255,0.06);padding:10px 16px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.03)}
 
-  /* Title */
-  header { text-align:center; margin-bottom:10px; position:relative; padding-top:6px }
-  h1 { margin:6px 0 6px; font-size:42px; font-weight:900;
-       background: linear-gradient(90deg,var(--accent1),#d89bff,var(--accent2));
-       -webkit-background-clip:text;color:transparent;
-       animation: titleGlow 4s ease-in-out infinite; }
-  @keyframes titleGlow { 0%{filter:blur(0px)}50%{filter:blur(.2px)}100%{filter:blur(0px)} }
+  /* message auto-appear */
+  .message{
+    margin: 8px 0 18px;
+    font-size:20px;
+    color:#ffd89a;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity .8s ease, transform .8s ease;
+    font-weight:700;
+    text-shadow:0 6px 30px rgba(255,200,120,0.06);
+  }
+  .message.show{opacity:1;transform:translateY(0)}
 
-  .subtitle { color:rgba(255,255,255,0.88); margin-bottom:10px; font-size:16px; }
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  @media(max-width:860px){ .gallery{grid-template-columns:1fr;padding:0 12px} }
 
-  /* Pills */
-  .pills { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:18px; }
-  .pill { background:rgba(255,255,255,0.06); padding:10px 18px; border-radius:999px; font-weight:700; border:1px solid rgba(255,255,255,0.04); }
-
-  /* Photo layout: two columns desktop, stacked mobile */
-  .gallery { display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:start; }
-  @media (max-width:880px){ .gallery{ grid-template-columns: 1fr; } }
-
-  /* Golden frame container */
-  .gold-frame {
+  .card{
     border-radius:18px;
-    padding:12px; /* outer padding for gold ring */
-    background: linear-gradient(135deg, rgba(255,208,122,0.14), rgba(255,184,77,0.08));
-    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
-  }
-
-  .gold-inner {
-    border-radius:12px;
-    padding:10px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    padding:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    box-shadow:0 30px 60px rgba(0,0,0,0.6);
     position:relative;
+    overflow:visible;
+  }
+
+  /* pulsing gold border around photos */
+  .gold-border{
+    border-radius:14px;
+    padding:12px;
+    background:linear-gradient(90deg,var(--gold-1),var(--gold-2));
+    box-shadow: 0 18px 50px rgba(0,0,0,0.5), 0 0 40px rgba(255,200,100,0.06);
+    transition: box-shadow .8s ease, transform .6s ease;
+  }
+  .gold-inner{
+    border-radius:10px;
     overflow:hidden;
+    padding:6px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.02));
+    position:relative;
+  }
+  .gold-border:hover{ transform:translateY(-6px); box-shadow:0 30px 80px rgba(0,0,0,0.65) }
+
+  /* make sure full photo shows (no crop) */
+  .photo{
+    display:block; width:100%; height:auto; object-fit:contain; border-radius:8px; max-height:680px;
+    transition: transform .6s ease, opacity .6s ease;
   }
 
-  /* IMPORTANT: show full photo (no cropping) */
-  .photo {
-    display:block;
-    width:100%;
-    height:auto;
-    max-height:640px; /* prevents giant images but keeps aspect */
-    object-fit: contain; /* ensures full image visible */
-    border-radius:8px;
-    transition: transform .6s ease, box-shadow .4s ease, opacity .8s ease;
-    opacity:0; transform: translateY(14px);
-  }
-  .photo.visible { opacity:1; transform: translateY(0); }
-
-  /* subtle glow border */
+  /* soft pulsing glow */
   .gold-inner::after{
-    content:"";
-    position:absolute; inset:0; border-radius:12px;
-    pointer-events:none;
-    box-shadow: 0 0 34px rgba(255,200,90,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
+    content:""; position:absolute; inset:0; border-radius:10px; pointer-events:none;
+    box-shadow: inset 0 4px 36px rgba(255,230,150,0.06), 0 0 40px rgba(255,200,110,0.04);
+  }
+  @keyframes pulse {
+    0%{box-shadow:0 6px 28px rgba(255,200,110,0.04)}
+    50%{box-shadow:0 10px 44px rgba(255,200,110,0.09)}
+    100%{box-shadow:0 6px 28px rgba(255,200,110,0.04)}
+  }
+  .gold-border{ animation: pulse 4.5s ease-in-out infinite }
+
+  /* soft side balloons (small, non-intrusive) */
+  .balloon{
+    position:fixed; width:86px; height:120px; border-radius:46% 46% 58% 58%;
+    opacity:0.9; pointer-events:none; z-index:20; filter:drop-shadow(0 12px 24px rgba(0,0,0,0.45));
+  }
+  .balloon.left{ left:6px; top:30vh; background:linear-gradient(180deg,#ff7aa8,#ff3dbb) }
+  .balloon.right{ right:6px; top:26vh; background:linear-gradient(180deg,#7aeaff,#0069a6) }
+  @media(max-width:860px){ .balloon.left, .balloon.right{ display:none } }
+
+  /* tiny golden sparkles (falling) */
+  .sparkle{
+    position:fixed; font-size:18px; pointer-events:none; opacity:0.95; z-index:15;
+    transform:translateY(-30px);
   }
 
-  /* header sparkle (light and non-intrusive) */
-  .sparkle-bar {
-    height:24px; width:100%; margin-bottom:8px; overflow:hidden; position:relative;
-    pointer-events:none;
-  }
-  .sparkle-dot{
-    position:absolute; top:2px; width:6px; height:6px; border-radius:50%;
-    opacity:0.9; filter:blur(.2px);
-    animation: sparkleMove linear infinite;
-  }
-  @keyframes sparkleMove {
-    from { transform: translateY(0) scale(.9); opacity:.95 }
-    to   { transform: translateY(0) scale(1); opacity:.6 }
-  }
+  /* top corner fireworks canvas */
+  #fw { position:fixed; top:0; left:0; pointer-events:none; z-index:10; height:180px; width:100% }
 
-  /* footer */
-  footer { text-align:center; color:rgba(255,255,255,0.75); margin-top:20px; font-size:15px; }
+  footer{ text-align:center;margin-top:26px;color:rgba(255,255,255,0.7);font-size:14px; padding-bottom:28px }
 
-  /* fade-in for text */
-  .fade-in { opacity:0; transform: translateY(6px); transition: opacity .7s ease, transform .7s ease; }
-  .fade-in.show { opacity:1; transform: translateY(0); }
-
-  /* reduce effects on very small screens */
-  @media (max-width:420px){
-    h1{font-size:28px}
-    .photo{ max-height:420px }
-  }
 </style>
 </head>
 <body>
 
 <div class="wrap">
-
   <header>
-    <div class="sparkle-bar" aria-hidden="true"></div>
-    <h1 class="fade-in" id="title">🎉 Happy Birthday, Aadya 🎉</h1>
-    <div class="subtitle fade-in" style="max-width:820px;margin:8px auto 0">Wishing you laughter, sparkle and endless smiles — have a magical day!</div>
-    <div class="pills fade-in" style="margin-top:14px">
+    <h1>🎉 Happy Birthday, Aadya 🎉</h1>
+    <div class="tagline">Wishing you sparkle, laughter & endless smiles ✨</div>
+    <div class="pills">
       <div class="pill">Age: 5 years</div>
       <div class="pill">Born: November 22, 2020</div>
     </div>
+
+    <div id="message" class="message">Aadya, you are our sunshine 🌟</div>
   </header>
 
-  <!-- TWO PHOTOS: full visible, no cropping -->
-  <section class="gallery" role="region" aria-label="Photos of Aadya">
-    <div class="gold-frame">
-      <div class="gold-inner">
-        <img
-          id="photo1"
-          class="photo"
-          src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg"
-          alt="Aadya photo 1 — full image"
-          loading="lazy"
-        />
+  <!-- soft balloons (sides only) -->
+  <div class="balloon left" aria-hidden="true"></div>
+  <div class="balloon right" aria-hidden="true"></div>
+
+  <section class="gallery" aria-label="Photos of Aadya">
+    <div class="card">
+      <div class="gold-border">
+        <div class="gold-inner">
+          <img class="photo" id="p1" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya photo 1 — full image">
+        </div>
       </div>
     </div>
 
-    <div class="gold-frame">
-      <div class="gold-inner">
-        <img
-          id="photo2"
-          class="photo"
-          src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg"
-          alt="Aadya photo 2 — full image"
-          loading="lazy"
-        />
+    <div class="card">
+      <div class="gold-border">
+        <div class="gold-inner">
+          <img class="photo" id="p2" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" alt="Aadya photo 2 — full image">
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="fade-in">Website Hosted by <strong>RAJ</strong></footer>
+  <footer>Website Hosted by <strong>RAJ</strong></footer>
 </div>
 
-<!-- ===== Audio: Option B autoplay (best-effort) ===== -->
-<!-- Silent intro (data URI) + real music -->
+<!-- fireworks canvas (top corners only) -->
+<canvas id="fw"></canvas>
+
+<!-- AUDIO: Option B autoplay trick (silent intro + real music) -->
 <audio id="silentAudio" autoplay>
   <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAACAAACAAACAAACAAA" type="audio/mp3">
 </audio>
 
-<audio id="bgMusic" loop crossorigin="anonymous">
+<audio id="realAudio" loop crossorigin="anonymous">
   <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* --- show elements with fade-in after DOM ready --- */
-document.addEventListener('DOMContentLoaded', ()=> {
-  document.getElementById('title').classList.add('show');
-  document.querySelectorAll('.fade-in').forEach(el=> el.classList.add('show'));
-  // reveal photos smoothly when loaded
+/* ====== message show ====== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(()=> document.getElementById('message').classList.add('show'), 700);
+  // reveal images smoothly
   document.querySelectorAll('.photo').forEach(img=>{
-    if(img.complete) img.classList.add('visible');
-    else img.addEventListener('load', ()=> img.classList.add('visible'));
+    if(img.complete) img.style.opacity=1;
+    else img.addEventListener('load', ()=> img.style.opacity=1);
   });
 });
 
-/* --- light sparkle generation (non-intrusive) --- */
-(function makeSparkles(){
-  const bar = document.querySelector('.sparkle-bar');
-  if(!bar) return;
-  const colors = ['#ffd07a','#ff9de6','#8ef0ff','#ffd7b8'];
-  for(let i=0;i<14;i++){
-    const d = document.createElement('div');
-    d.className = 'sparkle-dot';
-    d.style.left = (i*7 + Math.random()*6) + '%';
-    d.style.background = colors[i%colors.length];
-    d.style.animationDuration = (1.6 + Math.random()*1.6) + 's';
-    d.style.opacity = 0.9 - Math.random()*0.4;
-    bar.appendChild(d);
+/* ====== autoplay music Option B ====== */
+const silent = document.getElementById('silentAudio');
+const real = document.getElementById('realAudio');
+silent.volume = 0;
+silent.addEventListener('play', ()=> setTimeout(()=> real.play().catch(()=>{}), 300));
+real.play().catch(()=>{});
+['click','touchstart','scroll','keydown'].forEach(ev => window.addEventListener(ev, ()=> real.play().catch(()=>{}), {once:true, passive:true}));
+
+/* ====== limited top-corner fireworks (light) ====== */
+const fw = document.getElementById('fw');
+const fctx = fw.getContext('2d');
+function resizeFW(){ fw.width = innerWidth; fw.height = 180; }
+resizeFW(); window.addEventListener('resize', resizeFW);
+
+let particles = [];
+function burst(x,y, color){
+  const count = 18 + Math.floor(Math.random()*10);
+  for(let i=0;i<count;i++){
+    const a = Math.random()*Math.PI*2;
+    const s = 0.8 + Math.random()*1.8;
+    particles.push({x,y,vx:Math.cos(a)*s, vy:Math.sin(a)*s, life:40 + Math.random()*30, color});
   }
+}
+function updateFW(){
+  fctx.clearRect(0,0,fw.width,fw.height);
+  for(let i=particles.length-1;i>=0;i--){
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+    const alpha = Math.max(0, p.life / 80);
+    fctx.fillStyle = hexToRGBA(p.color, alpha);
+    fctx.beginPath(); fctx.arc(p.x,p.y,2,0,Math.PI*2); fctx.fill();
+    if(p.life<=0) particles.splice(i,1);
+  }
+  requestAnimationFrame(updateFW);
+}
+updateFW();
+
+function hexToRGBA(hex,a){ const c=hex.replace('#',''); const r=parseInt(c.slice(0,2),16), g=parseInt(c.slice(2,4),16), b=parseInt(c.slice(4,6),16); return `rgba(${r},${g},${b},${a})`; }
+
+// trigger light bursts at corners only
+setInterval(()=>{ burst(60 + Math.random()*80, 30 + Math.random()*20, '#ff9de6'); burst(fw.width-60 - Math.random()*80, 30 + Math.random()*20, '#8ef0ff'); }, 1200);
+
+/* ====== slow golden sparkles (falling, sparse) ====== */
+function spawnSparkle(){
+  const el = document.createElement('div');
+  el.className = 'sparkle';
+  el.style.left = (10 + Math.random()*80) + 'vw';
+  el.style.top = (-10 + Math.random()*10) + 'vh';
+  el.style.fontSize = (12 + Math.random()*12) + 'px';
+  el.style.opacity = 0.95;
+  el.innerHTML = '✨';
+  document.body.appendChild(el);
+  // animate down slowly
+  const dur = 5000 + Math.random()*6000;
+  el.animate([{transform:'translateY(0)', opacity:1},{transform:`translateY(${window.innerHeight * 0.65}px)`, opacity:0}], {duration:dur, easing:'linear'});
+  setTimeout(()=> el.remove(), dur+100);
+}
+setInterval(spawnSparkle, 900);
+
+/* ====== soft balloon float (sides only) - small subtle motion ====== */
+(function floatBalloons(){
+  const left = document.querySelector('.balloon.left');
+  const right = document.querySelector('.balloon.right');
+  let t = 0;
+  function frame(){
+    t += 0.01;
+    if(left) left.style.transform = `translateY(${Math.sin(t)*8}px)`;
+    if(right) right.style.transform = `translateY(${Math.cos(t)*8}px)`;
+    requestAnimationFrame(frame);
+  }
+  frame();
 })();
 
-/* ====== Audio autoplay: silent intro trick (Option B) ====== */
-const silent = document.getElementById('silentAudio');
-const bg = document.getElementById('bgMusic');
+/* ====== safety: ensure photos visible on small screens ====== */
+function adaptPhotoMax() {
+  const photos = document.querySelectorAll('.photo');
+  photos.forEach(img => img.style.maxHeight = (window.innerHeight * 0.72) + 'px');
+}
+adaptPhotoMax();
+window.addEventListener('resize', adaptPhotoMax);
 
-silent.volume = 0; // ensure silent
-
-silent.addEventListener('play', ()=>{
-  // small delay then try real music
-  setTimeout(()=> {
-    bg.play().catch(()=>{ /* fallback on interaction below */ });
-  }, 300);
-});
-
-// immediate autoplay attempt
-bg.play().catch(()=>{ /* ignored - browsers may block */ });
-
-// guarantee start on first user gesture (covers iPhone)
-['click','touchstart','scroll','keydown'].forEach(ev=>{
-  window.addEventListener(ev, ()=> bg.play().catch(()=>{}), {once:true, passive:true});
-});
-
-/* make sure images never crop: if image aspect is tall, reduce height to avoid covering content */
-window.addEventListener('resize', ()=> {
-  document.querySelectorAll('.photo').forEach(img=>{
-    img.style.maxHeight = (window.innerHeight * 0.7) + 'px';
-  });
-});
-/* initial set */
-document.querySelectorAll('.photo').forEach(img=>{
-  img.style.maxHeight = (window.innerHeight * 0.7) + 'px';
-});
 </script>
 </body>
 </html>
