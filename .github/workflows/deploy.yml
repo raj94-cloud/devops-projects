@@ -1,4 +1,4 @@
-name: Deploy to S3
+name: Deploy to S3 (no subfolders)
 
 on:
   push:
@@ -19,9 +19,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Upload to S3
+      - name: Upload ONLY required website files to S3 root
         run: |
           aws s3 sync . s3://cloudfront-static2 \
-            --exclude ".git/*" \
-            --delete \
-            --acl public-read
+            --exclude "*" \
+            --include "index.html" \
+            --include "arad2.jpeg" \
+            --include "aradya1.jpeg" \
+            --include "nagutha-nagutha-baalu.mp3" \
+            --acl public-read \
+            --delete
