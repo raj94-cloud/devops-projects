@@ -1,141 +1,190 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday Aadya ✨💖</title>
-  <style>
-    body {
-      margin:0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top,#140035,#060010,#000);
-      color:white;
-      overflow-x:hidden;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Aadya ✨💖</title>
+<style>
+  :root{
+    --bg1:#fffae6; --bg2:#ffe6ff; --accent:#ff5da2;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+  body{
+    background: radial-gradient(1200px 600px at 10% 10%, #ffd6ff 0%, transparent 12%),
+                radial-gradient(1200px 600px at 90% 90%, #d6f7ff 0%, transparent 12%),
+                linear-gradient(180deg,#1f004d 0%, #0b1020 60%);
+    color:#fff;
+    overflow-x:hidden;
+  }
 
-    .container{
-      max-width:1000px;
-      margin:80px auto;
-      background:rgba(255,255,255,0.07);
-      border-radius:30px;
-      padding:60px;
-      backdrop-filter:blur(20px);
-      box-shadow:0 0 80px rgba(255,0,200,0.4),0 0 120px rgba(0,200,255,0.3);
-      position:relative;
-    }
+  .wrap{
+    max-width:1100px;
+    margin:40px auto;
+    padding:40px;
+    position:relative;
+  }
 
-    h1 {
-      font-size:50px;
-      margin-bottom:10px;
-    }
+  /* header card */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.12));
+    border-radius:24px;
+    padding:36px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 40px rgba(255,120,200,0.06);
+    position:relative;
+    overflow:visible;
+  }
 
-    @keyframes goldGlow {
-      0%{filter:drop-shadow(0 0 8px #ffd700)}
-      50%{filter:drop-shadow(0 0 22px #fff5a8)}
-      100%{filter:drop-shadow(0 0 8px #ffd700)}
-    }
+  h1{
+    margin:0 0 10px 0;
+    font-size:48px;
+    letter-spacing: -1px;
+    background: linear-gradient(90deg,#ffd94a,#ff8ad8,#7ef0ff);
+    -webkit-background-clip:text;
+    color: transparent;
+    filter: drop-shadow(0 6px 18px rgba(255,140,200,0.08));
+  }
 
-    .subtxt{
-      font-size:18px;
-      opacity:0.9;
-      margin-bottom:30px;
-    }
+  p.lead{opacity:0.95;margin:8px 0 22px 0; font-size:18px;}
 
-    .pill-box{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:35px;
-    }
+  .pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .pill{background:rgba(255,255,255,0.04); padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.06); font-weight:600;}
 
-    .pill{
-      background:rgba(255,255,255,0.1);
-      padding:10px 16px;
-      border-radius:50px;
-      font-weight:600;
-      border:1px solid rgba(255,255,255,0.2);
-    }
+  .actions{display:flex;gap:14px;align-items:center;margin-top:18px;}
+  .btn{
+    padding:12px 18px;border-radius:14px;border:0;font-weight:700;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,0.5);
+  }
+  .btn-pink{background:linear-gradient(90deg,#ff67b3,#ffb3e6); color:#1a0720;}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12); color:#fff;}
 
-    button{
-      padding:12px 22px;
-      border:0;
-      border-radius:14px;
-      font-weight:700;
-      cursor:pointer;
-      font-size:16px;
-    }
+  /* center big circle photo */
+  .hero{
+    display:flex;
+    gap:40px;
+    align-items:center;
+    margin-top:34px;
+    flex-wrap:wrap;
+  }
 
-    .btn-main{
-      background:linear-gradient(45deg,#ff00f2,#ff7ae6,#ff00bf);
-      color:black;
-      box-shadow:0 0 20px #ff4ad8;
-    }
+  .photo-wrap{
+    min-width:320px;
+    width:360px;
+    height:360px;
+    border-radius:50%;
+    background: conic-gradient(from 120deg,#ffd1f0, #fff0a3, #b7f7ff, #ffd1f0);
+    padding:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255,120,200,0.12);
+    transform:translateZ(0);
+  }
 
-    .btn-ghost{
-      background:transparent;
-      color:white;
-      border:1px solid rgba(255,255,255,0.3);
-    }
+  .photo{
+    width:320px;height:320px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,0.85);
+    box-shadow:0 12px 30px rgba(0,0,0,0.6), inset 0 4px 18px rgba(255,255,255,0.06);
+    background:#222 center/cover no-repeat;
+  }
 
-    .row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-    }
+  /* info column */
+  .info{flex:1;min-width:300px;}
+  .info h2{margin:0;font-size:28px;}
+  .dob{opacity:0.95;margin-top:8px;font-weight:600;}
 
-    .big-emoji{
-      font-size:80px;
-      animation: float 4s infinite ease-in-out;
-    }
+  /* carousel bottom-left */
+  .carousel{
+    position:fixed; left:18px; bottom:18px; width:160px; height:160px; border-radius:16px; overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.06); background:rgba(0,0,0,0.18); z-index:1200;
+  }
+  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;}
+  .carousel img.active{opacity:1;}
 
-    @keyframes float{
-      0%{transform:translateY(0)}
-      50%{transform:translateY(-14px)}
-      100%{transform:translateY(0)}
-    }
+  /* balloons + clouds + confetti */
+  .balloon{
+    position:absolute; width:36px; height:48px; font-size:32px; pointer-events:none; animation:balloonUp 8s linear infinite;
+  }
+  @keyframes balloonUp{0%{transform:translateY(60vh) scale(0.9)}100%{transform:translateY(-20vh) scale(1)}}
 
-    /* Floating particles */
-    .particle{
-      position:absolute;
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:#ff3dbb;
-      animation: rise 6s infinite linear;
-      opacity:0.7;
-    }
+  .confetti{
+    position:fixed; inset:0; pointer-events:none; z-index:1400;
+  }
+  .cloud{
+    position:absolute; width:260px; height:120px; border-radius:120px; background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px); box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  }
 
-    @keyframes rise{
-      0%{ transform:translateY(0) scale(0.8); opacity:0.5; }
-      100%{ transform:translateY(-900px) scale(1.4); opacity:0; }
-    }
-
-  </style>
+  /* popup and small responsive */
+  @media(max-width:780px){
+    h1{font-size:36px}
+    .photo-wrap{width:260px;height:260px}
+    .photo{width:230px;height:230px}
+    .wrap{padding:18px}
+    .carousel{width:120px;height:120px; left:12px; bottom:12px;}
+  }
+</style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Happy Birthday, Aadya! ✨💖</h1>
+      <p class="lead">May your day be full of laughter, balloons and colorful magic. You were born on <strong>November 22, 2020</strong>.</p>
 
-<div class="container" style="border:4px solid transparent; border-radius:30px; animation: neonBorder 3s infinite alternate;">
-  <h1 style="background: linear-gradient(90deg,#ffd700,#ffec8b,#fff3b0,#ffd700); -webkit-background-clip: text; color: transparent; animation: goldGlow 4s infinite ease-in-out;">
-    Happy Birthday, Aadya! ✨💖
-  </h1>
+      <div class="pills">
+        <div class="pill" id="age-pill">Age: calculating…</div>
+        <div class="pill">Born: November 22, 2020</div>
+        <div class="pill">Wish: Infinite Joy & Love 💕</div>
+      </div>
 
-  <p class="subtxt">May your day shine brighter than the stars ✨ and bring endless happiness. You were born on <b>November 22, 2020</b>.</p>
+      <div class="hero">
+        <!-- center big circle photo -->
+        <div class="photo-wrap" aria-hidden="false">
+          <div class="photo" id="mainPhoto"
+               style="background-image: url('https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg');">
+          </div>
+        </div>
 
-  <div class="pill-box">
-    <div class="pill" id="age-pill">Age: calculating…</div>
-    <div class="pill">Born: November 22, 2020</div>
-    <div class="pill">Special Wish: Infinite Joy & Love 💕</div>
-  </div>
+        <!-- info / buttons -->
+        <div class="info">
+          <h2>Aadya N Biradar</h2>
+          <div class="dob">DOB: November 22, 2020</div>
 
-  <div class="row">
-    <div>
-      <button class="btn-main" id="surprise">✨ Surprise Effect</button>
-      <button class="btn-ghost" id="download">Download Card 📥</button>
+          <div style="margin-top:18px;">
+            <button class="btn btn-pink" id="surpriseBtn">🎉 Surprise!</button>
+            <button class="btn btn-ghost" id="printBtn">📥 Download / Print</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="big-emoji">🎁🎈</div>
   </div>
-</div>
+
+  <!-- fixed carousel -->
+  <div class="carousel" id="carousel">
+    <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" class="active" alt="Aadya">
+    <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya 2">
+  </div>
+
+  <!-- balloons (decor) -->
+  <div style="position:fixed;right:18px;bottom:140px;z-index:1000;pointer-events:none;">
+    <div class="balloon" style="left:0; animation-delay:0s;">🎈</div>
+    <div class="balloon" style="left:40px; animation-delay:1.2s;">🎈</div>
+    <div class="balloon" style="left:80px; animation-delay:2.1s;">🎈</div>
+  </div>
+
+  <!-- clouds -->
+  <div class="cloud" style="left:6%; top:8%; width:240px; height:90px; opacity:0.7;"></div>
+  <div class="cloud" style="right:6%; top:14%; width:300px; height:110px; opacity:0.65;"></div>
+
+  <!-- confetti canvas -->
+  <canvas id="confetti" class="confetti"></canvas>
+
+  <!-- Background Music (encoded spaces) -->
+  <audio id="bgMusic" loop>
+    <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Nagutha%20Nagutha%20Baalu-KannadaMaza.Com.mp3" type="audio/mpeg">
+    <!-- fallback text -->
+  </audio>
+
+  <!-- Hidden local uploaded file path (developer tool will transform this to a URL if needed) -->
+  <img src="/mnt/data/42e613f1-85cd-4c41-8977-bb1afc51b14e.png" alt="uploaded-screenshot" style="display:none;" />
 
 <script>
   // Age Calculation
@@ -145,58 +194,94 @@
     let age = now.getFullYear() - birth.getFullYear();
     const m = now.getMonth() - birth.getMonth();
     if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--;
-    document.getElementById('age-pill').textContent = 'Age: ' + age + ' years';
+    document.getElementById('age-pill').textContent = 'Age: ' + age + (age === 1 ? ' year' : ' years');
   })();
 
-  // Surprise Effect
-  document.getElementById('surprise').addEventListener('click', ()=>{
-    for(let i=0;i<40;i++){
-      let p = document.createElement('div');
-      p.className='particle';
-      p.style.left = Math.random()*100 + '%';
-      p.style.top = '600px';
-      p.style.background = `hsl(${Math.random()*360},100%,70%)`;
-      p.style.animationDuration = (4 + Math.random()*3)+'s';
-      document.body.appendChild(p);
-      setTimeout(()=>p.remove(),7000);
+  // Carousel
+  (function(){
+    const imgs = document.querySelectorAll('#carousel img');
+    let idx = 0;
+    setInterval(()=>{
+      imgs[idx].classList.remove('active');
+      idx = (idx+1) % imgs.length;
+      imgs[idx].classList.add('active');
+    }, 3000);
+  })();
+
+  // Confetti simple engine
+  (function(){
+    const cvs = document.getElementById('confetti');
+    const ctx = cvs.getContext('2d');
+    function resize(){ cvs.width = innerWidth; cvs.height = innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    const pieces = [];
+    function spawn(count=40){
+      for(let i=0;i<count;i++){
+        pieces.push({
+          x: Math.random()*cvs.width,
+          y: -20 - Math.random()*200,
+          vx: -2 + Math.random()*4,
+          vy: 2 + Math.random()*4,
+          r: 6 + Math.random()*8,
+          c: `hsl(${Math.random()*360},80%,60%)`,
+          rot: Math.random()*360
+        });
+      }
     }
+
+    function update(){
+      ctx.clearRect(0,0,cvs.width,cvs.height);
+      for(let i=pieces.length-1;i>=0;i--){
+        const p = pieces[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.08;
+        p.rot += 6;
+        ctx.save();
+        ctx.translate(p.x,p.y);
+        ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+        ctx.restore();
+        if(p.y > cvs.height + 40) pieces.splice(i,1);
+      }
+      requestAnimationFrame(update);
+    }
+    update();
+
+    // Show confetti on surprise
+    document.getElementById('surpriseBtn').addEventListener('click', ()=>{
+      spawn(80);
+      // short burst of balloons pop (visual)
+      const el = document.querySelector('.photo-wrap');
+      el.animate([{transform:'scale(1)'},{transform:'scale(1.05)'},{transform:'scale(1)'}],{duration:700});
+      // try play music if paused
+      tryPlayMusic();
+    });
+  })();
+
+  // Print
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+  // Music autoplay handling
+  const audio = document.getElementById('bgMusic');
+  function tryPlayMusic(){
+    if(audio.paused){
+      const p = audio.play();
+      if(p && p.catch) p.catch(()=>{/* autoplay blocked; will play after user gesture */});
+    }
+  }
+  // Some browsers block autoplay until user interacts — attempt to play on first touch/click
+  ['click','touchstart','mousemove'].forEach(ev=>{
+    window.addEventListener(ev, tryPlayMusic, {once:true});
   });
 
-  document.getElementById('download').addEventListener('click', ()=>{
-    window.print();
-  });
+  // Try to start muted autoplay (if desired) - commented out (keeps sound)
+  // audio.muted = true; audio.play();
+
+  // Preload main photo (improves loading)
+  const preload = new Image();
+  preload.src = 'https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg';
+
 </script>
-
-
-<!-- ❤️ Heart Photo Frame -->
-<div style="position:fixed; right:20px; bottom:20px; z-index:999;">
-  <div style="width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,#ff7ab8,#ff2e8a); padding:8px; box-shadow:0 0 25px #ff2e8a; display:flex; align-items:center; justify-content:center;">
-    <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" style="width:160px; height:160px; object-fit:cover; border-radius:50%; border:4px solid white; box-shadow:0 0 20px white;" />
-  </div>
-</div>
-
-<!-- 🎵 Background Music -->
-<audio autoplay loop hidden>
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Nagutha+Nagutha+Baalu-KannadaMaza.Com.mp3" type="audio/mpeg">
-</audio>
-
-<!-- 📸 Updated Photo Carousel -->
-<div class="carousel-box" id="carousel" style="position:fixed; left:20px; bottom:20px; width:220px; height:220px; border-radius:20px; overflow:hidden; box-shadow:0 0 25px #ff2e8a; z-index:999;">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" style="opacity:1; position:absolute; width:100%; height:100%; object-fit:cover;">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0;">
-</div>
-
-<script>
-  let idx=0;
-  let pics=document.querySelectorAll('#carousel img');
-  setInterval(()=>{
-    pics[idx].style.opacity=0;
-    idx=(idx+1)%pics.length;
-    pics[idx].style.opacity=1;
-  },3000);
-</script>
-
-<!-- Effects, fire, balloons, glitter remain unchanged -->
-
 </body>
 </html>
