@@ -166,5 +166,88 @@
   });
 </script>
 
+  <!-- 🎆 CRACKERS ANIMATION -->
+  <script>
+    function launchCrackers(){
+      for(let i=0;i<20;i++){
+        let c=document.createElement('div');
+        c.style.position='absolute';
+        c.style.left=Math.random()*100+'%';
+        c.style.top='50%';
+        c.style.width='6px';
+        c.style.height='6px';
+        c.style.borderRadius='50%';
+        c.style.background=`hsl(${Math.random()*360},100%,60%)`;
+        c.style.boxShadow='0 0 12px white';
+        c.style.animation=`boom 700ms ease-out forwards`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),800);
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes boom {
+      0%{transform:scale(1) translate(0,0); opacity:1;}
+      100%{transform:scale(2.8) translate(40px,-40px); opacity:0;}
+    }
+  </style>
+
+  <!-- 🎈 FLOATING BALLOONS -->
+  <script>
+    function releaseBalloons(){
+      for(let i=0;i<15;i++){
+        let b=document.createElement('div');
+        b.innerHTML='🎈';
+        b.style.position='absolute';
+        b.style.left=Math.random()*100+'%';
+        b.style.bottom='-50px';
+        b.style.fontSize='50px';
+        b.style.animation=`floatUp ${6+Math.random()*4}s linear`; 
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),11000);
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes floatUp {
+      0%{transform:translateY(0) rotate(0deg);}
+      100%{transform:translateY(-120vh) rotate(25deg);}
+    }
+  </style>
+
+  <!-- 🎂 CAKE SHAKE EFFECT -->
+  <script>
+    function cakeShake(){
+      let emoji=document.querySelector('.big-emoji');
+      emoji.innerHTML='🎂🎂🎂';
+      emoji.style.animation='shake 1s';
+      setTimeout(()=>{
+        emoji.style.animation='float 4s infinite ease-in-out';
+        emoji.innerHTML='🎁🎈';
+      },1000);
+    }
+  </script>
+
+  <style>
+    @keyframes shake {
+      0%{transform:translateX(0);} 
+      25%{transform:translateX(-10px);} 
+      50%{transform:translateX(10px);} 
+      75%{transform:translateX(-10px);} 
+      100%{transform:translateX(0);} 
+    }
+  </style>
+
+  <script>
+    // Merge all effects on surprise click
+    document.getElementById('surprise').addEventListener('click',()=>{
+      launchCrackers();
+      releaseBalloons();
+      cakeShake();
+    });
+  </script>
+
 </body>
 </html>
