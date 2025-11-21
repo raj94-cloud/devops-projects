@@ -1,295 +1,250 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Happy Birthday Aadya — Ultra Premium 🎉</title>
-<link rel="icon" href="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aadya 🎉✨</title>
+
 <style>
-  :root{
-    --bg-1:#060018; --bg-2:#14002a;
-    --gold-1:#ffd07a; --gold-2:#ffb84d;
-    --accent1:#8ef0ff; --accent2:#ff9de6;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0; font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Inter", sans-serif;
-    color:#fff; background:
-      radial-gradient(1200px 600px at 10% 10%, rgba(142,240,255,0.02), transparent 8%),
-      linear-gradient(180deg,var(--bg-1),var(--bg-2));
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    overflow-x:hidden;
-  }
+/* Background */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #1b0038, #050017 70%);
+  color: white;
+  overflow-x: hidden;
+  text-align: center;
+}
 
-  /* Layout */
-  .stage{max-width:1200px;margin:28px auto;padding:20px;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
-  @media(max-width:980px){.stage{grid-template-columns:1fr;padding:14px}}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); border-radius:18px;padding:22px;box-shadow:0 30px 90px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
+/* Main content */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
 
-  /* Hero text */
-  .hero-title{font-size:44px;margin:0;line-height:1.02; font-weight:900;
-    background:linear-gradient(90deg,var(--accent1),#d89bff,var(--accent2)); -webkit-background-clip:text;color:transparent}
-  .hero-sub{margin-top:8px;color:rgba(255,255,255,0.9);font-size:16px}
+/* Title */
+h1 {
+  font-size: 50px;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ffb7ff, #d5b3ff, #8ee8ff);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glow 4s infinite ease-in-out;
+}
+@keyframes glow {
+  0% { text-shadow: 0 0 15px #ffb8ff; }
+  50% { text-shadow: 0 0 35px #ffdfff; }
+  100% { text-shadow: 0 0 15px #ffb8ff; }
+}
 
-  .pills{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-  .pill{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700;border:1px solid rgba(255,255,255,0.04)}
+/* Wishes */
+.wish {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-top: 5px;
+}
 
-  /* Golden framed hero */
-  .gold-wrap{margin-top:20px;border-radius:22px;padding:18px;background:
-    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));box-shadow:0 30px 80px rgba(0,0,0,0.6);position:relative}
-  .gold-frame{position:relative;border-radius:16px;padding:6px;background:linear-gradient(90deg,var(--gold-1),var(--gold-2));box-shadow:0 10px 40px rgba(255,190,100,0.08)}
-  .gold-inner{border-radius:12px;overflow:hidden;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))}
-  .hero-photo{width:100%;height:520px;object-fit:cover;display:block;border-radius:8px;transform-origin:center;transition:transform .9s cubic-bezier(.2,.9,.2,1)}
-  .hero-photo:hover{transform:scale(1.02) rotate(-0.4deg)}
+/* Pills */
+.pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  padding: 12px 22px;
+  margin: 8px;
+  border-radius: 40px;
+  font-size: 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
 
-  /* name shine */
-  .name-shine{font-weight:900;display:inline-block;background:linear-gradient(90deg,#fff,#ffd07a,#fff);background-size:200% 100%;-webkit-background-clip:text;color:transparent;animation:shine 3.5s linear infinite}
-  @keyframes shine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+/* GOLDEN FRAME */
+.frame {
+  margin: 30px auto;
+  padding: 14px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffd47a, #ffb44d, #ffe7a2);
+  box-shadow: 0 0 25px rgba(255,215,125,0.4);
+}
+.frame img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+}
 
-  /* Right column */
-  .right .card{padding:18px}
-  .host{margin-top:18px;color:rgba(255,255,255,0.85);text-align:center;font-weight:700}
+/* Footer */
+footer {
+  margin-top: 40px;
+  color: #d8cfff;
+  font-size: 16px;
+}
 
-  /* decorative layers */
-  .balloon{
-    position:fixed;width:150px;height:210px;border-radius:48% 48% 58% 58%;pointer-events:none;z-index:50;transform-origin:center;animation:floaty 6s ease-in-out infinite}
-  .balloon.left{left:16px;top:12vh;background:linear-gradient(180deg,#ff7aa8,#ff3dbb)}
-  .balloon.right{right:16px;top:20vh;background:linear-gradient(180deg,#7aeaff,#0069a6)}
-  @keyframes floaty{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-20px) rotate(6deg)}100%{transform:translateY(0) rotate(-6deg)}}
+/* Hide audio */
+audio { display: none; }
 
-  /* floating hearts */
-  .heart{
-    position:fixed;font-size:22px;pointer-events:none;opacity:0.95;filter:drop-shadow(0 6px 14px rgba(0,0,0,0.45));z-index:40
-  }
+/* Fireworks */
+#fw {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
 
-  /* footer */
-  footer{margin-top:18px;text-align:center;color:rgba(255,255,255,0.6);font-size:14px}
+/* Confetti */
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
 
-  /* responsive tweaks */
-  @media(max-width:720px){
-    .hero-photo{height:320px}
-    .name-shine{font-size:28px}
-    .hero-title{font-size:28px}
-  }
+/* Falling flowers */
+.flower {
+  position: fixed;
+  top: -50px;
+  font-size: 26px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-50px) rotate(0); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Canvas layers for effects -->
-<canvas id="stars" style="position:fixed;inset:0;pointer-events:none;z-index:10"></canvas>
-<canvas id="fire" style="position:fixed;inset:0;pointer-events:none;z-index:30"></canvas>
-<canvas id="confetti" style="position:fixed;inset:0;pointer-events:none;z-index:40"></canvas>
+<!-- Fireworks Canvas -->
+<canvas id="fw"></canvas>
 
-<!-- Balloons -->
-<div class="balloon left" aria-hidden="true"></div>
-<div class="balloon right" aria-hidden="true"></div>
+<!-- Confetti Canvas -->
+<canvas id="confetti"></canvas>
 
-<!-- floating hearts (will be created by script) -->
-<div id="heartLayer" aria-hidden="true"></div>
+<!-- Falling Flowers -->
+<script>
+for (let i = 0; i < 22; i++) {
+  let f = document.createElement("div");
+  f.className = "flower";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = 4 + Math.random() * 6 + "s";
+  f.innerHTML = "🌸";
+  document.body.appendChild(f);
+}
+</script>
 
-<div class="stage">
-  <div class="left">
-    <div class="card" role="main" aria-label="Birthday card">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
-        <div>
-          <h1 class="hero-title">Happy Birthday, <span class="name-shine">Aadya</span> 🎉</h1>
-          <div class="hero-sub">A five-year galaxy of smiles — sparkle every moment.</div>
-          <div class="pills">
-            <div class="pill">Age: 5 years</div>
-            <div class="pill">Born: November 22, 2020</div>
-          </div>
-        </div>
-      </div>
+<div class="container">
 
-      <div class="gold-wrap" aria-hidden="false" style="margin-top:18px">
-        <div class="gold-frame">
-          <div class="gold-inner">
-            <img class="hero-photo" id="heroImg" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya main photo">
-          </div>
-        </div>
-      </div>
+  <h1>🎉 Happy Birthday, Aadya 🎉</h1>
 
-      <div style="margin-top:14px;color:rgba(255,255,255,0.85)">
-        Wishing you a day of magic, laughter and endless hugs. Love you, little star ✨
-      </div>
-    </div>
+  <div class="wish">Wishing you laughter, joy & magical moments always ✨💖</div>
+
+  <div class="pill">Age: 5 years</div>
+  <div class="pill">Born: November 22, 2020</div>
+
+  <!-- GOLDEN FRAME PHOTO -->
+  <div class="frame">
+    <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya Photo">
   </div>
 
-  <div class="right">
-    <div class="card" role="complementary" aria-label="Host info">
-      <div style="text-align:center">
-        <div style="font-size:13px;color:rgba(255,255,255,0.8)">Hosted by</div>
-        <div style="font-weight:900;font-size:18px;margin-top:6px">RAJ</div>
-      </div>
-
-      <div style="margin-top:16px">
-        <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;color:rgba(255,255,255,0.9)">
-          Share this page with family & friends to celebrate together.
-        </div>
-      </div>
-
-      <div style="margin-top:18px;text-align:center;color:rgba(255,255,255,0.7)">
-        Website Hosted by <strong>RAJ</strong>
-      </div>
-    </div>
-  </div>
+  <footer>Website Hosted by <b>RAJ</b></footer>
 </div>
 
-<footer>Made with ❤️ — Celebrate Aadya</footer>
 
-<!-- Hidden audio (no UI) -->
-<audio id="bgAudio" loop crossorigin="anonymous" preload="auto">
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+<!-- 🔥 AUTOPLAY FIX (Silent intro → Real song plays automatically) -->
+<audio id="silentAudio" autoplay>
+  <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAACAAACAAACAAACAAA" type="audio/mp3">
+</audio>
+
+<audio id="realMusic" loop>
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3">
 </audio>
 
 <script>
-/* ---------- Canvas setup ---------- */
-const stars = document.getElementById('stars'), sctx = stars.getContext('2d');
-const fire = document.getElementById('fire'), fctx = fire.getContext('2d');
-const conf = document.getElementById('conf'), cctx = conf.getContext('2d');
-function resizeAll(){ stars.width = fire.width = conf.width = innerWidth; stars.height = fire.height = conf.height = innerHeight; }
-resizeAll(); window.addEventListener('resize', resizeAll);
+const silent = document.getElementById("silentAudio");
+const real = document.getElementById("realMusic");
 
-/* ---------- Stars background ---------- */
-const starField = [];
-for(let i=0;i<150;i++){
-  starField.push({x:Math.random()*stars.width, y:Math.random()*stars.height, r:Math.random()*1.6, a:0.2 + Math.random()*0.9});
-}
-function drawStars(){
-  sctx.clearRect(0,0,stars.width,stars.height);
-  for(const st of starField){
-    sctx.beginPath(); sctx.fillStyle = `rgba(255,255,255,${st.a})`; sctx.arc(st.x,st.y,st.r,0,Math.PI*2); sctx.fill();
-  }
-  requestAnimationFrame(drawStars);
-}
-drawStars();
+silent.volume = 0;
 
-/* ---------- Hearts floating  ---------- */
-const heartLayer = document.getElementById('heartLayer');
-function spawnHeart(){
-  const el = document.createElement('div');
-  el.className = 'heart';
-  el.style.left = (10 + Math.random()*80) + 'vw';
-  el.style.top = (30 + Math.random()*40) + 'vh';
-  el.style.opacity = 0.9;
-  el.style.transform = `translateY(0) scale(${0.9 + Math.random()*0.4})`;
-  el.style.transition = `transform ${6+Math.random()*4}s linear, opacity ${6+Math.random()*4}s linear`;
-  el.innerHTML = '💖';
-  document.body.appendChild(el);
-  requestAnimationFrame(()=> el.style.transform = `translateY(-20vh) scale(${1.2 + Math.random()*0.6})`, el.style.opacity=0);
-  setTimeout(()=> el.remove(), 10000);
-}
-setInterval(spawnHeart, 1400);
+silent.onplay = () => {
+  setTimeout(() => real.play().catch(()=>{}), 300);
+};
 
-/* ---------- Fireworks (burst particles) ---------- */
-let fwParts = [];
-function fireworksBurst(x,y){
-  const colors = ['#8ef0ff','#ff9de6','#ffd07a','#a6ffb8'];
-  const count = 30 + Math.floor(Math.random()*25);
-  for(let i=0;i<count;i++){
-    const a = Math.random()*Math.PI*2, s = 1 + Math.random()*5;
-    fwParts.push({x,y,vx:Math.cos(a)*s, vy:Math.sin(a)*s, life:70 + Math.random()*40, color: colors[Math.floor(Math.random()*colors.length)], size:1+Math.random()*2});
-  }
-}
-function updateFire(){
-  fctx.clearRect(0,0,fire.width,fire.height);
-  for(let i=fwParts.length-1;i>=0;i--){
-    const p = fwParts[i];
-    p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.life--;
-    const alpha = Math.max(0, p.life / 100);
-    fctx.beginPath(); fctx.fillStyle = colorWithAlpha(p.color, alpha); fctx.arc(p.x,p.y,p.size,0,Math.PI*2); fctx.fill();
-    if(p.life<=0) fwParts.splice(i,1);
-  }
-  requestAnimationFrame(updateFire);
-}
-updateFire();
-function colorWithAlpha(hex,a){
-  const c = hex.replace('#',''); const r=parseInt(c.substring(0,2),16), g=parseInt(c.substring(2,4),16), b=parseInt(c.substring(4,6),16);
-  return `rgba(${r},${g},${b},${a})`;
-}
-setInterval(()=> fireworksBurst(100 + Math.random()*(fire.width-200), 80 + Math.random()*(fire.height/3)), 950);
-
-/* ---------- Confetti ---------- */
-let confetti = [];
-function spawnConfetti(){
-  for(let i=0;i<120;i++){
-    confetti.push({x:Math.random()*conf.width,y:-20 - Math.random()*200, vx:(Math.random()-0.5)*6, vy:2 + Math.random()*5, w:6 + Math.random()*10, h:6 + Math.random()*6, color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)], rot:Math.random()*360});
-  }
-  runConfetti();
-}
-let confRun=false;
-function runConfetti(){
-  if(confRun) return; confRun=true;
-  (function loop(){
-    cctx.clearRect(0,0,conf.width,conf.height);
-    for(let i=confetti.length-1;i>=0;i--){
-      const p = confetti[i];
-      p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.rot += 5;
-      cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
-      cctx.fillStyle = p.color; cctx.fillRect(-p.w/2, -p.h/2, p.w, p.h); cctx.restore();
-      if(p.y > conf.height + 40) confetti.splice(i,1);
-    }
-    if(confetti.length>0) requestAnimationFrame(loop); else confRun=false;
-  })();
-}
-
-/* ---------- Flowers falling ---------- */
-function spawnFlowers(){
-  for(let i=0;i<12;i++){
-    const el = document.createElement('div');
-    el.style.position='fixed'; el.style.left = Math.random()*100 + 'vw'; el.style.top='-40px';
-    el.style.fontSize = 18 + Math.random()*18 + 'px'; el.style.opacity = 0.95; el.style.pointerEvents='none';
-    el.style.transition = 'transform 5s linear, opacity 5s linear';
-    el.innerHTML = '🌸';
-    document.body.appendChild(el);
-    setTimeout(()=> el.style.transform = `translateY(${innerHeight + 80}px) rotate(${Math.random()*720}deg)`, 20);
-    setTimeout(()=> el.remove(), 5400);
-  }
-}
-setInterval(spawnFlowers, 3000);
-
-/* ---------- Audio autoplay hidden & triggers ---------- */
-const audio = document.getElementById('bgAudio');
-audio.volume = 0.9;
-
-async function tryPlayAudio(){
-  try{
-    if(window.AudioContext || window.webkitAudioContext){
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      if(ctx.state === 'suspended') await ctx.resume();
-      // optional: connect for visualizer (not shown)
-    }
-    await audio.play();
-    // start visuals on audio start
-    spawnConfetti(); // big confetti burst when audio starts
-    for(let i=0;i<6;i++){ setTimeout(()=> fireworksBurst(200 + Math.random()*(fire.width-400), 80 + Math.random()*(fire.height/3)), i*600); }
-  }catch(e){
-    // blocked — start on gesture
-  }
-}
-// immediate attempt
-tryPlayAudio();
-// ensure starts on any gesture
-['click','touchstart','keydown','scroll'].forEach(ev => window.addEventListener(ev, ()=> tryPlayAudio(), {once:true, passive:true}));
-
-/* ---------- small interactive sparkle on hero hover ---------- */
-const hero = document.getElementById('heroImg');
-hero.addEventListener('mousemove', (e)=>{
-  const r = hero.getBoundingClientRect();
-  const x = e.clientX - r.left; const y = e.clientY - r.top;
-  // spawn small particles at offset relative to hero
-  for(let i=0;i<6;i++){
-    const gx = r.left + x + (Math.random()-0.5)*60;
-    const gy = r.top + y + (Math.random()-0.5)*40;
-    fireworksBurst(gx, gy);
-  }
+// Backup triggers
+["click","touchstart","scroll"].forEach(evt => {
+  window.addEventListener(evt, () => real.play(), {once:true});
 });
-
-/* ---------- periodic subtle bursts to keep life ---------- */
-setInterval(()=>{ for(let i=0;i<2;i++) fireworksBurst(100 + Math.random()*(fire.width-200), 60 + Math.random()*(fire.height/3)); }, 4000);
-setInterval(()=>{ if(Math.random()<0.4) spawnConfetti(); }, 7000);
-
 </script>
+
+
+<!-- ⭐ FIREWORKS + CONFETTI SCRIPT -->
+<script>
+// Fireworks
+const fw = document.getElementById("fw");
+const ctx = fw.getContext("2d");
+fw.width = innerWidth;
+fw.height = innerHeight;
+
+function firework() {
+  let x = Math.random() * fw.width;
+  let y = Math.random() * fw.height * 0.4;
+
+  for (let i = 0; i < 40; i++) {
+    let a = Math.random() * Math.PI * 2;
+    let s = Math.random() * 4 + 1;
+    let px = x, py = y;
+    let vx = Math.cos(a)*s, vy = Math.sin(a)*s;
+    let life = 60;
+
+    (function explode() {
+      ctx.fillStyle = "hsl(" + Math.random()*360 + ",100%,60%)";
+      ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI*2); ctx.fill();
+      px += vx; py += vy; vy += 0.05; life--;
+      if (life > 0) requestAnimationFrame(explode);
+    })();
+  }
+}
+setInterval(firework, 900);
+
+
+// Confetti
+const cc = document.getElementById("confetti");
+const cctx = cc.getContext("2d");
+cc.width = innerWidth;
+cc.height = innerHeight;
+
+let confettiArr = [];
+function makeConfetti() {
+  for (let i = 0; i < 80; i++) {
+    confettiArr.push({
+      x: Math.random()*cc.width, 
+      y: -20,
+      vx: (Math.random()-0.5)*4,
+      vy: 2+Math.random()*3,
+      s: 6+Math.random()*6,
+      c: ["#ff9de6","#8ef0ff","#ffd07a","#a6ffb8"][Math.floor(Math.random()*4)]
+    });
+  }
+}
+setInterval(makeConfetti, 1500);
+
+function animateConfetti() {
+  cctx.clearRect(0,0,cc.width,cc.height);
+  confettiArr.forEach((p,i)=>{
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.02;
+
+    cctx.fillStyle = p.c;
+    cctx.fillRect(p.x,p.y,p.s,p.s);
+
+    if (p.y > cc.height + 20) confettiArr.splice(i,1);
+  });
+  requestAnimationFrame(animateConfetti);
+}
+animateConfetti();
+</script>
+
 </body>
 </html>
