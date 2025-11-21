@@ -19,7 +19,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Upload ONLY required website files to S3 root
+      - name: Upload ONLY website files to S3 ROOT
         run: |
           aws s3 sync . s3://cloudfront-static2 \
             --exclude "*" \
