@@ -6,121 +6,80 @@
 <title>Happy Birthday Aadya ✨💖</title>
 <style>
   :root{
-    --bg1:#fffae6; --bg2:#ffe6ff; --accent:#ff5da2;
+    --bg1:#120026; --accent1:#ffd94a; --accent2:#ff8ad8;
   }
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+  *{box-sizing:border-box}
   body{
-    background: radial-gradient(1200px 600px at 10% 10%, #ffd6ff 0%, transparent 12%),
-                radial-gradient(1200px 600px at 90% 90%, #d6f7ff 0%, transparent 12%),
-                linear-gradient(180deg,#1f004d 0%, #0b1020 60%);
-    color:#fff;
-    overflow-x:hidden;
+    margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+    background: linear-gradient(180deg,#120026 0%, #061026 60%);
+    color:#fff; min-height:100vh; overflow-x:hidden;
   }
-
-  .wrap{
-    max-width:1100px;
-    margin:40px auto;
-    padding:40px;
-    position:relative;
-  }
-
-  /* header card */
+  .wrap{max-width:1200px;margin:28px auto;padding:28px}
   .card{
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.12));
-    border-radius:24px;
-    padding:36px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 40px rgba(255,120,200,0.06);
-    position:relative;
-    overflow:visible;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    border-radius:24px; padding:36px; position:relative; overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
   }
-
   h1{
-    margin:0 0 10px 0;
-    font-size:48px;
-    letter-spacing: -1px;
-    background: linear-gradient(90deg,#ffd94a,#ff8ad8,#7ef0ff);
-    -webkit-background-clip:text;
-    color: transparent;
-    filter: drop-shadow(0 6px 18px rgba(255,140,200,0.08));
+    font-size:48px;margin:0 0 8px 0;
+    background:linear-gradient(90deg,var(--accent1),#ffb3e6,#7ef0ff);
+    -webkit-background-clip:text;color:transparent;
+  }
+  p.lead{margin:8px 0 22px 0;opacity:.95}
+  .pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .pill{background:rgba(255,255,255,0.03);padding:10px 16px;border-radius:999px;font-weight:600;border:1px solid rgba(255,255,255,0.04)}
+
+  /* main layout */
+  .hero{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+  .photo-col{min-width:320px; width:420px; display:flex;justify-content:center}
+  /* cloud frame */
+  .cloud-frame{
+    width:360px;height:260px; position:relative;
+    display:flex;align-items:center;justify-content:center;
+    filter:drop-shadow(0 16px 40px rgba(0,0,0,0.6));
+  }
+  /* SVG cloud mask used to avoid cropping */
+  .cloud-wrap{
+    width:92%; height:92%;
+    background:linear-gradient(90deg,#fff0a3,#ffd1f0,#b7f7ff);
+    padding:12px; border-radius:40px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .cloud-photo{
+    width:100%; height:100%;
+    border-radius:28px; overflow:hidden;
+    background-position:center center; background-size:cover;
+    box-shadow:inset 0 4px 18px rgba(255,255,255,0.05);
   }
 
-  p.lead{opacity:0.95;margin:8px 0 22px 0; font-size:18px;}
+  /* info panel */
+  .info{flex:1;min-width:320px}
+  .info h2{font-size:32px;margin:0 0 6px 0}
+  .dob{opacity:.95;margin-bottom:18px;font-weight:600}
 
-  .pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
-  .pill{background:rgba(255,255,255,0.04); padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.06); font-weight:600;}
+  .actions{display:flex;gap:14px;align-items:center}
+  .btn{padding:12px 18px;border-radius:14px;border:0;font-weight:700;cursor:pointer}
+  .btn-pink{background:linear-gradient(90deg,#ff67b3,#ffb3e6); color:#160417; box-shadow:0 10px 30px rgba(255,80,150,0.12)}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:#fff}
 
-  .actions{display:flex;gap:14px;align-items:center;margin-top:18px;}
-  .btn{
-    padding:12px 18px;border-radius:14px;border:0;font-weight:700;cursor:pointer;
-    box-shadow:0 6px 20px rgba(0,0,0,0.5);
-  }
-  .btn-pink{background:linear-gradient(90deg,#ff67b3,#ffb3e6); color:#1a0720;}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12); color:#fff;}
+  /* carousel */
+  .carousel{position:fixed; left:18px; bottom:18px; width:140px; height:140px;border-radius:12px; overflow:hidden; z-index:1200;
+           box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04)}
+  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
+  .carousel img.active{opacity:1}
 
-  /* center big circle photo */
-  .hero{
-    display:flex;
-    gap:40px;
-    align-items:center;
-    margin-top:34px;
-    flex-wrap:wrap;
-  }
+  /* confetti canvas */
+  #confetti{position:fixed;inset:0;pointer-events:none;z-index:1500}
 
-  .photo-wrap{
-    min-width:320px;
-    width:360px;
-    height:360px;
-    border-radius:50%;
-    background: conic-gradient(from 120deg,#ffd1f0, #fff0a3, #b7f7ff, #ffd1f0);
-    padding:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255,120,200,0.12);
-    transform:translateZ(0);
-  }
-
-  .photo{
-    width:320px;height:320px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,0.85);
-    box-shadow:0 12px 30px rgba(0,0,0,0.6), inset 0 4px 18px rgba(255,255,255,0.06);
-    background:#222 center/cover no-repeat;
-  }
-
-  /* info column */
-  .info{flex:1;min-width:300px;}
-  .info h2{margin:0;font-size:28px;}
-  .dob{opacity:0.95;margin-top:8px;font-weight:600;}
-
-  /* carousel bottom-left */
-  .carousel{
-    position:fixed; left:18px; bottom:18px; width:160px; height:160px; border-radius:16px; overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.06); background:rgba(0,0,0,0.18); z-index:1200;
-  }
-  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;}
-  .carousel img.active{opacity:1;}
-
-  /* balloons + clouds + confetti */
-  .balloon{
-    position:absolute; width:36px; height:48px; font-size:32px; pointer-events:none; animation:balloonUp 8s linear infinite;
-  }
-  @keyframes balloonUp{0%{transform:translateY(60vh) scale(0.9)}100%{transform:translateY(-20vh) scale(1)}}
-
-  .confetti{
-    position:fixed; inset:0; pointer-events:none; z-index:1400;
-  }
-  .cloud{
-    position:absolute; width:260px; height:120px; border-radius:120px; background:rgba(255,255,255,0.08);
-    backdrop-filter: blur(8px); box-shadow:0 10px 30px rgba(0,0,0,0.6);
-  }
-
-  /* popup and small responsive */
-  @media(max-width:780px){
-    h1{font-size:36px}
-    .photo-wrap{width:260px;height:260px}
-    .photo{width:230px;height:230px}
+  /* small responsive */
+  @media(max-width:820px){
+    h1{font-size:34px}
+    .cloud-frame{width:320px;height:240px}
+    .photo-col{width:320px}
     .wrap{padding:18px}
-    .carousel{width:120px;height:120px; left:12px; bottom:12px;}
+    .carousel{width:100px;height:100px; left:12px; bottom:12px;}
   }
+
 </style>
 </head>
 <body>
@@ -136,55 +95,45 @@
       </div>
 
       <div class="hero">
-        <!-- center big circle photo -->
-        <div class="photo-wrap" aria-hidden="false">
-          <div class="photo" id="mainPhoto"
-               style="background-image: url('https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg');">
+        <div class="photo-col">
+          <!-- Cloud-shaped frame -->
+          <div class="cloud-frame" aria-hidden="false">
+            <div class="cloud-wrap">
+              <!-- MAIN PHOTO: Cloud frame uses rounded rectangle to avoid cropping of tall image -->
+              <div id="mainPhoto" class="cloud-photo"
+                   style="background-image: url('https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg');"
+                   data-local-src="/mnt/data/arad2.jpeg"></div>
+            </div>
           </div>
         </div>
 
-        <!-- info / buttons -->
         <div class="info">
           <h2>Aadya N Biradar</h2>
           <div class="dob">DOB: November 22, 2020</div>
 
-          <div style="margin-top:18px;">
-            <button class="btn btn-pink" id="surpriseBtn">🎉 Surprise!</button>
-            <button class="btn btn-ghost" id="printBtn">📥 Download / Print</button>
+          <div class="actions">
+            <button class="btn btn-pink" id="downloadBtn">📥 Download / Print</button>
+            <button class="btn btn-ghost" id="muteBtn">🔈 Mute</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- fixed carousel -->
+  <!-- small carousel -->
   <div class="carousel" id="carousel">
-    <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" class="active" alt="Aadya">
-    <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya 2">
+    <img src="https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg" class="active" alt="Aadya main">
+    <img src="https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg" alt="Aadya 2">
   </div>
-
-  <!-- balloons (decor) -->
-  <div style="position:fixed;right:18px;bottom:140px;z-index:1000;pointer-events:none;">
-    <div class="balloon" style="left:0; animation-delay:0s;">🎈</div>
-    <div class="balloon" style="left:40px; animation-delay:1.2s;">🎈</div>
-    <div class="balloon" style="left:80px; animation-delay:2.1s;">🎈</div>
-  </div>
-
-  <!-- clouds -->
-  <div class="cloud" style="left:6%; top:8%; width:240px; height:90px; opacity:0.7;"></div>
-  <div class="cloud" style="right:6%; top:14%; width:300px; height:110px; opacity:0.65;"></div>
 
   <!-- confetti canvas -->
-  <canvas id="confetti" class="confetti"></canvas>
+  <canvas id="confetti"></canvas>
 
-  <!-- Background Music (encoded spaces) -->
-  <audio id="bgMusic" loop>
-    <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Nagutha%20Nagutha%20Baalu-KannadaMaza.Com.mp3" type="audio/mpeg">
-    <!-- fallback text -->
+  <!-- Background music - CloudFront URL -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="https://d1d25zdaamjz77.cloudfront.net/Nagutha%20Nagutha%20Baalu-KannadaMaza.Com.mp3" type="audio/mpeg">
   </audio>
-
-  <!-- Hidden local uploaded file path (developer tool will transform this to a URL if needed) -->
-  <img src="/mnt/data/42e613f1-85cd-4c41-8977-bb1afc51b14e.png" alt="uploaded-screenshot" style="display:none;" />
 
 <script>
   // Age Calculation
@@ -197,7 +146,7 @@
     document.getElementById('age-pill').textContent = 'Age: ' + age + (age === 1 ? ' year' : ' years');
   })();
 
-  // Carousel
+  // Carousel rotate
   (function(){
     const imgs = document.querySelectorAll('#carousel img');
     let idx = 0;
@@ -205,18 +154,18 @@
       imgs[idx].classList.remove('active');
       idx = (idx+1) % imgs.length;
       imgs[idx].classList.add('active');
-    }, 3000);
+    },3000);
   })();
 
-  // Confetti simple engine
+  // Confetti + Fireworks engine (runs on page load)
   (function(){
     const cvs = document.getElementById('confetti');
     const ctx = cvs.getContext('2d');
-    function resize(){ cvs.width = innerWidth; cvs.height = innerHeight; }
+    function resize(){cvs.width=innerWidth; cvs.height=innerHeight;}
     window.addEventListener('resize', resize); resize();
 
-    const pieces = [];
-    function spawn(count=40){
+    const pieces=[];
+    function spawn(count=80){
       for(let i=0;i<count;i++){
         pieces.push({
           x: Math.random()*cvs.width,
@@ -233,55 +182,52 @@
     function update(){
       ctx.clearRect(0,0,cvs.width,cvs.height);
       for(let i=pieces.length-1;i>=0;i--){
-        const p = pieces[i];
-        p.x += p.vx; p.y += p.vy; p.vy += 0.08;
-        p.rot += 6;
-        ctx.save();
-        ctx.translate(p.x,p.y);
-        ctx.rotate(p.rot*Math.PI/180);
-        ctx.fillStyle = p.c;
-        ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+        const p=pieces[i];
+        p.x+=p.vx; p.y+=p.vy; p.vy+=0.08; p.rot+=6;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle=p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
         ctx.restore();
-        if(p.y > cvs.height + 40) pieces.splice(i,1);
+        if(p.y>cvs.height+40) pieces.splice(i,1);
       }
       requestAnimationFrame(update);
     }
     update();
 
-    // Show confetti on surprise
-    document.getElementById('surpriseBtn').addEventListener('click', ()=>{
-      spawn(80);
-      // short burst of balloons pop (visual)
-      const el = document.querySelector('.photo-wrap');
-      el.animate([{transform:'scale(1)'},{transform:'scale(1.05)'},{transform:'scale(1)'}],{duration:700});
-      // try play music if paused
-      tryPlayMusic();
-    });
+    // Trigger an initial burst on load
+    window.addEventListener('load', ()=>{ spawn(140); });
   })();
 
-  // Print
-  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
-
-  // Music autoplay handling
-  const audio = document.getElementById('bgMusic');
-  function tryPlayMusic(){
-    if(audio.paused){
-      const p = audio.play();
-      if(p && p.catch) p.catch(()=>{/* autoplay blocked; will play after user gesture */});
+  // Music autoplay with fallback on user interaction
+  const audio = document.getElementById('bgAudio');
+  function tryPlay(){
+    const p = audio.play();
+    if(p !== undefined && p.catch){
+      p.catch(()=>{ /* autoplay blocked; will play on user gesture */});
     }
   }
-  // Some browsers block autoplay until user interacts — attempt to play on first touch/click
-  ['click','touchstart','mousemove'].forEach(ev=>{
-    window.addEventListener(ev, tryPlayMusic, {once:true});
+  // Try play immediately
+  tryPlay();
+  // If blocked, play on first touch/click
+  ['click','touchstart','keydown'].forEach(ev=>{
+    window.addEventListener(ev, ()=>{ tryPlay(); }, {once:true});
   });
 
-  // Try to start muted autoplay (if desired) - commented out (keeps sound)
-  // audio.muted = true; audio.play();
+  // Mute / Unmute button
+  document.getElementById('muteBtn').addEventListener('click', ()=>{
+    audio.muted = !audio.muted;
+    document.getElementById('muteBtn').textContent = audio.muted ? '🔇 Muted' : '🔈 Mute';
+  });
 
-  // Preload main photo (improves loading)
-  const preload = new Image();
-  preload.src = 'https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg';
+  // Download / Print
+  document.getElementById('downloadBtn').addEventListener('click', ()=> window.print());
 
+  // Preload images (help CloudFront)
+  const p1 = new Image(); p1.src = 'https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg';
+  const p2 = new Image(); p2.src = 'https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg';
+
+  // Local-file fallback (tooling can replace local path to real URL)
+  // mainPhoto has data-local-src attribute for any build pipeline that prefers local path.
+  // Example: data-local-src="/mnt/data/arad2.jpeg"
 </script>
 </body>
 </html>
