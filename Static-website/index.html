@@ -6,19 +6,20 @@
 <title>Happy Birthday Aadya ✨💖</title>
 <style>
   :root{
-    --bg1:#120026; --accent1:#ffd94a; --accent2:#ff8ad8;
+    --bg1:#0b0520; --card:#0f1020; --accent1:#ffd94a; --accent2:#ff8ad8;
   }
   *{box-sizing:border-box}
   body{
-    margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
-    background: linear-gradient(180deg,#120026 0%, #061026 60%);
-    color:#fff; min-height:100vh; overflow-x:hidden;
+    margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial; color:#fff;
+    background: radial-gradient(circle at 10% 10%, rgba(255,140,200,0.06), transparent 8%),
+                radial-gradient(circle at 90% 90%, rgba(120,220,255,0.03), transparent 10%),
+                linear-gradient(180deg,#120026 0%, #061026 60%);
+    min-height:100vh; overflow-x:hidden;
   }
-  .wrap{max-width:1200px;margin:28px auto;padding:28px}
+  .wrap{max-width:1200px;margin:32px auto;padding:28px}
   .card{
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
-    border-radius:24px; padding:36px; position:relative; overflow:hidden;
-    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+    border-radius:24px; padding:36px; position:relative; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.6);
   }
   h1{
     font-size:48px;margin:0 0 8px 0;
@@ -29,34 +30,40 @@
   .pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
   .pill{background:rgba(255,255,255,0.03);padding:10px 16px;border-radius:999px;font-weight:600;border:1px solid rgba(255,255,255,0.04)}
 
-  /* main layout */
   .hero{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
-  .photo-col{min-width:320px; width:420px; display:flex;justify-content:center}
-  /* cloud frame */
-  .cloud-frame{
-    width:360px;height:260px; position:relative;
-    display:flex;align-items:center;justify-content:center;
-    filter:drop-shadow(0 16px 40px rgba(0,0,0,0.6));
-  }
-  /* SVG cloud mask used to avoid cropping */
-  .cloud-wrap{
-    width:92%; height:92%;
-    background:linear-gradient(90deg,#fff0a3,#ffd1f0,#b7f7ff);
-    padding:12px; border-radius:40px;
-    display:flex;align-items:center;justify-content:center;
+  .photo-col{min-width:320px;width:460px;display:flex;justify-content:center}
+
+  /* Cloud frame with sparkle border */
+  .cloud-frame{width:420px; height:320px; position:relative; display:flex;align-items:center;justify-content:center; filter:drop-shadow(0 18px 40px rgba(0,0,0,0.6));}
+  .cloud-svg {
+    position:absolute; width:100%; height:100%; left:0; top:0; pointer-events:none;
   }
   .cloud-photo{
-    width:100%; height:100%;
-    border-radius:28px; overflow:hidden;
-    background-position:center center; background-size:cover;
-    box-shadow:inset 0 4px 18px rgba(255,255,255,0.05);
+    width:88%; height:82%;
+    border-radius:24px; overflow:hidden; background-position:center center; background-size:cover;
+    box-shadow: inset 0 6px 24px rgba(255,255,255,0.03);
+    transform:translateY(2%);
   }
 
-  /* info panel */
-  .info{flex:1;min-width:320px}
+  /* sparkle overlay animation */
+  .sparkles{
+    position:absolute; inset:0; pointer-events:none; z-index:400;
+    mix-blend-mode:screen;
+  }
+  .sparkles span{
+    position:absolute; width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.9);
+    filter: blur(2px); opacity:0.0; transform:scale(0.6);
+    animation: sparkle 2.8s infinite ease-in-out;
+  }
+  @keyframes sparkle {
+    0%{opacity:0; transform:scale(.6) translateY(0)}
+    40%{opacity:1; transform:scale(1.1) translateY(-8px)}
+    100%{opacity:0; transform:scale(.6) translateY(-18px)}
+  }
+
+  .info{flex:1; min-width:300px}
   .info h2{font-size:32px;margin:0 0 6px 0}
   .dob{opacity:.95;margin-bottom:18px;font-weight:600}
-
   .actions{display:flex;gap:14px;align-items:center}
   .btn{padding:12px 18px;border-radius:14px;border:0;font-weight:700;cursor:pointer}
   .btn-pink{background:linear-gradient(90deg,#ff67b3,#ffb3e6); color:#160417; box-shadow:0 10px 30px rgba(255,80,150,0.12)}
@@ -68,10 +75,10 @@
   .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
   .carousel img.active{opacity:1}
 
-  /* confetti canvas */
-  #confetti{position:fixed;inset:0;pointer-events:none;z-index:1500}
+  /* confetti canvas & crackers layer */
+  #confetti{position:fixed; inset:0; pointer-events:none; z-index:1500}
+  #crackers{position:fixed; inset:0; pointer-events:none; z-index:1400}
 
-  /* small responsive */
   @media(max-width:820px){
     h1{font-size:34px}
     .cloud-frame{width:320px;height:240px}
@@ -79,7 +86,6 @@
     .wrap{padding:18px}
     .carousel{width:100px;height:100px; left:12px; bottom:12px;}
   }
-
 </style>
 </head>
 <body>
@@ -96,14 +102,28 @@
 
       <div class="hero">
         <div class="photo-col">
-          <!-- Cloud-shaped frame -->
           <div class="cloud-frame" aria-hidden="false">
-            <div class="cloud-wrap">
-              <!-- MAIN PHOTO: Cloud frame uses rounded rectangle to avoid cropping of tall image -->
-              <div id="mainPhoto" class="cloud-photo"
-                   style="background-image: url('https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg');"
-                   data-local-src="/mnt/data/arad2.jpeg"></div>
-            </div>
+            <!-- cloud SVG border (sparkly) -->
+            <svg class="cloud-svg" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#fff3a0"/><stop offset="1" stop-color="#ffd1f0"/></linearGradient>
+                <filter id="f1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/></filter>
+              </defs>
+              <!-- soft cloud shape -->
+              <path d="M120 360c-40-110 40-200 160-180 0-80 120-140 220-60 110-40 200 40 180 160 80 0 120 80 60 150H120z"
+                    fill="rgba(255,255,255,0.03)"/>
+              <!-- gradient outline -->
+              <path d="M120 360c-40-110 40-200 160-180 0-80 120-140 220-60 110-40 200 40 180 160 80 0 120 80 60 150H120z"
+                    fill="none" stroke="url(#g1)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" filter="url(#f1)"/>
+            </svg>
+
+            <!-- photo (uses CloudFront URL; local fallback path in data-local-src for your tooling) -->
+            <div id="mainPhoto" class="cloud-photo"
+                 style="background-image: url('https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg');"
+                 data-local-src="/mnt/data/arad2.jpeg"></div>
+
+            <!-- sparkle elements (will be positioned by JS) -->
+            <div class="sparkles" id="sparkles"></div>
           </div>
         </div>
 
@@ -113,7 +133,7 @@
 
           <div class="actions">
             <button class="btn btn-pink" id="downloadBtn">📥 Download / Print</button>
-            <button class="btn btn-ghost" id="muteBtn">🔈 Mute</button>
+            <button class="btn btn-ghost" id="wishBtn">🎉 Wish</button>
           </div>
         </div>
       </div>
@@ -121,17 +141,18 @@
     </div>
   </div>
 
-  <!-- small carousel -->
+  <!-- carousel -->
   <div class="carousel" id="carousel">
     <img src="https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg" class="active" alt="Aadya main">
     <img src="https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg" alt="Aadya 2">
   </div>
 
-  <!-- confetti canvas -->
+  <!-- confetti + crackers canvases -->
   <canvas id="confetti"></canvas>
+  <canvas id="crackers"></canvas>
 
-  <!-- Background music - CloudFront URL -->
-  <audio id="bgAudio" loop preload="auto">
+  <!-- background music — CloudFront URL (spaces encoded) -->
+  <audio id="bgAudio" loop preload="auto" autoplay>
     <source src="https://d1d25zdaamjz77.cloudfront.net/Nagutha%20Nagutha%20Baalu-KannadaMaza.Com.mp3" type="audio/mpeg">
   </audio>
 
@@ -146,88 +167,154 @@
     document.getElementById('age-pill').textContent = 'Age: ' + age + (age === 1 ? ' year' : ' years');
   })();
 
-  // Carousel rotate
+  // Carousel
   (function(){
-    const imgs = document.querySelectorAll('#carousel img');
-    let idx = 0;
-    setInterval(()=>{
-      imgs[idx].classList.remove('active');
-      idx = (idx+1) % imgs.length;
-      imgs[idx].classList.add('active');
-    },3000);
+    const imgs = document.querySelectorAll('#carousel img'); let idx=0;
+    setInterval(()=>{ imgs[idx].classList.remove('active'); idx=(idx+1)%imgs.length; imgs[idx].classList.add('active'); }, 3000);
   })();
 
-  // Confetti + Fireworks engine (runs on page load)
+  // Sparkles generator - cloud border glitter
   (function(){
-    const cvs = document.getElementById('confetti');
-    const ctx = cvs.getContext('2d');
-    function resize(){cvs.width=innerWidth; cvs.height=innerHeight;}
+    const container = document.getElementById('sparkles');
+    function spawnSparkles(n=14){
+      container.innerHTML='';
+      for(let i=0;i<n;i++){
+        const s=document.createElement('span');
+        s.style.left = (10 + Math.random()*80) + '%';
+        s.style.top  = (10 + Math.random()*70) + '%';
+        s.style.width = (6 + Math.random()*8) + 'px';
+        s.style.height = s.style.width;
+        s.style.animationDelay = (Math.random()*2) + 's';
+        container.appendChild(s);
+      }
+    }
+    spawnSparkles(20);
+    // refresh occasionally for a gentle twinkle
+    setInterval(()=>spawnSparkles(18), 4500);
+  })();
+
+  // Confetti + crackers engines (auto-run on page load)
+  (function(){
+    const cvs = document.getElementById('confetti'), ctx=cvs.getContext('2d');
+    const cvs2 = document.getElementById('crackers'), ctx2=cvs2.getContext('2d');
+    function resize(){ cvs.width=innerWidth; cvs.height=innerHeight; cvs2.width=innerWidth; cvs2.height=innerHeight; }
     window.addEventListener('resize', resize); resize();
 
-    const pieces=[];
-    function spawn(count=80){
+    // confetti pieces
+    const confetti=[];
+    function spawnConfetti(count=160){
       for(let i=0;i<count;i++){
-        pieces.push({
+        confetti.push({
           x: Math.random()*cvs.width,
           y: -20 - Math.random()*200,
           vx: -2 + Math.random()*4,
-          vy: 2 + Math.random()*4,
-          r: 6 + Math.random()*8,
+          vy: 2 + Math.random()*5,
+          r: 6 + Math.random()*10,
           c: `hsl(${Math.random()*360},80%,60%)`,
           rot: Math.random()*360
         });
       }
     }
 
+    // crackers particles
+    const crackers=[];
+    function spawnCrackers(count=120){
+      const cx = innerWidth*0.5;
+      const cy = innerHeight*0.35;
+      for(let i=0;i<count;i++){
+        crackers.push({
+          x: cx, y: cy,
+          vx: -6 + Math.random()*12,
+          vy: -6 + Math.random()*12,
+          r: 3 + Math.random()*4,
+          c: `hsl(${Math.random()*360},90%,60%)`,
+          life: 80 + Math.random()*80
+        });
+      }
+    }
+
     function update(){
       ctx.clearRect(0,0,cvs.width,cvs.height);
-      for(let i=pieces.length-1;i>=0;i--){
-        const p=pieces[i];
-        p.x+=p.vx; p.y+=p.vy; p.vy+=0.08; p.rot+=6;
+      ctx2.clearRect(0,0,cvs2.width,cvs2.height);
+
+      for(let i=confetti.length-1;i>=0;i--){
+        const p=confetti[i];
+        p.x+=p.vx; p.y+=p.vy; p.vy+=0.06; p.rot += 5;
         ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
-        ctx.fillStyle=p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
         ctx.restore();
-        if(p.y>cvs.height+40) pieces.splice(i,1);
+        if(p.y > cvs.height + 60) confetti.splice(i,1);
       }
+
+      for(let i=crackers.length-1;i>=0;i--){
+        const k=crackers[i];
+        k.x += k.vx; k.y += k.vy; k.vy += 0.12; k.life--;
+        ctx2.beginPath(); ctx2.fillStyle=k.c; ctx2.arc(k.x,k.y,k.r,0,Math.PI*2); ctx2.fill();
+        if(k.life <= 0) crackers.splice(i,1);
+      }
+
       requestAnimationFrame(update);
     }
     update();
 
-    // Trigger an initial burst on load
-    window.addEventListener('load', ()=>{ spawn(140); });
+    // initial grand celebration on page load
+    window.addEventListener('load', ()=>{
+      spawnCrackers(220);
+      spawnConfetti(220);
+      // add two more bursts
+      setTimeout(()=>{ spawnCrackers(140); spawnConfetti(160); }, 700);
+      setTimeout(()=>{ spawnCrackers(90); spawnConfetti(120); }, 1500);
+    });
   })();
 
-  // Music autoplay with fallback on user interaction
-  const audio = document.getElementById('bgAudio');
-  function tryPlay(){
+  // Balloons float (decor)
+  (function(){
+    const colors = ['🎈','🎈','🎈','🎈'];
+    // simple decorative balloons shown using absolutely-positioned elements
+    for(let i=0;i<6;i++){
+      const el = document.createElement('div');
+      el.textContent = '🎈';
+      el.style.position='fixed';
+      el.style.left = (6 + Math.random()*88) + '%';
+      el.style.bottom = (-60 - Math.random()*120) + 'px';
+      el.style.fontSize = (26 + Math.random()*30) + 'px';
+      el.style.zIndex = 900;
+      el.style.pointerEvents='none';
+      el.style.transition = `transform ${8 + Math.random()*8}s linear`;
+      document.body.appendChild(el);
+      // animate
+      setTimeout(function rise(){
+        el.style.transform = `translateY(-120vh) rotate(${Math.random()*80-40}deg)`;
+        setTimeout(()=>{ el.remove(); }, 22000);
+      }, 300 + i*300);
+    }
+  })();
+
+  // Music autoplay handling (attempt immediate play)
+  (function(){
+    const audio = document.getElementById('bgAudio');
+    // try to play immediately
     const p = audio.play();
     if(p !== undefined && p.catch){
-      p.catch(()=>{ /* autoplay blocked; will play on user gesture */});
+      p.catch(()=>{ /* blocked — will play on first interaction */ });
     }
-  }
-  // Try play immediately
-  tryPlay();
-  // If blocked, play on first touch/click
-  ['click','touchstart','keydown'].forEach(ev=>{
-    window.addEventListener(ev, ()=>{ tryPlay(); }, {once:true});
-  });
+    // fallback: if blocked, play on first user gesture
+    ['click','touchstart','keydown'].forEach(ev=>{
+      window.addEventListener(ev, ()=>{ audio.play().catch(()=>{}); }, {once:true});
+    });
+  })();
 
-  // Mute / Unmute button
-  document.getElementById('muteBtn').addEventListener('click', ()=>{
-    audio.muted = !audio.muted;
-    document.getElementById('muteBtn').textContent = audio.muted ? '🔇 Muted' : '🔈 Mute';
-  });
-
-  // Download / Print
+  // Download / print
   document.getElementById('downloadBtn').addEventListener('click', ()=> window.print());
 
-  // Preload images (help CloudFront)
-  const p1 = new Image(); p1.src = 'https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg';
-  const p2 = new Image(); p2.src = 'https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg';
+  // Preload images
+  const im1 = new Image(); im1.src = 'https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg';
+  const im2 = new Image(); im2.src = 'https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg';
 
-  // Local-file fallback (tooling can replace local path to real URL)
-  // mainPhoto has data-local-src attribute for any build pipeline that prefers local path.
-  // Example: data-local-src="/mnt/data/arad2.jpeg"
+  // If you need to use the locally uploaded path (developer tooling), the mainPhoto has data-local-src
+  // You can replace the background with that local path during build if CloudFront is not ready:
+  // document.getElementById('mainPhoto').style.backgroundImage = "url('" + document.getElementById('mainPhoto').dataset.localSrc + "')";
+
 </script>
 </body>
 </html>
