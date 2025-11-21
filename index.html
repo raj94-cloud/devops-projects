@@ -3,252 +3,290 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya — Celebration</title>
+<title>Happy Birthday Aadya — Celebration 🎉</title>
+<link rel="icon" href="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png">
 <style>
   :root{
-    --bg1:#040017; --bg2:#0b0630;
-    --accent1:#8ef0ff; --accent2:#ff9de6;
+    --bg1:#020016; --bg2:#0b0530;
+    --accent1:#8ef0ff; --accent2:#ff9de6; --gold:#ffd07a;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#fff;background:linear-gradient(180deg,var(--bg1),var(--bg2));min-height:100vh;overflow:hidden}
-  /* Intro overlay */
-  #intro{
-    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%, rgba(255,255,255,0.04), transparent 20%), rgba(3,1,20,0.9);z-index:9999;backdrop-filter:blur(6px);
+  body{
+    margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Poppins", sans-serif;
+    color:#fff; min-height:100vh; background: radial-gradient(circle at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
   }
-  .intro-card{width:92%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));border-radius:18px;padding:20px;display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:center;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
-  @media(max-width:980px){ .intro-card{grid-template-columns:1fr; padding:14px} .intro-hero{order:1} .intro-right{order:2} }
-  .intro-hero{border-radius:12px;overflow:hidden;height:360px}
-  .intro-hero img{width:100%;height:100%;object-fit:cover;display:block}
-  .intro-right h1{margin:0;font-size:32px;line-height:1;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
-  .intro-right p{margin:10px 0 16px 0;opacity:0.95}
-  .start-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#120018;font-weight:800;cursor:pointer;font-size:16px;box-shadow:0 12px 30px rgba(255,157,230,0.12)}
-  .small-ctrls{margin-top:10px;display:flex;gap:10px}
-  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer}
 
-  /* Main page (after intro) */
-  #main{opacity:0;transform:scale(.98);transition:all .9s ease;pointer-events:none}
-  #main.show{opacity:1;transform:scale(1);pointer-events:auto}
-  .page{max-width:1100px;margin:30px auto;padding:20px;display:grid;grid-template-columns:1fr 360px;gap:24px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));border-radius:16px;padding:18px}
-  .hero{height:420px;border-radius:12px;overflow:hidden}
-  .hero img{width:100%;height:100%;object-fit:cover;display:block}
-  h1.big{font-size:40px;margin:10px 0 8px 0;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
-  .badges{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-  .badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700}
+  /* Layout */
+  .wrap{max-width:1200px;margin:28px auto;padding:24px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+  @media(max-width:980px){ .wrap{grid-template-columns:1fr; padding:16px} .right{order:2} .left{order:1} }
 
-  /* controls */
-  .controls{display:flex;flex-direction:column;gap:12px}
-  .bigplay{padding:12px 16px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#120018;font-weight:800;cursor:pointer}
-  .ghost2{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer}
-  #vis{height:80px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);overflow:hidden;padding:8px}
+  /* Left hero */
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08)); border-radius:18px; padding:24px; box-shadow:0 30px 80px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.02)}
+  .hero-head {display:flex;align-items:center;gap:18px}
+  h1.title {font-size:44px;margin:0;line-height:1;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent;font-weight:900;animation:glow 3s ease-in-out infinite}
+  @keyframes glow{0%{filter:drop-shadow(0 0 8px rgba(142,240,255,0.04))}50%{filter:drop-shadow(0 0 18px rgba(255,157,230,0.08))}100%{filter:drop-shadow(0 0 8px rgba(142,240,255,0.04))}}
+  .sub {margin:6px 0 18px 0;opacity:0.95;font-size:16px}
 
-  footer{color:rgba(255,255,255,0.6);margin-top:12px;text-align:center}
-  /* confetti canvas */
-  #conf{position:fixed;inset:0;pointer-events:none;z-index:9998}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .pill{background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.04)}
+
+  .hero-photo{width:100%;height:420px;border-radius:14px;overflow:hidden;margin-top:12px;border:6px solid rgba(255,255,255,0.03);box-shadow:0 30px 80px rgba(0,0,0,0.7)}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:center; animation:photoFloat 8s ease-in-out infinite}
+  @keyframes photoFloat{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+  /* Right column controls (minimal) */
+  .right .card{padding:20px}
+  .right h3{margin:0 0 6px 0}
+  .host{margin-top:18px;color:rgba(255,255,255,0.7);font-size:14px;text-align:center}
+
+  /* overlay (tap-to-start) */
+  #overlay {
+    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg, rgba(3,1,20,0.88), rgba(3,1,30,0.82)); z-index:9999;
+  }
+  .overlay-box{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06)); padding:26px; border-radius:14px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+  .overlay-title{font-size:26px;margin-bottom:10px;background:linear-gradient(90deg,var(--accent1),#ffd07a,#ff9de6);-webkit-background-clip:text;color:transparent;font-weight:800}
+  .start-btn{display:inline-flex;align-items:center;gap:12px;padding:12px 18px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#14001f;font-weight:900;cursor:pointer;font-size:16px}
+  .skip{margin-left:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer}
+
+  /* balloons */
+  .balloon{position:fixed;width:140px;height:190px;border-radius:48% 48% 58% 58%;pointer-events:none;z-index:50;transform-origin:center;animation:float 5s ease-in-out infinite}
+  .b1{left:18px;top:14vh;background:linear-gradient(180deg,#ff6a8b,#ff3dbb)}
+  .b2{right:18px;top:20vh;background:linear-gradient(180deg,#6af0ff,#0069a6)}
+  @keyframes float{0%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-18px) rotate(4deg)}100%{transform:translateY(0) rotate(-4deg)}}
+
+  /* fireworks canvas */
+  #fw{position:fixed;inset:0;pointer-events:none;z-index:60}
+
+  /* confetti */
+  #conf{position:fixed;inset:0;pointer-events:none;z-index:61}
+
+  /* shimmer name */
+  .shimmer {display:inline-block; font-weight:900; background:linear-gradient(90deg,#fff, #ffd07a, #fff); background-size:200% 100%; -webkit-background-clip:text; color:transparent; animation:shimmer 3s linear infinite}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+  /* responsive tweaks */
+  @media(max-width:600px){
+    h1.title{font-size:28px}
+    .hero-photo{height:260px}
+  }
 </style>
 </head>
 <body>
 
-<!-- Intro overlay (shows first) -->
-<div id="intro" role="dialog" aria-modal="true">
-  <div class="intro-card" role="document">
-    <div class="intro-hero">
-      <!-- Aadya main photo: using uploaded file path -->
-      <img src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="Aadya main photo">
-    </div>
-    <div class="intro-right">
-      <h1>Happy Birthday, Aadya ✨</h1>
-      <p>Tap <strong>Start Celebration</strong> and we'll play the song, launch confetti and fireworks, and reveal the birthday page.</p>
-
-      <div class="small-ctrls">
-        <button id="startBtn" class="start-btn" aria-label="Start celebration">► Start Celebration</button>
-        <button id="skipBtn" class="ghost" aria-label="Skip intro">Skip</button>
-      </div>
-
-      <div style="margin-top:12px;color:rgba(255,255,255,0.7);font-size:13px">
-        Tip: Tap anywhere if autoplay is blocked.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Confetti canvas (for intro & main) -->
+<!-- fireworks & confetti canvases -->
+<canvas id="fw"></canvas>
 <canvas id="conf"></canvas>
 
-<!-- Main page (hidden until intro completes) -->
-<div id="main" aria-hidden="true">
-  <div class="page">
-    <div class="card">
-      <h1 class="big">Happy Birthday, Aadya 🎉</h1>
-      <div class="badges">
-        <div class="badge">Age: 5 years</div>
-        <div class="badge">Born: November 22, 2020</div>
-        <div class="badge">Wish: Infinite Joy</div>
-      </div>
+<!-- decorative balloons -->
+<div class="balloon b1" aria-hidden="true"></div>
+<div class="balloon b2" aria-hidden="true"></div>
 
-      <div class="hero">
-        <img id="heroImg" src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="Aadya hero">
-      </div>
+<!-- Intro overlay (shows if autoplay blocked) -->
+<div id="overlay" style="display:none" role="dialog" aria-modal="true">
+  <div class="overlay-box" role="document" aria-label="Start celebration">
+    <div class="overlay-title">Tap to Start the Celebration 🎉</div>
+    <div style="margin-bottom:12px">Music, confetti & fireworks will begin when you start.</div>
+    <button id="startBtn" class="start-btn" aria-label="Start celebration">► Start Celebration</button>
+    <button id="skipBtn" class="skip" aria-label="Skip intro">Skip</button>
+  </div>
+</div>
 
-      <p style="margin-top:12px">Celebrate with music, fireworks and confetti. Use the controls to pause, mute or download the song.</p>
-    </div>
-
-    <div class="card controls">
-      <div style="display:flex;justify-content:space-between;align-items:center">
+<div class="wrap">
+  <div class="left">
+    <div class="card" role="main" aria-label="Birthday card">
+      <div class="hero-head">
         <div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.8)">Now playing</div>
-          <div style="font-weight:800;margin-top:6px">Nagutha Nagutha Baalu</div>
-        </div>
-        <img src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="thumb" style="width:86px;height:86px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)">
-      </div>
-
-      <div style="margin-top:12px">
-        <div style="display:flex;gap:10px">
-          <button id="play" class="bigplay">Play</button>
-          <button id="pause" class="ghost2">Pause</button>
-          <button id="mute" class="ghost2">Mute</button>
-        </div>
-
-        <div id="vis" aria-hidden="true"></div>
-
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <a id="dl" href="nagutha-nagutha-baalu.mp3" download class="ghost2" style="display:inline-flex;align-items:center">Download MP3</a>
-          <button id="print" class="ghost2">Print</button>
+          <h1 class="title">Happy Birthday, <span class="shimmer">Aadya</span> 🎉</h1>
+          <div class="sub">A day full of stars, magic & smiles.</div>
+          <div class="badges">
+            <div class="pill">Age: 5 years</div>
+            <div class="pill">Born: November 22, 2020</div>
+            <div class="pill">Wish: Infinite Joy</div>
+          </div>
         </div>
       </div>
-      <footer>Made with ❤️ — Celebrate Aadya</footer>
+
+      <div class="hero-photo" aria-hidden="false">
+        <img src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="Aadya hero photo">
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="card" role="complementary" aria-label="Host and controls">
+      <h3 style="margin:0 0 8px 0">Celebrate</h3>
+      <div style="color:rgba(255,255,255,0.85);margin-bottom:12px">Music & fireworks will start automatically — no controls shown.</div>
+      <div style="display:flex;gap:10px;flex-direction:column">
+        <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px">Hosted by <strong>RAJ</strong></div>
+        <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px">Share this link with family & friends</div>
+      </div>
+      <div class="host">Website Hosted by <strong>RAJ</strong></div>
     </div>
   </div>
 </div>
 
-<!-- Audio element (local file path or relative mp3) -->
-<audio id="audio" src="nagutha-nagutha-baalu.mp3" preload="auto" crossorigin="anonymous"></audio>
+<!-- Hidden audio (no controls, no visible name) -->
+<audio id="bg" preload="auto" loop crossorigin="anonymous">
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-/* Helper: simple confetti/fireworks */
-const conf = document.getElementById('conf');
-const cctx = conf.getContext('2d');
-function resizeCanvas(){ conf.width = innerWidth; conf.height = innerHeight; }
-resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+/* Utility: canvas resize */
+const fw = document.getElementById('fw'), fctx = fw.getContext('2d');
+const conf = document.getElementById('conf'), cctx = conf.getContext('2d');
+function resize(){ fw.width = conf.width = innerWidth; fw.height = conf.height = innerHeight; }
+resize(); window.addEventListener('resize', resize);
 
-let pieces = [];
-function launchConfetti() {
-  for (let i=0;i<120;i++){
-    pieces.push({
+/* Confetti engine (lightweight) */
+let confetti = [];
+function throwConfetti(){
+  for(let i=0;i<120;i++){
+    confetti.push({
       x: Math.random()*conf.width,
-      y: -10 - Math.random()*200,
+      y: -20 - Math.random()*100,
       vx: (Math.random()-0.5)*6,
-      vy: 2 + Math.random()*6,
-      size: 6 + Math.random()*8,
+      vy: 2 + Math.random()*5,
+      w: 6+Math.random()*10,
+      h: 6+Math.random()*6,
       color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],
       rot: Math.random()*360
     });
   }
   runConfetti();
 }
-let running = false;
+let confRun = false;
 function runConfetti(){
-  if(running) return;
-  running = true;
+  if(confRun) return;
+  confRun = true;
   (function loop(){
     cctx.clearRect(0,0,conf.width,conf.height);
-    for(let i=pieces.length-1;i>=0;i--){
-      const p = pieces[i];
-      p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.rot += 6;
+    for(let i=confetti.length-1;i>=0;i--){
+      const p = confetti[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.rot += 6;
       cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
-      cctx.fillStyle = p.color; cctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+      cctx.fillStyle = p.color; cctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
       cctx.restore();
-      if(p.y > conf.height + 40) pieces.splice(i,1);
+      if(p.y>conf.height+50) confetti.splice(i,1);
     }
-    if(pieces.length > 0) requestAnimationFrame(loop);
-    else running = false;
+    if(confetti.length>0) requestAnimationFrame(loop); else confRun=false;
   })();
 }
 
-/* audio + overlay logic */
-const audio = document.getElementById('audio');
-const intro = document.getElementById('intro');
-const main = document.getElementById('main');
-const startBtn = document.getElementById('startBtn');
-const skipBtn = document.getElementById('skipBtn');
-const overlayPlay = async () => {
-  try {
-    // resume AudioContext (improves reliability)
-    if (window.AudioContext || window.webkitAudioContext) {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      if (ctx.state === 'suspended') await ctx.resume();
-    }
-    await audio.play();
-    launchConfetti();
-    // fade out intro and reveal main
-    intro.style.transition = 'opacity .8s ease, transform .8s ease';
-    intro.style.opacity = '0';
-    intro.style.transform = 'scale(.98)';
-    setTimeout(()=>{ intro.style.display='none'; main.classList.add('show'); main.removeAttribute('aria-hidden'); }, 800);
-  } catch (e) {
-    // blocked — show a simple browser-friendly step
-    alert('Autoplay was blocked by your browser. Please tap Start to begin the celebration.');
+/* Fireworks (small bursts) */
+let fireworks = [];
+function burst(x,y){
+  const colors = ['#8ef0ff','#ff9de6','#ffd07a','#a6ffb8'];
+  const count = 22 + Math.floor(Math.random()*22);
+  for(let i=0;i<count;i++){
+    const a = Math.random()*Math.PI*2, s = 1+Math.random()*4;
+    fireworks.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:60+Math.random()*40,color:colors[Math.floor(Math.random()*colors.length)],size:1+Math.random()*2});
   }
-};
-
-startBtn.addEventListener('click', overlayPlay);
-skipBtn.addEventListener('click', ()=>{ intro.style.display='none'; main.classList.add('show'); main.removeAttribute('aria-hidden'); });
-
-// main controls
-document.getElementById('play').addEventListener('click', ()=>{ audio.play().catch(()=>{}); launchConfetti(); });
-document.getElementById('pause').addEventListener('click', ()=>{ audio.pause(); });
-document.getElementById('mute').addEventListener('click', ()=>{ audio.muted = !audio.muted; document.getElementById('mute').textContent = audio.muted ? 'Unmute' : 'Mute'; });
-document.getElementById('print').addEventListener('click', ()=>window.print());
-
-/* visualizer (simple bars) */
-function setupVisualizer(){
-  try {
-    const AudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const source = AudioCtx.createMediaElementSource(audio);
-    const analyser = AudioCtx.createAnalyser();
-    analyser.fftSize = 256;
-    source.connect(analyser);
-    analyser.connect(AudioCtx.destination);
-
-    const canvas = document.createElement('canvas');
-    canvas.width = document.getElementById('vis')?.clientWidth || 400;
-    canvas.height = 80;
-    document.getElementById('vis')?.appendChild(canvas);
-    const vctx = canvas.getContext('2d');
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    function draw(){
-      requestAnimationFrame(draw);
-      analyser.getByteFrequencyData(dataArray);
-      vctx.clearRect(0,0,canvas.width,canvas.height);
-      const barWidth = (canvas.width / bufferLength) * 1.2;
-      let x=0;
-      for(let i=0;i<bufferLength;i++){
-        const v = dataArray[i]/255;
-        const h = v * canvas.height;
-        vctx.fillStyle = ['#8ef0ff','#ffd07a','#ff9de6','#a6ffb8'][i % 4];
-        vctx.fillRect(x, canvas.height - h, barWidth, h);
-        x += barWidth + 1;
-      }
-    }
-    draw();
-  } catch(e){}
 }
-audio.addEventListener('play', ()=> setupVisualizer());
+function runFireworks(){
+  fctx.clearRect(0,0,fw.width,fw.height);
+  for(let i=fireworks.length-1;i>=0;i--){
+    const p = fireworks[i];
+    p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.vx *= 0.998;
+    p.life--;
+    const a = Math.max(0,p.life/100);
+    fctx.beginPath(); fctx.fillStyle = colorWithAlpha(p.color,a); fctx.arc(p.x,p.y,p.size+(1-a)*2,0,Math.PI*2); fctx.fill();
+    if(p.life<=0) fireworks.splice(i,1);
+  }
+  requestAnimationFrame(runFireworks);
+}
+function colorWithAlpha(hex,a){
+  const c = hex.replace('#',''); const r=parseInt(c.substring(0,2),16), g=parseInt(c.substring(2,4),16), b=parseInt(c.substring(4,6),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+runFireworks();
 
-/* safety: if autoplay allowed, immediately start */
-window.addEventListener('load', async ()=>{
-  try {
+/* Random gentle star shower (background) */
+(function starShower(){
+  const s = [];
+  function spawn(){ s.push({x:Math.random()*fw.width,y:-10,len:6+Math.random()*10,spd:1+Math.random()*3,angle:10+Math.random()*40,alpha:0.6+Math.random()*0.4}); }
+  for(let i=0;i<10;i++) spawn();
+  function tick(){
+    fctx.globalCompositeOperation = 'lighter';
+    for(let i=s.length-1;i>=0;i--){
+      const st = s[i];
+      st.x += Math.cos(st.angle*Math.PI/180)*st.spd*4;
+      st.y += st.spd*4;
+      const grd = fctx.createLinearGradient(st.x,st.y,st.x+st.len,st.y+st.len);
+      grd.addColorStop(0, `rgba(255,255,255,${st.alpha})`); grd.addColorStop(1, 'rgba(255,215,255,0)');
+      fctx.strokeStyle = grd; fctx.lineWidth=2;
+      fctx.beginPath(); fctx.moveTo(st.x,st.y); fctx.lineTo(st.x+st.len,st.y+st.len); fctx.stroke();
+      if(st.y>fw.height+50) s.splice(i,1);
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* audio + autoplay handling */
+const audio = document.getElementById('bg');
+let started = false;
+async function startCelebrate(){
+  if(started) return;
+  started = true;
+  try{
+    // resume AudioContext for better autoplay support
+    if(window.AudioContext || window.webkitAudioContext){
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if(ctx.state === 'suspended') await ctx.resume();
+      // connect visualizer (lightweight) - not visible as controls hidden
+      try{
+        const src = ctx.createMediaElementSource(audio);
+        const an = ctx.createAnalyser();
+        an.fftSize = 64;
+        src.connect(an); an.connect(ctx.destination);
+        // optional visualizer could be added
+      }catch(e){}
+    }
     await audio.play();
-    // if autoplay succeeded, immediately show main
-    intro.style.display='none';
-    main.classList.add('show');
-    launchConfetti();
-  } catch(e){
-    // else keep intro for user to click
+  }catch(e){
+    // autoplay blocked - overlay will show
+    document.getElementById('overlay').style.display = 'flex';
+    return;
+  }
+  // start visuals
+  throwConfetti();
+  // run some fireworks
+  const w = fw.width, h = fw.height;
+  for(let i=0;i<6;i++){
+    setTimeout(()=> burst(100 + Math.random()*(w-200), 80 + Math.random()*(h/3)), i*600);
+  }
+}
+
+/* overlay controls */
+document.getElementById('startBtn').addEventListener('click', async ()=>{
+  document.getElementById('overlay').style.display='none';
+  await startCelebrate();
+});
+document.getElementById('skipBtn').addEventListener('click', ()=>{
+  document.getElementById('overlay').style.display='none';
+});
+
+/* Try to autoplay on load; if blocked, show overlay */
+window.addEventListener('load', async ()=>{
+  try{
+    await audio.play();
+    // autoplay allowed — start visuals immediately
+    throwConfetti();
+    for(let i=0;i<6;i++) setTimeout(()=> burst(100 + Math.random()*(fw.width-200), 80 + Math.random()*(fw.height/3)), i*700);
+  }catch(e){
+    // show overlay after short delay if not started
+    setTimeout(()=>{ if(!started) document.getElementById('overlay').style.display='flex'; }, 700);
   }
 });
+
+/* Also start on first user gesture (tap/click/scroll/keydown) */
+['click','touchstart','keydown','scroll'].forEach(ev=>{
+  window.addEventListener(ev, ()=> startCelebrate(), {once:true, passive:true});
+});
 </script>
+
 </body>
 </html>
