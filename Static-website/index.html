@@ -4,321 +4,240 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Happy Birthday Aadya — Starry Galaxy</title>
+
 <style>
   :root{
     --bg1:#040017; --bg2:#0b0630;
     --accent1:#8ef0ff; --accent2:#ff9de6;
-    --glass: rgba(255,255,255,0.04);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; font-family:Inter, system-ui, "Segoe UI", Arial; color:#fff;
-    background:
-      radial-gradient(circle at 10% 10%, rgba(138,89,255,0.06), transparent 8%),
-      linear-gradient(180deg,var(--bg1),var(--bg2));
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
     min-height:100vh; overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
   }
 
-  /* page container */
+  /* Main container */
   .wrap{max-width:1200px;margin:24px auto;padding:18px;position:relative;z-index:30}
+
   .card{
     display:flex;gap:28px;align-items:stretch;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.14));
-    border-radius:18px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,0.6);position:relative;overflow:hidden;
-    border: 1px solid rgba(255,255,255,0.03);
-    animation: glowBorder 3.6s ease-in-out infinite;
+    background:rgba(255,255,255,0.03);
+    border-radius:18px;padding:18px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    animation: glow 3.5s ease-in-out infinite;
+  }
+  @keyframes glow{
+    0%{box-shadow:0 20px 60px rgba(142,240,255,0.05)}
+    50%{box-shadow:0 20px 80px rgba(255,157,230,0.10)}
+    100%{box-shadow:0 20px 60px rgba(142,240,255,0.05)}
   }
 
-  @keyframes glowBorder {
-    0% { box-shadow: 0 20px 60px rgba(142,240,255,0.02); }
-    50% { box-shadow: 0 30px 100px rgba(255,157,230,0.08); }
-    100% { box-shadow: 0 20px 60px rgba(142,240,255,0.02); }
+  /* LEFT SIDE — 3D rotating images */
+  .left{flex:1;min-width:320px;display:flex;align-items:center;justify-content:center;padding:12px}
+  .portrait-3d{width:100%;height:70vh;perspective:1200px}
+  .card-3d{
+    width:100%;height:100%;
+    border-radius:14px;overflow:hidden;position:relative;
+    transform-style:preserve-3d;transition:0.8s ease;
+    box-shadow:0 30px 80px rgba(0,0,0,0.7);
+    border:4px solid rgba(255,255,255,0.05);
   }
+  .card-3d:hover{transform:rotateY(12deg) rotateX(4deg)}
 
-  /* left portrait (3D rotating card) */
-  .left{flex:1; min-width:320px; display:flex; align-items:center; justify-content:center; padding:12px}
-  .portrait-3d {
-    width:100%; max-width:760px; height:calc(70vh);
-    perspective:1200px; display:flex; align-items:center; justify-content:center;
+  .panel{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    transition:1s ease;backface-visibility:hidden;
   }
-  .card-3d {
-    width:100%; height:100%; border-radius:14px; overflow:hidden; position:relative;
-    transform-style:preserve-3d; transition: transform 1.2s cubic-bezier(.2,.9,.3,1);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
-    border: 6px solid rgba(255,255,255,0.03);
-    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.12));
+  .panel img{width:100%;height:100%;object-fit:cover}
+
+  .a{transform:translateZ(0)}
+  .b{transform:translateZ(-80px) rotateY(20deg);opacity:0.9}
+  .c{transform:translateZ(-160px) rotateY(40deg);opacity:0.8}
+
+  /* RIGHT SIDE */
+  .right{width:420px;padding:22px 16px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+  h1{margin:0;font-size:40px;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
+  p.lead{opacity:0.9}
+  .pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{padding:10px 14px;background:rgba(255,255,255,0.05);border-radius:999px;font-weight:600}
+  .name{font-size:22px;font-weight:800}
+  .note{opacity:0.85}
+  .actions{display:flex;gap:12px;margin-top:10px}
+  .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+  .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#000}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#fff}
+
+  /* SMALL FLOATING CAROUSEL */
+  .carousel{
+    position:fixed;left:14px;bottom:14px;width:120px;height:120px;border-radius:14px;
+    overflow:hidden;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,0.6)
   }
-  .card-3d:hover { transform: rotateY(14deg) rotateX(4deg) translateZ(6px); }
-
-  /* three rotating image panels */
-  .panel {
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition: transform 1s ease, opacity .8s ease;
-    backface-visibility:hidden; transform-origin:center;
+  .carousel img{
+    position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:.8s
   }
-  .panel img{ width:100%; height:100%; object-fit:cover; }
-
-  .panel.a { transform: translateZ(0px) rotateY(0deg); z-index:6 }
-  .panel.b { transform: translateZ(-90px) rotateY(20deg); z-index:4; opacity:0.95 }
-  .panel.c { transform: translateZ(-180px) rotateY(40deg); z-index:2; opacity:0.85 }
-
-  /* right column */
-  .right{width:420px; max-width:95vw; padding:22px 16px; display:flex; flex-direction:column; justify-content:center; gap:10px}
-  h1{margin:0;font-size:40px; line-height:1; background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6); -webkit-background-clip:text; color:transparent}
-  p.lead{margin:6px 0 14px 0; opacity:0.95;}
-  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-  .pill{background:rgba(255,255,255,0.03); padding:10px 14px; border-radius:999px; font-weight:700; border:1px solid rgba(255,255,255,0.04)}
-  .name{font-weight:800;font-size:20px;margin-top:8px}
-  .note{opacity:0.9;margin-bottom:8px}
-  .actions{display:flex; gap:12px; margin-top:8px; flex-wrap:wrap}
-  .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer}
-  .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#14001f; box-shadow:0 10px 30px rgba(255,157,230,0.08)}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:#fff}
-
-  /* small carousel floating */
-  .carousel{position:fixed; left:14px; bottom:14px; width:120px; height:120px;border-radius:14px; overflow:hidden; z-index:1300; box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04)}
-  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
   .carousel img.active{opacity:1}
 
-  /* fireworks & stars canvas cover */
-  canvas#fw, canvas#stars { position: fixed; inset: 0; pointer-events: none; z-index: 40; display:block; }
-  /* confetti placeholder canvas kept from previous code */
-  #conf { z-index: 39; }
-
-  /* responsive */
-  @media (max-width: 980px) {
-    .card { flex-direction: column; padding:12px; gap:12px; }
-    .portrait-3d { height:54vh; }
-    .right { width:100%; padding:16px; }
-    h1 { font-size:30px; }
-  }
-  @media (max-width: 520px){
-    .portrait-3d { height:46vh; }
-    h1 { font-size:24px; }
-    .pill { padding:8px 10px; font-size:13px }
+  /* CANVAS FOR FIREWORKS + STARS */
+  #fw,#stars{
+    position:fixed;inset:0;pointer-events:none;z-index:10
   }
 
-  /* falling star style small indicator (not required but helpful) */
-  .star-runner { position: absolute; width: 8px; height: 8px; border-radius:50%; background: linear-gradient(90deg,#fff,#ffd7ff); box-shadow:0 0 10px rgba(255,255,255,0.8); z-index:20; pointer-events:none }
+  /* Responsive */
+  @media(max-width:960px){
+    .card{flex-direction:column}
+    .right{width:100%}
+    .portrait-3d{height:52vh}
+  }
 </style>
 </head>
+
 <body>
 
-<!-- fireworks canvas -->
+<!-- Fireworks + Falling Stars -->
 <canvas id="fw"></canvas>
-<!-- falling stars -->
 <canvas id="stars"></canvas>
 
-<!-- floating decorative balloons -->
-<div class="balloon-3d b-left" style="position:fixed; left:-36px; top:14vh; z-index:35; width:140px; height:180px;">
-  <div style="width:88%;height:88%;border-radius:50%;box-shadow: inset -18px -20px 40px rgba(0,0,0,0.25);background:linear-gradient(180deg,#ff6a8b,#ff3dbb 50%,#a6007f);"></div>
-</div>
-
 <div class="wrap">
-  <div class="card" role="main" aria-label="Birthday card for Aadya">
+  <div class="card">
+
+    <!-- 3D Rotating Photos -->
     <div class="left">
-      <div class="portrait-3d" aria-hidden="false">
+      <div class="portrait-3d">
         <div class="card-3d" id="card3d">
-          <div class="panel a"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/assets/arad2.jpeg" alt="Aadya photo 1"></div>
-          <div class="panel b"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/assets/aradya1.jpeg" alt="Aadya photo 2"></div>
-          <div class="panel c"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/assets/arad2.jpeg" alt="Aadya photo 3"></div>
+          <div class="panel a"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/arad2.jpeg"></div>
+          <div class="panel b"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/aradya1.jpeg"></div>
+          <div class="panel c"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/arad2.jpeg"></div>
         </div>
       </div>
     </div>
 
+    <!-- RIGHT CONTENT -->
     <div class="right">
       <h1>Happy Birthday, Aadya ✨🌟</h1>
-      <p class="lead">May your world be full of stars, wonder and magic — shine bright, little star!</p>
+      <p class="lead">May your world be full of stars, sparkle, joy & magic.</p>
 
       <div class="pills">
         <div class="pill">Age: 5 years</div>
         <div class="pill">Born: November 22, 2020</div>
-        <div class="pill">Wish: Infinite Joy & Love 💕</div>
+        <div class="pill">Joy & Love 💕</div>
       </div>
 
       <div class="name">Aadya N Biradar</div>
-      <div class="note">Celebrate this special day with starry skies, sparkling fireworks and happy music.</div>
+      <div class="note">Celebrating the brightest, sweetest little star!</div>
 
       <div class="actions">
         <button class="btn btn-primary" id="printBtn">📥 Download / Print</button>
         <button class="btn btn-ghost" id="wishBtn">🎉 Send Wish</button>
       </div>
     </div>
+
   </div>
 </div>
 
-<!-- floating small preview -->
-<div class="carousel" id="carousel" aria-hidden="true">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/assets/arad2.jpeg" class="active" alt="Aadya 1">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/assets/aradya1.jpeg" alt="Aadya 2">
+<!-- Floating Small Image Carousel -->
+<div class="carousel">
+  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/arad2.jpeg" class="active">
+  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/aradya1.jpeg">
 </div>
 
-<!-- audio (user-gesture friendly) -->
+<!-- Background Music -->
 <audio id="bgAudio" loop preload="auto">
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/assets/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/nagutha-nagutha-baalu.mp3">
 </audio>
 
 <script>
-/* ====== 3D panels rotation auto cycle ====== */
+/* 3D Auto Rotate */
 (function(){
-  const panels = document.querySelectorAll('.card-3d .panel');
-  let step = 0;
-  function updatePanels(){
-    // rotate depth offsets progressively
+  const panels=document.querySelectorAll('.panel');
+  let step=0;
+  function update(){
     panels.forEach((p,i)=>{
-      const pos = (i - step + panels.length) % panels.length;
-      if(pos === 0){ p.style.transform = 'translateZ(0px) rotateY(0deg)'; p.style.opacity='1'; p.style.zIndex=6; }
-      else if(pos === 1){ p.style.transform = 'translateZ(-90px) rotateY(18deg)'; p.style.opacity='0.96'; p.style.zIndex=4; }
-      else { p.style.transform = 'translateZ(-180px) rotateY(36deg)'; p.style.opacity='0.85'; p.style.zIndex=2; }
+      const pos=(i-step+panels.length)%panels.length;
+      if(pos===0) p.style.transform="translateZ(0)";
+      else if(pos===1) p.style.transform="translateZ(-80px) rotateY(20deg)";
+      else p.style.transform="translateZ(-160px) rotateY(40deg)";
     });
   }
-  setInterval(()=>{ step = (step+1) % panels.length; updatePanels(); }, 3000);
-  updatePanels();
-  // allow slight tilt on pointer move for 3d feel
-  const card = document.getElementById('card3d');
-  card.addEventListener('pointermove', (e)=>{
-    const r = card.getBoundingClientRect();
-    const cx = r.left + r.width/2, cy = r.top + r.height/2;
-    const dx = (e.clientX - cx) / r.width;
-    const dy = (e.clientY - cy) / r.height;
-    card.style.transform = `rotateY(${dx*12}deg) rotateX(${ -dy*6 }deg) translateZ(6px)`;
-  });
-  card.addEventListener('pointerleave', ()=> card.style.transform = '');
+  setInterval(()=>{step=(step+1)%3;update();},3000);
 })();
 
-/* ====== small carousel ====== */
+/* Floating Carousel */
 (function(){
-  const imgs = document.querySelectorAll('#carousel img'); let idx=0;
-  setInterval(()=>{ imgs[idx].classList.remove('active'); idx=(idx+1)%imgs.length; imgs[idx].classList.add('active'); }, 3000);
+  const imgs=document.querySelectorAll('.carousel img');let i=0;
+  setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');},3000);
 })();
 
-/* ====== audio start handling (user gesture friendly) ====== */
+/* Background Audio Autoplay Safe */
 (function(){
-  const audio = document.getElementById('bgAudio');
-  // try autoplay quietly; if blocked, start after any user gesture
-  audio.volume = 0.9;
-  const p = audio.play();
-  if(p && p.catch){ p.catch(()=>{}); }
+  const audio=document.getElementById('bgAudio');
+  const p=audio.play();if(p)p.catch(()=>{});
   ['click','touchstart','keydown'].forEach(ev=>{
-    window.addEventListener(ev, ()=>{ audio.play().catch(()=>{}); }, {once:true});
+    window.addEventListener(ev,()=>audio.play().catch(()=>{}),{once:true});
   });
 })();
 
-/* ====== print & wish buttons ====== */
-document.getElementById('printBtn').addEventListener('click', ()=> window.print());
-document.getElementById('wishBtn').addEventListener('click', ()=> alert('Wish sent for Aadya! 🎉'));
+/* Print & Wish Buttons */
+document.getElementById('printBtn').onclick=()=>window.print();
+document.getElementById('wishBtn').onclick=()=>alert("Wish sent 🎉");
 
-/* ====== falling stars animation ====== */
+/* Falling Stars */
 (function(){
-  const canvas = document.getElementById('stars');
-  const ctx = canvas.getContext('2d');
-  let w=0,h=0, stars=[];
-  function resize(){ w=canvas.width = innerWidth; h=canvas.height = innerHeight; }
-  window.addEventListener('resize', resize);
-  resize();
+  const c=document.getElementById('stars'),ctx=c.getContext('2d');
+  let w,h;function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
+  addEventListener('resize',rs);
 
-  function createStar(){
-    return {
-      x: Math.random()*w,
-      y: -10 - Math.random()*200,
-      len: 8 + Math.random()*12,
-      speed: 1 + Math.random()*3,
-      angle: 10 + Math.random()*30,
-      alpha: 0.6 + Math.random()*0.4
-    };
-  }
-  for(let i=0;i<12;i++) stars.push(createStar());
-
+  let stars=[];
+  function newStar(){return{x:Math.random()*w,y:-10,len:8+Math.random()*12,speed:1+Math.random()*3}}
   function tick(){
     ctx.clearRect(0,0,w,h);
-    // add new occasionally
-    if(Math.random() < 0.06) stars.push(createStar());
-    for(let i=stars.length-1;i>=0;i--){
-      const s = stars[i];
-      s.x += Math.cos(s.angle*Math.PI/180) * s.speed * 6;
-      s.y += s.speed * 6;
-      ctx.beginPath();
-      const grd = ctx.createLinearGradient(s.x, s.y, s.x+s.len, s.y+s.len);
-      grd.addColorStop(0, 'rgba(255,255,255,'+s.alpha+')');
-      grd.addColorStop(1, 'rgba(255,215,255,0)');
-      ctx.strokeStyle = grd;
-      ctx.lineWidth = 2;
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x + s.len, s.y + s.len);
-      ctx.stroke();
-      if(s.y > h + 50 || s.x > w + 200) stars.splice(i,1);
-    }
+    if(Math.random()<.06)stars.push(newStar());
+    stars.forEach((s,i)=>{
+      s.x+=s.speed*4;
+      s.y+=s.speed*4;
+      ctx.strokeStyle="rgba(255,255,255,.9)";
+      ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x+s.len,s.y+s.len);ctx.stroke();
+      if(s.y>h)stars.splice(i,1);
+    });
     requestAnimationFrame(tick);
   }
   tick();
 })();
 
-/* ====== fireworks (small auto bursts) ====== */
+/* Fireworks */
 (function(){
-  const canvas = document.getElementById('fw');
-  const ctx = canvas.getContext('2d');
-  let w=0,h=0, fireworks=[];
-  function resize(){ w=canvas.width = innerWidth; h=canvas.height = innerHeight; }
-  window.addEventListener('resize', resize);
-  resize();
+  const c=document.getElementById('fw'),ctx=c.getContext('2d');
+  let w,h;function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
+  addEventListener('resize',rs);
 
-  function makeBurst(x,y, color){
-    const count = 18 + Math.floor(Math.random()*18);
-    for(let i=0;i<count;i++){
-      const angle = Math.random()*Math.PI*2;
-      const speed = 1 + Math.random()*5;
-      fireworks.push({
-        x, y,
-        vx: Math.cos(angle)*speed,
-        vy: Math.sin(angle)*speed,
-        life: 60 + Math.random()*40,
-        color,
-        size: 1 + Math.random()*2
-      });
+  let parts=[];
+  function burst(){
+    const x=Math.random()*w,y=Math.random()*(h*0.5);
+    const colors=["#8ef0ff","#ff9de6","#ffd07a","#a6ffb8","#b8a6ff"];
+    const col=colors[Math.floor(Math.random()*colors.length)];
+    for(let i=0;i<32;i++){
+      const a=Math.random()*Math.PI*2,sp=2+Math.random()*4;
+      parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:90,color:col});
     }
   }
+  setInterval(burst,1600);
 
-  // auto schedule bursts at random positions near top half
-  setInterval(()=> {
-    const x = 80 + Math.random()*(w-160);
-    const y = 80 + Math.random()*(h/2 - 80);
-    const colors = ['#8ef0ff','#ff9de6','#ffd07a','#a6ffb8','#b8a6ff'];
-    makeBurst(x,y, colors[Math.floor(Math.random()*colors.length)]);
-  }, 1600);
-
-  function step(){
+  function tick(){
     ctx.clearRect(0,0,w,h);
-    for(let i=fireworks.length-1;i>=0;i--){
-      const p = fireworks[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.04; // gravity
-      p.vx *= 0.995;
-      p.vy *= 0.995;
-      p.life--;
-      const alpha = Math.max(0, p.life/100);
-      ctx.beginPath();
-      ctx.fillStyle = hexWithAlpha(p.color, alpha);
-      ctx.arc(p.x, p.y, p.size + (1-alpha)*2, 0, Math.PI*2);
-      ctx.fill();
-      if(p.life <= 0) fireworks.splice(i,1);
-    }
-    requestAnimationFrame(step);
+    parts.forEach((p,i)=>{
+      p.x+=p.vx;p.y+=p.vy;p.vy+=0.02;p.life--;
+      let a=Math.max(0,p.life/90);
+      ctx.fillStyle=p.color.replace(")",`,${a})`).replace("rgb","rgba");
+      ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fill();
+      if(p.life<=0)parts.splice(i,1);
+    });
+    requestAnimationFrame(tick);
   }
-  function hexWithAlpha(hex, a){
-    // simple conversion for #rrggbb
-    const c = hex.replace('#','');
-    const r = parseInt(c.substring(0,2),16);
-    const g = parseInt(c.substring(2,4),16);
-    const b = parseInt(c.substring(4,6),16);
-    return `rgba(${r},${g},${b},${a})`;
-  }
-  step();
+  tick();
 })();
-
-/* ====== Performance note: canvases are passive (pointer-events:none) ====== */
 </script>
+
 </body>
 </html>
