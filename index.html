@@ -3,104 +3,129 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya — Celebration 🎉</title>
-<link rel="icon" href="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png">
+<title>Happy Birthday Aadya — Golden Celebration ✨</title>
 <style>
   :root{
-    --bg1:#020016; --bg2:#0b0530;
-    --accent1:#8ef0ff; --accent2:#ff9de6; --gold:#ffd07a;
+    --bg1:#040017; --bg2:#0b0630;
+    --accent1:#8ef0ff; --accent2:#ff9de6; --gold1:#ffd07a; --gold2:#ffb84d;
   }
   *{box-sizing:border-box}
   body{
-    margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Poppins", sans-serif;
-    color:#fff; min-height:100vh; background: radial-gradient(circle at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    overflow-x:hidden;
+    margin:0; font-family:Inter, system-ui, "Segoe UI", Roboto, "Poppins", sans-serif;
+    min-height:100vh; color:#fff;
+    background: radial-gradient(circle at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
 
-  /* Layout */
-  .wrap{max-width:1200px;margin:28px auto;padding:24px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
-  @media(max-width:980px){ .wrap{grid-template-columns:1fr; padding:16px} .right{order:2} .left{order:1} }
+  .wrap{max-width:1200px;margin:28px auto;padding:28px;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+  @media(max-width:980px){ .wrap{grid-template-columns:1fr;padding:16px} .right{order:2} .left{order:1} }
 
-  /* Left hero */
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08)); border-radius:18px; padding:24px; box-shadow:0 30px 80px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.02)}
-  .hero-head {display:flex;align-items:center;gap:18px}
-  h1.title {font-size:44px;margin:0;line-height:1;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent;font-weight:900;animation:glow 3s ease-in-out infinite}
-  @keyframes glow{0%{filter:drop-shadow(0 0 8px rgba(142,240,255,0.04))}50%{filter:drop-shadow(0 0 18px rgba(255,157,230,0.08))}100%{filter:drop-shadow(0 0 8px rgba(142,240,255,0.04))}}
-  .sub {margin:6px 0 18px 0;opacity:0.95;font-size:16px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08)); border-radius:18px; padding:22px; box-shadow:0 30px 80px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.02)}
 
-  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  /* Header */
+  .hero-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  h1{font-size:44px;margin:0;line-height:1;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent;font-weight:900}
+  .subtitle{margin-top:8px;color:rgba(255,255,255,0.9)}
+
+  .badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
   .pill{background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.04)}
 
-  .hero-photo{width:100%;height:420px;border-radius:14px;overflow:hidden;margin-top:12px;border:6px solid rgba(255,255,255,0.03);box-shadow:0 30px 80px rgba(0,0,0,0.7)}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:center; animation:photoFloat 8s ease-in-out infinite}
-  @keyframes photoFloat{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-
-  /* Right column controls (minimal) */
-  .right .card{padding:20px}
-  .right h3{margin:0 0 6px 0}
-  .host{margin-top:18px;color:rgba(255,255,255,0.7);font-size:14px;text-align:center}
-
-  /* overlay (tap-to-start) */
-  #overlay {
-    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(180deg, rgba(3,1,20,0.88), rgba(3,1,30,0.82)); z-index:9999;
+  /* Golden frame */
+  .gold-frame {
+    width:100%;
+    max-width:860px;
+    margin:22px auto 6px;
+    padding:18px; /* space for the frame */
+    border-radius:22px;
+    display:block;
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    box-shadow: 0 40px 90px rgba(0,0,0,0.7);
   }
-  .overlay-box{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06)); padding:26px; border-radius:14px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,0.6)}
-  .overlay-title{font-size:26px;margin-bottom:10px;background:linear-gradient(90deg,var(--accent1),#ffd07a,#ff9de6);-webkit-background-clip:text;color:transparent;font-weight:800}
-  .start-btn{display:inline-flex;align-items:center;gap:12px;padding:12px 18px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#14001f;font-weight:900;cursor:pointer;font-size:16px}
-  .skip{margin-left:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer}
 
-  /* balloons */
-  .balloon{position:fixed;width:140px;height:190px;border-radius:48% 48% 58% 58%;pointer-events:none;z-index:50;transform-origin:center;animation:float 5s ease-in-out infinite}
-  .b1{left:18px;top:14vh;background:linear-gradient(180deg,#ff6a8b,#ff3dbb)}
-  .b2{right:18px;top:20vh;background:linear-gradient(180deg,#6af0ff,#0069a6)}
-  @keyframes float{0%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-18px) rotate(4deg)}100%{transform:translateY(0) rotate(-4deg)}}
+  /* actual golden border using pseudo-element effect */
+  .gold-frame::before{
+    content:"";
+    position:absolute;
+    inset:6px;
+    border-radius:16px;
+    padding:6px;
+    background: linear-gradient(90deg, rgba(255,208,122,0.18), rgba(255,184,77,0.12));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    box-shadow:
+      0 0 30px rgba(255,208,122,0.08),
+      0 6px 36px rgba(0,0,0,0.45),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    pointer-events:none;
+  }
 
-  /* fireworks canvas */
-  #fw{position:fixed;inset:0;pointer-events:none;z-index:60}
+  /* Inner golden glow ring */
+  .gold-ring {
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    padding:8px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  }
+  .gold-ring::after{
+    content:"";
+    position:absolute; left:0; right:0; top:0; bottom:0; pointer-events:none;
+    border-radius:12px;
+    box-shadow: 0 0 36px rgba(255,196,80,0.12), inset 0 0 40px rgba(255,215,122,0.06);
+  }
 
-  /* confetti */
-  #conf{position:fixed;inset:0;pointer-events:none;z-index:61}
+  .hero-photo{
+    display:block;
+    width:100%;
+    height:480px;
+    object-fit:cover;
+    border-radius:10px;
+    transform-origin:center;
+    transition:transform .9s cubic-bezier(.2,.9,.2,1);
+  }
+  .hero-photo:hover{ transform:scale(1.02) rotate(-0.4deg); }
 
-  /* shimmer name */
-  .shimmer {display:inline-block; font-weight:900; background:linear-gradient(90deg,#fff, #ffd07a, #fff); background-size:200% 100%; -webkit-background-clip:text; color:transparent; animation:shimmer 3s linear infinite}
-  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  /* Shimmer title name */
+  .name-shine{display:inline-block;background:linear-gradient(90deg,#fff,#ffd07a,#fff);background-size:200% 100%;-webkit-background-clip:text;color:transparent;animation:shine 3.5s linear infinite;font-weight:900}
+  @keyframes shine{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-  /* responsive tweaks */
-  @media(max-width:600px){
-    h1.title{font-size:28px}
-    .hero-photo{height:260px}
+  /* decorative balloons */
+  .balloon{position:fixed;width:140px;height:200px;border-radius:48% 48% 58% 58%;pointer-events:none;z-index:50;transform-origin:center;animation:float 6s ease-in-out infinite}
+  .b1{left:12px;top:14vh;background:linear-gradient(180deg,#ff6a9b,#ff3dbb)}
+  .b2{right:12px;top:20vh;background:linear-gradient(180deg,#6af0ff,#0069a6)}
+  @keyframes float{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-20px) rotate(6deg)}100%{transform:translateY(0) rotate(-6deg)}}
+
+  /* Footer */
+  footer{margin-top:18px;text-align:center;color:rgba(255,255,255,0.6);font-size:14px}
+
+  /* responsive */
+  @media(max-width:720px){
+    .hero-photo{height:320px}
+    h1{font-size:28px}
   }
 </style>
 </head>
 <body>
 
-<!-- fireworks & confetti canvases -->
-<canvas id="fw"></canvas>
-<canvas id="conf"></canvas>
+<!-- canvas for fireworks/confetti -->
+<canvas id="fw" style="position:fixed;inset:0;pointer-events:none;z-index:60"></canvas>
 
 <!-- decorative balloons -->
 <div class="balloon b1" aria-hidden="true"></div>
 <div class="balloon b2" aria-hidden="true"></div>
 
-<!-- Intro overlay (shows if autoplay blocked) -->
-<div id="overlay" style="display:none" role="dialog" aria-modal="true">
-  <div class="overlay-box" role="document" aria-label="Start celebration">
-    <div class="overlay-title">Tap to Start the Celebration 🎉</div>
-    <div style="margin-bottom:12px">Music, confetti & fireworks will begin when you start.</div>
-    <button id="startBtn" class="start-btn" aria-label="Start celebration">► Start Celebration</button>
-    <button id="skipBtn" class="skip" aria-label="Skip intro">Skip</button>
-  </div>
-</div>
-
 <div class="wrap">
+
+  <!-- LEFT: hero -->
   <div class="left">
-    <div class="card" role="main" aria-label="Birthday card">
+    <div class="card" role="main">
       <div class="hero-head">
         <div>
-          <h1 class="title">Happy Birthday, <span class="shimmer">Aadya</span> 🎉</h1>
-          <div class="sub">A day full of stars, magic & smiles.</div>
+          <h1>Happy Birthday, <span class="name-shine">Aadya</span> 🎉</h1>
+          <div class="subtitle">A day full of stars, magic & smiles.</div>
           <div class="badges">
             <div class="pill">Age: 5 years</div>
             <div class="pill">Born: November 22, 2020</div>
@@ -109,183 +134,126 @@
         </div>
       </div>
 
-      <div class="hero-photo" aria-hidden="false">
-        <img src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="Aadya hero photo">
+      <!-- GOLDEN FRAME AROUND PHOTO -->
+      <div class="gold-frame" aria-hidden="false">
+        <div class="gold-ring">
+          <img class="hero-photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya main photo">
+        </div>
+      </div>
+
+      <p style="margin-top:12px;color:rgba(255,255,255,0.85)">Share the joy — family & friends welcome!</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: info -->
+  <div class="right">
+    <div class="card" role="complementary" aria-label="Host">
+      <div style="font-size:14px;color:rgba(255,255,255,0.9)">Hosted by</div>
+      <div style="font-weight:800;margin-top:6px">RAJ</div>
+
+      <div style="margin-top:12px;color:rgba(255,255,255,0.85)">Music & fireworks will start automatically (hidden player).</div>
+
+      <div style="margin-top:18px;font-size:13px;color:rgba(255,255,255,0.6)">
+        <strong>Website Hosted by RAJ</strong>
       </div>
     </div>
   </div>
 
-  <div class="right">
-    <div class="card" role="complementary" aria-label="Host and controls">
-      <h3 style="margin:0 0 8px 0">Celebrate</h3>
-      <div style="color:rgba(255,255,255,0.85);margin-bottom:12px">Music & fireworks will start automatically — no controls shown.</div>
-      <div style="display:flex;gap:10px;flex-direction:column">
-        <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px">Hosted by <strong>RAJ</strong></div>
-        <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:10px">Share this link with family & friends</div>
-      </div>
-      <div class="host">Website Hosted by <strong>RAJ</strong></div>
-    </div>
-  </div>
 </div>
 
-<!-- Hidden audio (no controls, no visible name) -->
+<footer>Made with ❤️ — Celebrate Aadya</footer>
+
+<!-- Hidden audio -->
 <audio id="bg" preload="auto" loop crossorigin="anonymous">
   <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* Utility: canvas resize */
-const fw = document.getElementById('fw'), fctx = fw.getContext('2d');
-const conf = document.getElementById('conf'), cctx = conf.getContext('2d');
-function resize(){ fw.width = conf.width = innerWidth; fw.height = conf.height = innerHeight; }
+/* Resize fireworks canvas */
+const fw = document.getElementById('fw');
+const fctx = fw.getContext('2d');
+function resize(){ fw.width = innerWidth; fw.height = innerHeight; }
 resize(); window.addEventListener('resize', resize);
 
-/* Confetti engine (lightweight) */
-let confetti = [];
-function throwConfetti(){
-  for(let i=0;i<120;i++){
-    confetti.push({
-      x: Math.random()*conf.width,
-      y: -20 - Math.random()*100,
-      vx: (Math.random()-0.5)*6,
-      vy: 2 + Math.random()*5,
-      w: 6+Math.random()*10,
-      h: 6+Math.random()*6,
-      color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],
-      rot: Math.random()*360
-    });
-  }
-  runConfetti();
-}
-let confRun = false;
-function runConfetti(){
-  if(confRun) return;
-  confRun = true;
-  (function loop(){
-    cctx.clearRect(0,0,conf.width,conf.height);
-    for(let i=confetti.length-1;i>=0;i--){
-      const p = confetti[i];
-      p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.rot += 6;
-      cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
-      cctx.fillStyle = p.color; cctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
-      cctx.restore();
-      if(p.y>conf.height+50) confetti.splice(i,1);
-    }
-    if(confetti.length>0) requestAnimationFrame(loop); else confRun=false;
-  })();
-}
-
-/* Fireworks (small bursts) */
-let fireworks = [];
+/* Mini fireworks engine */
+let pieces = [];
 function burst(x,y){
   const colors = ['#8ef0ff','#ff9de6','#ffd07a','#a6ffb8'];
-  const count = 22 + Math.floor(Math.random()*22);
+  const count = 24 + Math.floor(Math.random()*18);
   for(let i=0;i<count;i++){
-    const a = Math.random()*Math.PI*2, s = 1+Math.random()*4;
-    fireworks.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:60+Math.random()*40,color:colors[Math.floor(Math.random()*colors.length)],size:1+Math.random()*2});
+    const a = Math.random()*Math.PI*2, s = 1 + Math.random()*4;
+    pieces.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:80,color:colors[Math.floor(Math.random()*colors.length)],size:1+Math.random()*2});
   }
 }
-function runFireworks(){
+function updateFireworks(){
   fctx.clearRect(0,0,fw.width,fw.height);
-  for(let i=fireworks.length-1;i>=0;i--){
-    const p = fireworks[i];
-    p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.vx *= 0.998;
-    p.life--;
-    const a = Math.max(0,p.life/100);
-    fctx.beginPath(); fctx.fillStyle = colorWithAlpha(p.color,a); fctx.arc(p.x,p.y,p.size+(1-a)*2,0,Math.PI*2); fctx.fill();
-    if(p.life<=0) fireworks.splice(i,1);
+  for(let i=pieces.length-1;i>=0;i--){
+    const p = pieces[i];
+    p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+    const alpha = Math.max(0, p.life / 80);
+    fctx.beginPath(); fctx.fillStyle = hexToRGBA(p.color, alpha); fctx.arc(p.x, p.y, p.size, 0, Math.PI*2); fctx.fill();
+    if(p.life<=0) pieces.splice(i,1);
   }
-  requestAnimationFrame(runFireworks);
+  requestAnimationFrame(updateFireworks);
 }
-function colorWithAlpha(hex,a){
+function hexToRGBA(hex, a){
   const c = hex.replace('#',''); const r=parseInt(c.substring(0,2),16), g=parseInt(c.substring(2,4),16), b=parseInt(c.substring(4,6),16);
   return `rgba(${r},${g},${b},${a})`;
 }
-runFireworks();
+updateFireworks();
 
-/* Random gentle star shower (background) */
-(function starShower(){
-  const s = [];
-  function spawn(){ s.push({x:Math.random()*fw.width,y:-10,len:6+Math.random()*10,spd:1+Math.random()*3,angle:10+Math.random()*40,alpha:0.6+Math.random()*0.4}); }
-  for(let i=0;i<10;i++) spawn();
-  function tick(){
-    fctx.globalCompositeOperation = 'lighter';
-    for(let i=s.length-1;i>=0;i--){
-      const st = s[i];
-      st.x += Math.cos(st.angle*Math.PI/180)*st.spd*4;
-      st.y += st.spd*4;
-      const grd = fctx.createLinearGradient(st.x,st.y,st.x+st.len,st.y+st.len);
-      grd.addColorStop(0, `rgba(255,255,255,${st.alpha})`); grd.addColorStop(1, 'rgba(255,215,255,0)');
-      fctx.strokeStyle = grd; fctx.lineWidth=2;
-      fctx.beginPath(); fctx.moveTo(st.x,st.y); fctx.lineTo(st.x+st.len,st.y+st.len); fctx.stroke();
-      if(st.y>fw.height+50) s.splice(i,1);
-    }
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
+/* trigger a few bursts occasionally */
+setInterval(()=>{ burst(100 + Math.random()*(fw.width-200), 80 + Math.random()*(fw.height/3)); }, 900);
 
-/* audio + autoplay handling */
+/* Confetti effect on audio play */
 const audio = document.getElementById('bg');
-let started = false;
-async function startCelebrate(){
-  if(started) return;
-  started = true;
+let confettiArr = [], confRunning=false;
+const confCanvas = document.createElement('canvas');
+confCanvas.style.position='fixed'; confCanvas.style.inset='0'; confCanvas.style.pointerEvents='none'; confCanvas.style.zIndex=70;
+document.body.appendChild(confCanvas);
+const cctx = confCanvas.getContext('2d');
+function confResize(){ confCanvas.width = innerWidth; confCanvas.height = innerHeight; }
+confResize(); window.addEventListener('resize', confResize);
+
+function startConfetti(){
+  for(let i=0;i<140;i++){
+    confettiArr.push({x:Math.random()*confCanvas.width,y:-20 - Math.random()*confCanvas.height*0.4, vx:(Math.random()-0.5)*5, vy:2 + Math.random()*4, size:6 + Math.random()*10, color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)], rot:Math.random()*360});
+  }
+  if(!confRunning) runConfetti();
+}
+function runConfetti(){
+  confRunning = true;
+  (function loop(){
+    cctx.clearRect(0,0,confCanvas.width,confCanvas.height);
+    for(let i=confettiArr.length-1;i>=0;i--){
+      const p=confettiArr[i];
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.03; p.rot+=6;
+      cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
+      cctx.fillStyle = p.color; cctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+      cctx.restore();
+      if(p.y>confCanvas.height+40) confettiArr.splice(i,1);
+    }
+    if(confettiArr.length>0) requestAnimationFrame(loop); else confRunning=false;
+  })();
+}
+
+/* Autoplay attempt & graceful fallback */
+/* Try to play; if blocked, show an implicit instruction (browser will require user gesture). We also start on any gesture. */
+async function tryStart(){
   try{
-    // resume AudioContext for better autoplay support
     if(window.AudioContext || window.webkitAudioContext){
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       if(ctx.state === 'suspended') await ctx.resume();
-      // connect visualizer (lightweight) - not visible as controls hidden
-      try{
-        const src = ctx.createMediaElementSource(audio);
-        const an = ctx.createAnalyser();
-        an.fftSize = 64;
-        src.connect(an); an.connect(ctx.destination);
-        // optional visualizer could be added
-      }catch(e){}
     }
     await audio.play();
+    startConfetti();
   }catch(e){
-    // autoplay blocked - overlay will show
-    document.getElementById('overlay').style.display = 'flex';
-    return;
-  }
-  // start visuals
-  throwConfetti();
-  // run some fireworks
-  const w = fw.width, h = fw.height;
-  for(let i=0;i<6;i++){
-    setTimeout(()=> burst(100 + Math.random()*(w-200), 80 + Math.random()*(h/3)), i*600);
+    // blocked - wait for user gesture
   }
 }
+tryStart();
+['click','touchstart','keydown','scroll'].forEach(ev=> window.addEventListener(ev, ()=>{ tryStart(); }, {once:true, passive:true}));
 
-/* overlay controls */
-document.getElementById('startBtn').addEventListener('click', async ()=>{
-  document.getElementById('overlay').style.display='none';
-  await startCelebrate();
-});
-document.getElementById('skipBtn').addEventListener('click', ()=>{
-  document.getElementById('overlay').style.display='none';
-});
-
-/* Try to autoplay on load; if blocked, show overlay */
-window.addEventListener('load', async ()=>{
-  try{
-    await audio.play();
-    // autoplay allowed — start visuals immediately
-    throwConfetti();
-    for(let i=0;i<6;i++) setTimeout(()=> burst(100 + Math.random()*(fw.width-200), 80 + Math.random()*(fw.height/3)), i*700);
-  }catch(e){
-    // show overlay after short delay if not started
-    setTimeout(()=>{ if(!started) document.getElementById('overlay').style.display='flex'; }, 700);
-  }
-});
-
-/* Also start on first user gesture (tap/click/scroll/keydown) */
-['click','touchstart','keydown','scroll'].forEach(ev=>{
-  window.addEventListener(ev, ()=> startCelebrate(), {once:true, passive:true});
-});
 </script>
 
 </body>
