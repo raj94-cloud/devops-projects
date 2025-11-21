@@ -1,281 +1,262 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya ✨💖</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Happy Birthday Aadya — Starry Magical Galaxy ✨</title>
 <style>
   :root{
-    --bg1:#061026;
-    --card:#0f1230;
-    --accent1:#ffd94a;
-    --accent2:#ff8ad8;
-    --glass: rgba(255,255,255,0.04);
+    --bg1:#050017;
+    --bg2:#13063a;
+    --accent1:#8ef0ff;
+    --accent2:#ff9de6;
+    --gold:#ffd86b;
   }
   *{box-sizing:border-box}
   body{
-    margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial; color:#fff;
-    background:
-      radial-gradient(circle at 10% 10%, rgba(255,140,200,0.04), transparent 10%),
-      linear-gradient(180deg,#0b0420 0%, #051028 60%);
-    min-height:100vh; overflow-x:hidden;
+    margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(138,89,255,0.08), transparent 8%),
+                radial-gradient(1000px 500px at 90% 85%, rgba(40,200,255,0.03), transparent 8%),
+                linear-gradient(180deg,var(--bg1), var(--bg2));
+    color: #fff; min-height:100vh; overflow-x:hidden;
   }
 
-  .container{max-width:1200px;margin:28px auto;padding:24px}
-  .card{
-    display:flex;
-    gap:28px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
-    border-radius:18px;padding:18px;overflow:hidden;
-    box-shadow:0 30px 90px rgba(0,0,0,0.6);
-    align-items:stretch;
+  /* container */
+  .wrap{max-width:1300px;margin:24px auto;padding:28px}
+  .card{display:flex;gap:36px;align-items:stretch;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.14)); border-radius:18px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,0.6);position:relative;overflow:hidden}
+
+  /* left: large full portrait */
+  .left{flex:1; min-width:360px; display:flex; align-items:center; justify-content:center; padding:14px}
+  .portrait{
+    width:100%; height:calc(80vh - 60px); max-height:760px; border-radius:14px; overflow:hidden;
+    border: 6px solid rgba(255,255,255,0.03);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), inset 0 6px 28px rgba(255,255,255,0.02);
+    background-position:center top; background-size:cover;
   }
 
-  /* Left photo column (large full portrait) */
-  .left{
-    width:58%;
-    min-width:320px;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px;
-  }
-  .photo{
-    width:100%;
-    height:calc(100vh - 160px);
-    max-height:760px;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,0.6);
-    background-position:center center;
-    background-size:cover;
-    border: 6px solid rgba(255,255,255,0.06);
-  }
+  /* right: info */
+  .right{width:460px; padding:28px 12px; display:flex; flex-direction:column; justify-content:center; gap:12px}
+  h1{margin:0;font-size:44px; line-height:1; background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6); -webkit-background-clip:text; color:transparent}
+  p.lead{margin:6px 0 14px 0; opacity:.95;}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .pill{background:rgba(255,255,255,0.03); padding:10px 14px; border-radius:999px; font-weight:700; border:1px solid rgba(255,255,255,0.04)}
 
-  /* Right info column */
-  .right{
-    width:42%;
-    min-width:280px;
-    padding:28px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
-  h1{
-    margin:0 0 8px 0;
-    font-size:44px;
-    background: linear-gradient(90deg,var(--accent1),#ffb3e6,#7ef0ff);
-    -webkit-background-clip:text;color:transparent;
-  }
-  .lead{margin:6px 0 18px 0; font-size:16px; opacity:0.95}
-  .meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-  .pill{background:var(--glass);padding:10px 14px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.04)}
+  .name{font-weight:800;font-size:22px;margin-top:8px}
+  .note{opacity:0.85;margin-bottom:8px}
 
-  .actions{display:flex;gap:12px;margin-top:10px}
-  .btn{padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
-  .btn-primary{background:linear-gradient(90deg,#ff8ad8,#ffd94a); color:#180217; box-shadow:0 12px 30px rgba(255,120,200,0.12)}
+  .actions{display:flex; gap:12px; margin-top:8px}
+  .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer}
+  .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#14001f; box-shadow:0 10px 30px rgba(150,90,220,0.12)}
   .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:#fff}
 
-  /* small carousel bottom-left */
-  .carousel{position:fixed; left:14px; bottom:14px; width:140px; height:140px;border-radius:12px; overflow:hidden; z-index:1200;
-           box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04)}
+  /* small carousel */
+  .carousel{position:fixed; left:18px; bottom:18px; width:140px; height:140px;border-radius:14px; overflow:hidden; z-index:1300; box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04)}
   .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
   .carousel img.active{opacity:1}
 
-  /* confetti and crackers */
-  #confetti, #crackers { position:fixed; inset:0; pointer-events:none; z-index:1500 }
+  /* star field (background) */
+  .stars{position:absolute; inset:0; pointer-events:none; z-index:0}
+  .twinkle{position:absolute; width:3px; height:3px; border-radius:50%; background:white; opacity:0.9; filter:blur(0.6px)}
 
-  /* balloons (decor) */
-  .balloon{ position:fixed; pointer-events:none; font-size:36px; z-index:900; transform-origin:center; }
+  /* fireworks canvas */
+  #fw, #conf{position:fixed; inset:0; pointer-events:none; z-index:1400}
 
-  /* responsive */
-  @media(max-width:900px){
+  @media(max-width:980px){
     .card{flex-direction:column}
-    .left, .right{width:100%}
-    .photo{height:48vh; max-height:480px}
-    h1{font-size:28px}
+    .right{width:100%}
+    h1{font-size:32px}
+    .portrait{height:44vh}
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <!-- LEFT: Full photo -->
-      <div class="left">
-        <div id="mainPhoto" class="photo"
-             style="background-image: url('/mnt/data/arad2.jpeg');"
-             data-local-src="/mnt/data/arad2.jpeg"></div>
+
+<!-- twinkling stars layer -->
+<div class="stars" id="stars"></div>
+
+<div class="wrap">
+  <div class="card">
+    <!-- LEFT: full portrait -->
+    <div class="left">
+      <div id="portrait" class="portrait" style="background-image: url('/mnt/data/arad2.jpeg');" data-local-src="/mnt/data/arad2.jpeg" aria-label="Aadya main photo"></div>
+    </div>
+
+    <!-- RIGHT: text -->
+    <div class="right" role="region" aria-label="Birthday details">
+      <h1>Happy Birthday, Aadya ✨🌌</h1>
+      <p class="lead">May your world be full of stars, wonder and magic — shine bright, little star!</p>
+
+      <div class="pills">
+        <div class="pill">Age: 5 years</div>
+        <div class="pill">Born: November 22, 2020</div>
+        <div class="pill">Wish: Infinite Joy & Love 💕</div>
       </div>
 
-      <!-- RIGHT: Text and actions -->
-      <div class="right">
-        <h1>Happy Birthday, Aadya! ✨💖</h1>
-        <p class="lead">Wishing you giggles, balloons and a day full of colorful magic. Shine bright, little one!</p>
+      <div class="name">Aadya N Biradar</div>
+      <div class="note">Celebrate this special day with starry skies, sparkling fireworks and happy music.</div>
 
-        <div class="meta">
-          <div class="pill">Age: 5 years</div>
-          <div class="pill">Born: November 22, 2020</div>
-          <div class="pill">Wish: Infinite Joy & Love 💕</div>
-        </div>
-
-        <div style="font-weight:700; opacity:0.95; margin-bottom:8px">Aadya N Biradar</div>
-        <div style="color:rgba(255,255,255,0.75); margin-bottom:18px">Celebrate this special day with crackers, music and lots of cake!</div>
-
-        <div class="actions">
-          <button class="btn btn-primary" id="printBtn">📥 Download / Print</button>
-          <button class="btn btn-ghost" id="wishBtn">🎉 Send Wish</button>
-        </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="printBtn">📥 Download / Print</button>
+        <button class="btn btn-ghost" id="wishBtn">🎉 Send Wish</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- small carousel -->
-  <div class="carousel" id="carousel">
-    <img src="/mnt/data/arad2.jpeg" class="active" alt="Aadya main">
-    <img src="/mnt/data/aradya1.jpeg" alt="Aadya 2">
-  </div>
+<!-- small carousel bottom-left -->
+<div class="carousel" id="carousel">
+  <img src="/mnt/data/arad2.jpeg" class="active" alt="Aadya 1">
+  <img src="/mnt/data/aradya1.jpeg" alt="Aadya 2">
+</div>
 
-  <!-- canvases for confetti & crackers -->
-  <canvas id="confetti"></canvas>
-  <canvas id="crackers"></canvas>
+<!-- fireworks and confetti canvases -->
+<canvas id="fw"></canvas>
+<canvas id="conf"></canvas>
 
-  <!-- background music (local file) -->
-  <audio id="bgAudio" loop preload="auto" autoplay>
-    <source src="/mnt/data/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
-  </audio>
+<!-- background music (local path) -->
+<audio id="bgAudio" loop preload="auto" autoplay>
+  <source src="/mnt/data/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-  // Carousel rotation
-  (function(){
-    const imgs = document.querySelectorAll('#carousel img');
-    let idx = 0;
-    setInterval(()=>{
-      imgs[idx].classList.remove('active');
-      idx = (idx+1) % imgs.length;
-      imgs[idx].classList.add('active');
-    }, 3000);
-  })();
+/* ========== stars background ========== */
+(function(){
+  const stars = document.getElementById('stars');
+  const w = innerWidth, h = innerHeight;
+  // create many twinkles
+  const count = Math.min(160, Math.floor((w*h)/40000));
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className='twinkle';
+    const left = Math.random()*100; const top = Math.random()*100;
+    s.style.left = left+'%'; s.style.top = top+'%';
+    const size = (Math.random()*2.5)+0.8;
+    s.style.width = size+'px'; s.style.height = size+'px';
+    s.style.opacity = (0.3 + Math.random()*0.8);
+    s.style.transform = `scale(${0.7+Math.random()*1.2})`;
+    s.style.animation = `twk ${2 + Math.random()*4}s ease-in-out ${Math.random()*3}s infinite`;
+    stars.appendChild(s);
+  }
+  // small keyframes via dynamic style
+  const style = document.createElement('style');
+  style.textContent = `@keyframes twk {0%{opacity:0.2; transform:scale(0.7)}50%{opacity:1; transform:scale(1)}100%{opacity:0.2; transform:scale(0.7)}}`;
+  document.head.appendChild(style);
+})();
 
-  // Confetti + crackers engine (auto-run on load)
-  (function(){
-    const confettiC = document.getElementById('confetti');
-    const ctx = confettiC.getContext('2d');
-    const crackersC = document.getElementById('crackers');
-    const ctx2 = crackersC.getContext('2d');
+/* ========== carousel rotate ========== */
+(function(){
+  const imgs = document.querySelectorAll('#carousel img'); let idx=0;
+  setInterval(()=>{ imgs[idx].classList.remove('active'); idx=(idx+1)%imgs.length; imgs[idx].classList.add('active'); }, 3500);
+})();
 
-    function resize(){ confettiC.width = window.innerWidth; confettiC.height = window.innerHeight; crackersC.width = window.innerWidth; crackersC.height = window.innerHeight; }
-    window.addEventListener('resize', resize); resize();
+/* ========== fireworks + confetti ========== */
+(function(){
+  const fw = document.getElementById('fw'), conf = document.getElementById('conf');
+  fw.width = conf.width = innerWidth; fw.height = conf.height = innerHeight;
+  window.addEventListener('resize', ()=>{ fw.width = conf.width = innerWidth; fw.height = conf.height = innerHeight; });
 
-    const confetti = [], crackers = [];
+  const fctx = fw.getContext('2d'), cctx = conf.getContext('2d');
+  const fireworks = [], confetti = [];
 
-    function spawnConfetti(count=180){
-      for(let i=0;i<count;i++){
-        confetti.push({
-          x: Math.random()*confettiC.width,
-          y: -20 - Math.random()*200,
-          vx: -2 + Math.random()*4,
-          vy: 2 + Math.random()*5,
-          r: 6 + Math.random()*10,
-          c: `hsl(${Math.random()*360},80%,60%)`,
-          rot: Math.random()*360
-        });
-      }
+  function spawnFirework(){
+    const x = Math.random()*fw.width;
+    const y = Math.random()*fw.height*0.35;
+    const hue = Math.random()*360;
+    for(let i=0;i<60;i++){
+      fireworks.push({
+        x,y,
+        angle: Math.random()*Math.PI*2,
+        speed: 2 + Math.random()*4,
+        life: 90 + Math.random()*40,
+        color: `hsl(${hue + (Math.random()*40-20)},90%,60%)`
+      });
     }
-
-    function spawnCrackers(count=200){
-      const cx = window.innerWidth * 0.5;
-      const cy = window.innerHeight * 0.35;
-      for(let i=0;i<count;i++){
-        crackers.push({
-          x: cx, y: cy,
-          vx: -6 + Math.random()*12,
-          vy: -6 + Math.random()*12,
-          r: 3 + Math.random()*4,
-          c: `hsl(${Math.random()*360},90%,60%)`,
-          life: 80 + Math.random()*80
-        });
-      }
+  }
+  function spawnConfetti(n=120){
+    for(let i=0;i<n;i++){
+      confetti.push({
+        x: Math.random()*conf.width,
+        y: -20 - Math.random()*200,
+        vx: -2 + Math.random()*4,
+        vy: 1 + Math.random()*4,
+        w: 6 + Math.random()*10,
+        color: `hsl(${Math.random()*360},80%,60%)`,
+        rot: Math.random()*360
+      });
     }
+  }
 
-    function update(){
-      ctx.clearRect(0,0,confettiC.width,confettiC.height);
-      ctx2.clearRect(0,0,crackersC.width,crackersC.height);
+  function loop(){
+    fctx.clearRect(0,0,fw.width,fw.height);
+    cctx.clearRect(0,0,conf.width,conf.height);
 
-      for(let i=confetti.length-1;i>=0;i--){
-        const p = confetti[i];
-        p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.rot += 5;
-        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
-        ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6);
-        ctx.restore();
-        if(p.y > confettiC.height + 80) confetti.splice(i,1);
-      }
-
-      for(let i=crackers.length-1;i>=0;i--){
-        const k = crackers[i];
-        k.x += k.vx; k.y += k.vy; k.vy += 0.12; k.life--;
-        ctx2.beginPath(); ctx2.fillStyle=k.c; ctx2.arc(k.x,k.y,k.r,0,Math.PI*2); ctx2.fill();
-        if(k.life <= 0) crackers.splice(i,1);
-      }
-
-      requestAnimationFrame(update);
+    for(let i=fireworks.length-1;i>=0;i--){
+      const p=fireworks[i];
+      p.x += Math.cos(p.angle)*p.speed; p.y += Math.sin(p.angle)*p.speed; p.life--;
+      fctx.fillStyle=p.color; fctx.fillRect(p.x,p.y,3,3);
+      if(p.life<=0) fireworks.splice(i,1);
     }
-    update();
-
-    // run big celebration on load
-    window.addEventListener('load', ()=>{
-      spawnCrackers(260);
-      spawnConfetti(260);
-      setTimeout(()=>{ spawnCrackers(160); spawnConfetti(160); }, 700);
-      setTimeout(()=>{ spawnCrackers(100); spawnConfetti(120); }, 1500);
-    });
-  })();
-
-  // Balloons decorative floating
-  (function(){
-    for(let i=0;i<6;i++){
-      const b = document.createElement('div');
-      b.className = 'balloon';
-      b.textContent = '🎈';
-      b.style.left = (6 + Math.random()*88) + '%';
-      b.style.bottom = (-80 - Math.random()*120) + 'px';
-      b.style.fontSize = (28 + Math.random()*36) + 'px';
-      document.body.appendChild(b);
-      // animate
-      setTimeout(function rise(){
-        b.style.transition = `transform ${10 + Math.random()*10}s linear`;
-        b.style.transform = `translateY(-120vh) rotate(${Math.random()*80-40}deg)`;
-        setTimeout(()=>b.remove(), 23000);
-      }, 300 + i*300);
+    for(let i=confetti.length-1;i>=0;i--){
+      const q=confetti[i]; q.x += q.vx; q.y += q.vy; q.vy += 0.04; q.rot += 3;
+      cctx.save(); cctx.translate(q.x,q.y); cctx.rotate(q.rot*Math.PI/180);
+      cctx.fillStyle=q.color; cctx.fillRect(-q.w/2,-q.w/2,q.w,q.w*0.6);
+      cctx.restore();
+      if(q.y > conf.height + 60) confetti.splice(i,1);
     }
-  })();
-
-  // Music autoplay with fallback to user gesture if blocked
-  (function(){
-    const audio = document.getElementById('bgAudio');
-    const p = audio.play();
-    if(p !== undefined && p.catch){
-      p.catch(()=>{ /* autoplay blocked; fallback will run on gesture */ });
-    }
-    ['click','touchstart','keydown'].forEach(ev=>{
-      window.addEventListener(ev, ()=>{ audio.play().catch(()=>{}); }, {once:true});
-    });
-  })();
-
-  // print / wish buttons
-  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
-  document.getElementById('wishBtn').addEventListener('click', ()=> {
-    alert('Sent a wish! 🎉');
+    requestAnimationFrame(loop);
+  }
+  loop();
+  // initial grand celebration
+  window.addEventListener('load', ()=>{
+    spawnConfetti(250);
+    spawnFirework(); spawnFirework();
+    setTimeout(()=>{ spawnFirework(); spawnConfetti(160); }, 700);
+    setTimeout(()=>{ spawnFirework(); spawnConfetti(120); }, 1400);
+    // small repeated fireworks
+    setInterval(()=>{ spawnFirework(); spawnConfetti(80); }, 4200);
   });
+})();
 
-  // preload images
-  const p1 = new Image(); p1.src = '/mnt/data/arad2.jpeg';
-  const p2 = new Image(); p2.src = '/mnt/data/aradya1.jpeg';
+/* ========== balloons floating (decor) ========== */
+(function(){
+  const letters = ['🎈','🎈','✨','✦','✧','🌟'];
+  for(let i=0;i<7;i++){
+    const el = document.createElement('div');
+    el.className='balloon';
+    el.textContent = letters[Math.floor(Math.random()*letters.length)];
+    el.style.left = (6 + Math.random()*88) + '%';
+    el.style.bottom = (-60 - Math.random()*160) + 'px';
+    el.style.opacity = 0.95;
+    el.style.fontSize = (22 + Math.random()*36) + 'px';
+    el.style.transition = `transform ${10 + Math.random()*12}s linear`;
+    document.body.appendChild(el);
+    setTimeout(function rise(){
+      el.style.transform = `translateY(-120vh) rotate(${Math.random()*80-40}deg)`;
+      setTimeout(()=>el.remove(), 24000);
+    }, 300 + i*300);
+  }
+})();
 
-  // To use CloudFront, replace paths with:
-  // https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg
-  // https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg
-  // https://d1d25zdaamjz77.cloudfront.net/nagutha-nagutha-baalu.mp3
+/* ========== music autoplay with fallback ========== */
+(function(){
+  const audio = document.getElementById('bgAudio');
+  const p = audio.play();
+  if(p !== undefined && p.catch){
+    p.catch(()=>{ /* blocked: will play on first gesture */ });
+  }
+  ['click','touchstart','keydown'].forEach(ev=>{
+    window.addEventListener(ev, ()=>{ audio.play().catch(()=>{}); }, {once:true});
+  });
+})();
+
+/* ========== print / wish handlers ========== */
+document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+document.getElementById('wishBtn').addEventListener('click', ()=> alert('Wish sent for Aadya! 🎉'));
+
+/* ========== preload images ========= */
+const p1 = new Image(); p1.src = '/mnt/data/arad2.jpeg';
+const p2 = new Image(); p2.src = '/mnt/data/aradya1.jpeg';
 </script>
+
 </body>
 </html>
