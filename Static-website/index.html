@@ -13,12 +13,11 @@
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
-    margin:0; font-family:Inter, system-ui, "Segoe UI", Arial; color:#fff;
+    margin:0; font-family:Inter, system-ui, "Segoe UI"; color:#fff;
     background:linear-gradient(180deg,var(--bg1),var(--bg2));
     min-height:100vh; overflow-x:hidden;
   }
 
-  /* Main container */
   .wrap{max-width:1200px;margin:24px auto;padding:18px;position:relative;z-index:30}
 
   .card{
@@ -26,216 +25,158 @@
     background:rgba(255,255,255,0.03);
     border-radius:18px;padding:18px;
     box-shadow:0 30px 80px rgba(0,0,0,0.6);
-    animation: glow 3.5s ease-in-out infinite;
-  }
-  @keyframes glow{
-    0%{box-shadow:0 20px 60px rgba(142,240,255,0.05)}
-    50%{box-shadow:0 20px 80px rgba(255,157,230,0.10)}
-    100%{box-shadow:0 20px 60px rgba(142,240,255,0.05)}
   }
 
-  /* LEFT SIDE — 3D rotating images */
-  .left{flex:1;min-width:320px;display:flex;align-items:center;justify-content:center;padding:12px}
-  .portrait-3d{width:100%;height:70vh;perspective:1200px}
+  .left{flex:1;display:flex;align-items:center;justify-content:center;padding:12px}
+  .portrait-3d{width:100%;height:60vh;perspective:1200px}
   .card-3d{
     width:100%;height:100%;
-    border-radius:14px;overflow:hidden;position:relative;
-    transform-style:preserve-3d;transition:0.8s ease;
+    border-radius:14px;overflow:hidden;
+    position:relative;transform-style:preserve-3d;
+    transition:.8s;
     box-shadow:0 30px 80px rgba(0,0,0,0.7);
     border:4px solid rgba(255,255,255,0.05);
   }
-  .card-3d:hover{transform:rotateY(12deg) rotateX(4deg)}
 
-  .panel{
-    position:absolute;inset:0;
-    display:flex;align-items:center;justify-content:center;
-    transition:1s ease;backface-visibility:hidden;
-  }
+  .panel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:1s;backface-visibility:hidden}
   .panel img{width:100%;height:100%;object-fit:cover}
 
-  .a{transform:translateZ(0)}
-  .b{transform:translateZ(-80px) rotateY(20deg);opacity:0.9}
-  .c{transform:translateZ(-160px) rotateY(40deg);opacity:0.8}
-
-  /* RIGHT SIDE */
-  .right{width:420px;padding:22px 16px;display:flex;flex-direction:column;justify-content:center;gap:12px}
-  h1{margin:0;font-size:40px;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
-  p.lead{opacity:0.9}
-  .pills{display:flex;flex-wrap:wrap;gap:10px}
-  .pill{padding:10px 14px;background:rgba(255,255,255,0.05);border-radius:999px;font-weight:600}
-  .name{font-size:22px;font-weight:800}
-  .note{opacity:0.85}
-  .actions{display:flex;gap:12px;margin-top:10px}
+  .right{width:420px;padding:22px 16px;display:flex;flex-direction:column;gap:12px}
+  h1{font-size:40px;margin:0;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
+  .lead{opacity:0.9}
+  .pill{display:inline-block;padding:10px 14px;background:rgba(255,255,255,0.05);margin-right:10px;border-radius:999px}
+  .actions{margin-top:12px;display:flex;gap:12px}
   .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
   .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#000}
   .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#fff}
 
-  /* SMALL FLOATING CAROUSEL */
   .carousel{
     position:fixed;left:14px;bottom:14px;width:120px;height:120px;border-radius:14px;
     overflow:hidden;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,0.6)
   }
-  .carousel img{
-    position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:.8s
-  }
+  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:.8s}
   .carousel img.active{opacity:1}
 
-  /* CANVAS FOR FIREWORKS + STARS */
-  #fw,#stars{
-    position:fixed;inset:0;pointer-events:none;z-index:10
-  }
-
-  /* Responsive */
-  @media(max-width:960px){
-    .card{flex-direction:column}
-    .right{width:100%}
-    .portrait-3d{height:52vh}
-  }
+  #fw,#stars{position:fixed;inset:0;pointer-events:none;z-index:5}
 </style>
 </head>
 
 <body>
 
-<!-- Fireworks + Falling Stars -->
 <canvas id="fw"></canvas>
 <canvas id="stars"></canvas>
 
 <div class="wrap">
   <div class="card">
-
-    <!-- 3D Rotating Photos -->
+    
     <div class="left">
       <div class="portrait-3d">
         <div class="card-3d" id="card3d">
-          <div class="panel a"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/arad2.jpeg"></div>
-          <div class="panel b"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/aradya1.jpeg"></div>
-          <div class="panel c"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/arad2.jpeg"></div>
+          <div class="panel a"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg"></div>
+          <div class="panel b"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg"></div>
+          <div class="panel c"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg"></div>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT CONTENT -->
     <div class="right">
       <h1>Happy Birthday, Aadya ✨🌟</h1>
-      <p class="lead">May your world be full of stars, sparkle, joy & magic.</p>
+      <p class="lead">May your world be full of sparkle, joy & magic.</p>
 
-      <div class="pills">
-        <div class="pill">Age: 5 years</div>
-        <div class="pill">Born: November 22, 2020</div>
-        <div class="pill">Joy & Love 💕</div>
-      </div>
+      <span class="pill">Age: 5 years</span>
+      <span class="pill">Born: November 22, 2020</span>
 
-      <div class="name">Aadya N Biradar</div>
-      <div class="note">Celebrating the brightest, sweetest little star!</div>
+      <p class="note">Celebrating the brightest little star!</p>
 
       <div class="actions">
-        <button class="btn btn-primary" id="printBtn">📥 Download / Print</button>
-        <button class="btn btn-ghost" id="wishBtn">🎉 Send Wish</button>
+        <button class="btn btn-primary" onclick="window.print()">📥 Print</button>
+        <button class="btn btn-ghost" onclick="alert('Wish sent! 🎉')">🎉 Wish</button>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- Floating Small Image Carousel -->
 <div class="carousel">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/arad2.jpeg" class="active">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/aradya1.jpeg">
+  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" class="active">
+  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg">
 </div>
 
-<!-- Background Music -->
 <audio id="bgAudio" loop preload="auto">
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/Static-website/nagutha-nagutha-baalu.mp3">
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3">
 </audio>
 
 <script>
-/* 3D Auto Rotate */
+/* 3D rotation */
 (function(){
-  const panels=document.querySelectorAll('.panel');
-  let step=0;
-  function update(){
-    panels.forEach((p,i)=>{
-      const pos=(i-step+panels.length)%panels.length;
-      if(pos===0) p.style.transform="translateZ(0)";
-      else if(pos===1) p.style.transform="translateZ(-80px) rotateY(20deg)";
-      else p.style.transform="translateZ(-160px) rotateY(40deg)";
-    });
+  const p=document.querySelectorAll('.panel');let s=0;
+  function up(){p.forEach((e,i)=>{const ps=(i-s+3)%3;
+    if(ps===0)e.style.transform="translateZ(0)";
+    else if(ps===1)e.style.transform="translateZ(-80px) rotateY(20deg)";
+    else e.style.transform="translateZ(-160px) rotateY(40deg)";});
   }
-  setInterval(()=>{step=(step+1)%3;update();},3000);
+  setInterval(()=>{s=(s+1)%3;up();},3000);
 })();
 
-/* Floating Carousel */
+/* Carousel switching */
 (function(){
   const imgs=document.querySelectorAll('.carousel img');let i=0;
   setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');},3000);
 })();
 
-/* Background Audio Autoplay Safe */
+/* Audio autoplay */
 (function(){
-  const audio=document.getElementById('bgAudio');
-  const p=audio.play();if(p)p.catch(()=>{});
-  ['click','touchstart','keydown'].forEach(ev=>{
-    window.addEventListener(ev,()=>audio.play().catch(()=>{}),{once:true});
-  });
+  const a=document.getElementById('bgAudio');
+  a.play().catch(()=>{});
+  ['click','touchstart'].forEach(x=>addEventListener(x,()=>a.play(),{once:true}));
 })();
 
-/* Print & Wish Buttons */
-document.getElementById('printBtn').onclick=()=>window.print();
-document.getElementById('wishBtn').onclick=()=>alert("Wish sent 🎉");
-
-/* Falling Stars */
+/* Falling stars */
 (function(){
-  const c=document.getElementById('stars'),ctx=c.getContext('2d');
-  let w,h;function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
+  const c=document.getElementById('stars'),ctx=c.getContext('2d');let w,h;
+  function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
   addEventListener('resize',rs);
-
   let stars=[];
-  function newStar(){return{x:Math.random()*w,y:-10,len:8+Math.random()*12,speed:1+Math.random()*3}}
-  function tick(){
+  function ns(){return{x:Math.random()*w,y:-10,s:2+Math.random()*3}}
+  function t(){
     ctx.clearRect(0,0,w,h);
-    if(Math.random()<.06)stars.push(newStar());
-    stars.forEach((s,i)=>{
-      s.x+=s.speed*4;
-      s.y+=s.speed*4;
+    if(Math.random()<.06)stars.push(ns());
+    stars=stars.filter(s=>s.y<h);
+    stars.forEach(s=>{
+      s.x+=s.s*3;s.y+=s.s*3;
       ctx.strokeStyle="rgba(255,255,255,.9)";
-      ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x+s.len,s.y+s.len);ctx.stroke();
-      if(s.y>h)stars.splice(i,1);
+      ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x+10,s.y+10);ctx.stroke();
     });
-    requestAnimationFrame(tick);
-  }
-  tick();
+    requestAnimationFrame(t);
+  } t();
 })();
 
 /* Fireworks */
 (function(){
-  const c=document.getElementById('fw'),ctx=c.getContext('2d');
-  let w,h;function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
+  const c=document.getElementById('fw'),ctx=c.getContext('2d');let w,h;
+  function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
   addEventListener('resize',rs);
-
   let parts=[];
   function burst(){
-    const x=Math.random()*w,y=Math.random()*(h*0.5);
-    const colors=["#8ef0ff","#ff9de6","#ffd07a","#a6ffb8","#b8a6ff"];
-    const col=colors[Math.floor(Math.random()*colors.length)];
-    for(let i=0;i<32;i++){
+    const x=Math.random()*w,y=Math.random()*h*.5;
+    const colors=["#8ef0ff","#ff9de6","#ffd07a"];
+    let col=colors[Math.floor(Math.random()*colors.length)];
+    for(let i=0;i<28;i++){
       const a=Math.random()*Math.PI*2,sp=2+Math.random()*4;
-      parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:90,color:col});
+      parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:90,col});
     }
   }
-  setInterval(burst,1600);
-
-  function tick(){
+  setInterval(burst,1500);
+  function t(){
     ctx.clearRect(0,0,w,h);
     parts.forEach((p,i)=>{
       p.x+=p.vx;p.y+=p.vy;p.vy+=0.02;p.life--;
-      let a=Math.max(0,p.life/90);
-      ctx.fillStyle=p.color.replace(")",`,${a})`).replace("rgb","rgba");
+      ctx.fillStyle=p.col.replace(")",`,${p.life/90})`).replace("rgb","rgba");
       ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fill();
       if(p.life<=0)parts.splice(i,1);
     });
-    requestAnimationFrame(tick);
-  }
-  tick();
+    requestAnimationFrame(t);
+  } t();
 })();
 </script>
 
