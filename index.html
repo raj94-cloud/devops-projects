@@ -1,234 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya — Starry Galaxy (Final)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aadya 🎉✨</title>
+
 <style>
-  :root{
-    --bg1:#040017; --bg2:#0b0630;
-    --accent1:#8ef0ff; --accent2:#ff9de6;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; font-family:Inter, system-ui, "Segoe UI", Roboto, Arial; color:#fff;
-    background:
-      radial-gradient(circle at 10% 10%, rgba(138,89,255,0.06), transparent 8%),
-      linear-gradient(180deg,var(--bg1),var(--bg2));
-    min-height:100vh; overflow-x:hidden;
-  }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0a0322, #050017 60%, #000);
+  color: white;
+  overflow-x: hidden;
+  text-align: center;
+}
 
-  .wrap{max-width:1400px;margin:24px auto;padding:28px;position:relative;z-index:10}
-  .card{display:flex;gap:36px;align-items:stretch;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.14)); border-radius:18px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,0.6);position:relative;overflow:hidden}
+/* Main Heading */
+h1 {
+  margin-top: 40px;
+  font-size: 42px;
+  background: linear-gradient(90deg, #8ef0ff, #d89bff, #ff9de6);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
 
-  /* LEFT: full portrait */
-  .left{flex:1; min-width:360px; display:flex; align-items:center; justify-content:center; padding:14px}
-  .portrait{
-    width:100%; height:calc(80vh - 60px); max-height:760px; border-radius:14px; overflow:hidden;
-    border: 6px solid rgba(255,255,255,0.03); box-shadow: 0 30px 80px rgba(0,0,0,0.7);
-    background-position:center top; background-size:cover;
-  }
+/* Age / Born pills */
+.pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: 12px 22px;
+  margin: 10px;
+  border-radius: 40px;
+  font-size: 18px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
 
-  /* RIGHT: info */
-  .right{width:460px; padding:28px 12px; display:flex; flex-direction:column; justify-content:center; gap:12px}
-  h1{margin:0;font-size:44px; line-height:1; background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6); -webkit-background-clip:text; color:transparent}
-  p.lead{margin:6px 0 14px 0; opacity:0.95;}
-  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-  .pill{background:rgba(255,255,255,0.03); padding:10px 14px; border-radius:999px; font-weight:700; border:1px solid rgba(255,255,255,0.04)}
-  .name{font-weight:800;font-size:22px;margin-top:8px}
-  .note{opacity:0.85;margin-bottom:8px}
-  .actions{display:flex; gap:12px; margin-top:8px}
-  .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer}
-  .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#14001f; box-shadow:0 10px 30px rgba(150,90,220,0.12)}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:#fff}
+/* Main large photo */
+.main-photo {
+  width: 85%;
+  max-width: 800px;
+  height: 420px;
+  background-size: cover;
+  background-position: center top;
+  border-radius: 16px;
+  margin: 30px auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
 
-  /* carousel */
-  .carousel{position:fixed; left:18px; bottom:18px; width:140px; height:140px;border-radius:14px; overflow:hidden; z-index:1300; box-shadow:0 10px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04)}
-  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
-  .carousel img.active{opacity:1}
+/* Carousel at bottom */
+.carousel {
+  width: 150px;
+  height: 150px;
+  margin: 40px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.9s;
+}
+.carousel img.active { opacity: 1; }
 
-  /* fireworks + confetti canvases */
-  #fw, #conf { position:fixed; inset:0; pointer-events:none; z-index:1400 }
+/* Fireworks & Confetti Canvas */
+#fw, #conf {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2000;
+}
 
-  /* Big realistic 3D balloons left & right */
-  .balloon-3d {
-    position: fixed;
-    width: 160px;
-    height: 220px;
-    border-radius: 48% 48% 58% 58%;
-    transform-origin: center;
-    z-index: 1300;
-    display:flex; align-items:center; justify-content:center; pointer-events:none;
-  }
-  .balloon-3d .string { position:absolute; bottom:-58px; width:2px; height:70px; background:linear-gradient(#233,#111); left:50%; transform:translateX(-50%); border-radius:2px; box-shadow:0 8px 14px rgba(0,0,0,0.35); }
-  .balloon-3d .body { width:88%; height:88%; border-radius:50%; box-shadow: inset -18px -20px 40px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.55); transform:translateY(-4%); }
+/* Balloons */
+.balloon {
+  position: fixed;
+  width: 160px;
+  height: 220px;
+  z-index: 1500;
+  animation: float 6s ease-in-out infinite;
+}
 
-  .b-left { left: -40px; top: 12vh; transform: rotate(-10deg); }
-  .b-left .body { background-image: radial-gradient(circle at 28% 24%, rgba(255,255,255,0.95), rgba(255,255,255,0.4) 5%), linear-gradient(180deg,#ff6a8b, #ff3dbb 50%, #a6007f 100%); }
-  .b-left.small { width:120px; height:170px; left:-10px; top:52vh; transform:rotate(-6deg); opacity:0.95; }
-
-  .b-right { right: -40px; top:20vh; transform: rotate(8deg); }
-  .b-right .body { background-image: radial-gradient(circle at 30% 24%, rgba(255,255,255,0.95), rgba(255,255,255,0.38) 5%), linear-gradient(180deg,#6af0ff, #3dbbff 45%, #0069a6 100%); }
-  .b-right.small { width:120px; height:170px; right:-12px; top:62vh; transform:rotate(14deg); opacity:0.95; }
-
-  @keyframes floatSlow { 0%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-18px) rotate(2deg)} 100%{transform:translateY(0) rotate(-2deg)} }
-  .balloon-3d { animation: floatSlow 6s ease-in-out infinite; }
-
-  @media(max-width:980px){
-    .card{flex-direction:column}
-    .right{width:100%}
-    h1{font-size:32px}
-    .balloon-3d{display:none}
-  }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0px); }
+}
 </style>
 </head>
 <body>
 
-<!-- canvases -->
 <canvas id="fw"></canvas>
-<canvas id="conf"></canvas>
 
-<!-- big balloons -->
-<div class="balloon-3d b-left" aria-hidden="true">
-  <div class="body" aria-hidden="true"></div><div class="string" aria-hidden="true"></div>
-</div>
-<div class="balloon-3d b-left small" aria-hidden="true">
-  <div class="body" aria-hidden="true"></div><div class="string" aria-hidden="true"></div>
-</div>
-<div class="balloon-3d b-right" aria-hidden="true">
-  <div class="body" aria-hidden="true"></div><div class="string" aria-hidden="true"></div>
-</div>
-<div class="balloon-3d b-right small" aria-hidden="true">
-  <div class="body" aria-hidden="true"></div><div class="string" aria-hidden="true"></div>
+<!-- Balloons -->
+<img src="arad2.jpeg" class="balloon" style="left:20px; top:120px;">
+<img src="aradya1.jpeg" class="balloon" style="right:20px; top:150px;">
+
+<h1>🎉 Happy Birthday Aadya 🎉</h1>
+
+<div class="pill">✨ Age: 5 years</div>
+<div class="pill">🎂 Born: November 22, 2020</div>
+
+<div class="main-photo"
+  style="background-image:url('arad2.jpeg');">
 </div>
 
-<div class="wrap">
-  <div class="card" role="main">
-    <div class="left">
-      <div id="portrait" class="portrait" style="background-image:url('https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg');" aria-label="Aadya main photo"></div>
-    </div>
+<h2>🌟 Wishing you joy, magic & happiness 💖</h2>
 
-    <div class="right" role="region" aria-label="Birthday details">
-      <h1>Happy Birthday, Aadya ✨🌟</h1>
-      <p class="lead">May your world be full of stars, wonder and magic — shine bright, little star!</p>
-
-      <div class="pills">
-        <div class="pill">Age: 5 years</div>
-        <div class="pill">Born: November 22, 2020</div>
-        <div class="pill">Wish: Infinite Joy & Love 💕</div>
-      </div>
-
-      <div class="name">Aadya N Biradar</div>
-      <div class="note">Celebrate this special day with starry skies, sparkling fireworks and happy music.</div>
-
-      <div class="actions">
-        <button class="btn btn-primary" id="printBtn">📥 Download / Print</button>
-        <button class="btn btn-ghost" id="wishBtn">🎉 Send Wish</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- small carousel -->
-<div class="carousel" id="carousel">
-  <img src="https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg" class="active" alt="Aadya 1">
-  <img src="https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg" alt="Aadya 2">
-</div>
-
-<!-- audio: CloudFront URL -->
-<audio id="bgAudio" loop preload="auto" autoplay>
-  <source src="https://d1d25zdaamjz77.cloudfront.net/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+<!-- Music autoplay -->
+<audio id="bgAudio" autoplay loop preload="auto">
+  <source src="nagutha-nagutha-baalu.mp3" type="audio/mpeg">
 </audio>
 
+<h2>More Photos</h2>
+
+<div class="carousel" id="carousel">
+  <img src="arad2.jpeg" class="active">
+  <img src="aradya1.jpeg">
+</div>
+
 <script>
-/* preload carousel */
-const p1 = new Image(); p1.src = 'https://d1d25zdaamjz77.cloudfront.net/arad2.jpeg';
-const p2 = new Image(); p2.src = 'https://d1d25zdaamjz77.cloudfront.net/aradya1.jpeg';
+// Carousel
+const imgs = document.querySelectorAll('#carousel img');
+let idx = 0;
+setInterval(() => {
+  imgs[idx].classList.remove('active');
+  idx = (idx + 1) % imgs.length;
+  imgs[idx].classList.add('active');
+}, 3000);
 
-/* carousel */
-(function(){
-  const imgs = document.querySelectorAll('#carousel img'); let idx=0;
-  setInterval(()=>{ imgs[idx].classList.remove('active'); idx=(idx+1)%imgs.length; imgs[idx].classList.add('active'); }, 3000);
-})();
+// Autoplay fallback
+const audio = document.getElementById("bgAudio");
+document.body.addEventListener("click", () => audio.play(), { once: true });
 
-/* fireworks + confetti */
-(function(){
-  const fw = document.getElementById('fw'), conf = document.getElementById('conf');
-  const dpr = window.devicePixelRatio || 1;
-  const fctx = fw.getContext('2d'), cctx = conf.getContext('2d');
-  function resize(){ fw.width = window.innerWidth * dpr; fw.height = window.innerHeight * dpr; fw.style.width = window.innerWidth + 'px'; fw.style.height = window.innerHeight + 'px'; conf.width = fw.width; conf.height = fw.height; conf.style.width = fw.style.width; conf.style.height = fw.style.height; fctx.setTransform(dpr,0,0,dpr,0,0); cctx.setTransform(dpr,0,0,dpr,0,0); }
-  window.addEventListener('resize', resize); resize();
+// Mini fireworks
+const fw = document.getElementById("fw");
+const ctx = fw.getContext("2d");
+fw.width = innerWidth; fw.height = innerHeight;
 
-  const fireworks = [], confetti = [];
-
-  function spawnFirework(){
-    const x = Math.random()*window.innerWidth;
-    const y = Math.random()*window.innerHeight*0.35;
-    const hue = Math.random()*360;
-    for(let i=0;i<60;i++){
-      fireworks.push({x,y,angle:Math.random()*Math.PI*2,speed:2+Math.random()*4,life:80+Math.random()*60,color:`hsl(${hue + (Math.random()*40-20)},90%,60%)`});
-    }
+function spark() {
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
+      ctx.beginPath();
+      ctx.arc(Math.random()*fw.width, Math.random()*fw.height, 3, 0, Math.PI*2);
+      ctx.fill();
+    }, i * 20);
   }
-  function spawnConfetti(n=120){
-    for(let i=0;i<n;i++){
-      confetti.push({x: Math.random()*window.innerWidth, y: -20 - Math.random()*200, vx:-2+Math.random()*4, vy:2+Math.random()*4, w:6+Math.random()*10, color:`hsl(${Math.random()*360},80%,60%)`, rot:Math.random()*360});
-    }
-  }
-
-  function loop(){
-    fctx.clearRect(0,0,fw.width,fw.height);
-    cctx.clearRect(0,0,conf.width,conf.height);
-
-    for(let i=fireworks.length-1;i>=0;i--){
-      const p = fireworks[i]; p.x += Math.cos(p.angle)*p.speed; p.y += Math.sin(p.angle)*p.speed; p.life--;
-      fctx.fillStyle = p.color; fctx.fillRect(p.x,p.y,3,3);
-      if(p.life<=0) fireworks.splice(i,1);
-    }
-    for(let i=confetti.length-1;i>=0;i--){
-      const q = confetti[i]; q.x += q.vx; q.y += q.vy; q.vy += 0.04; q.rot += 3;
-      cctx.save(); cctx.translate(q.x,q.y); cctx.rotate(q.rot*Math.PI/180);
-      cctx.fillStyle = q.color; cctx.fillRect(-q.w/2,-q.w/2,q.w,q.w*0.6); cctx.restore();
-      if(q.y > conf.height + 60) confetti.splice(i,1);
-    }
-    requestAnimationFrame(loop);
-  }
-  loop();
-
-  window.addEventListener('load', ()=>{
-    spawnConfetti(240); spawnFirework(); spawnFirework();
-    setTimeout(()=>{ spawnFirework(); spawnConfetti(160); }, 700);
-    setTimeout(()=>{ spawnFirework(); spawnConfetti(120); }, 1400);
-    setInterval(()=>{ spawnFirework(); spawnConfetti(80); }, 4200);
-  });
-})();
-
-/* balloon parallax */
-(function(){
-  const left = document.querySelectorAll('.b-left'), right = document.querySelectorAll('.b-right');
-  window.addEventListener('mousemove', (e)=>{
-    const cx = window.innerWidth/2, cy = window.innerHeight/2;
-    const dx = (e.clientX - cx) / cx;
-    const dy = (e.clientY - cy) / cy;
-    left.forEach((el,i)=> el.style.transform = `translate(${dx * -8 * (i+1)}px, ${dy * -6 * (i+1)}px) rotate(${(-10 + i*4)}deg)`);
-    right.forEach((el,i)=> el.style.transform = `translate(${dx * 8 * (i+1)}px, ${dy * -6 * (i+1)}px) rotate(${(8 + i*4)}deg)`);
-  });
-})();
-
-/* music autoplay with fallback */
-(function(){
-  const audio = document.getElementById('bgAudio');
-  const p = audio.play();
-  if(p !== undefined && p.catch){
-    p.catch(()=>{ /* blocked; fallback below */ });
-  }
-  ['click','touchstart','keydown'].forEach(ev=>{
-    window.addEventListener(ev, ()=>{ audio.play().catch(()=>{}); }, {once:true});
-  });
-})();
-
-/* print / wish */
-document.getElementById('printBtn').addEventListener('click', ()=> window.print());
-document.getElementById('wishBtn').addEventListener('click', ()=> alert('Wish sent for Aadya! 🎉'));
+}
+setInterval(spark, 2500);
 </script>
+
 </body>
 </html>
