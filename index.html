@@ -1,273 +1,176 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya — Celebration 🎉</title>
-<style>
-  :root{
-    --bg1:#050016; --bg2:#0b0530;
-    --gold1:#ffd47a; --gold2:#ffb84d;
-    --acc1:#8ef0ff; --acc2:#ff9de6;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-    color:#fff; background: radial-gradient(1200px 600px at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday 🎉</title>
+  <style>
+    :root{--bg1:#140035;--bg2:#050017;--card:#fff7;--accent:#ffce00}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Poppins',sans-serif;background:radial-gradient(circle at top,var(--bg1),var(--bg2) 70%);color:#fff}
+    .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px}
+    .card{width:100%;max-width:980px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.6);padding:20px;backdrop-filter:blur(6px)}
+    header{display:flex;gap:16px;align-items:center}
+    .title{font-size:32px;font-weight:700;margin:0}
+    .subtitle{opacity:.75;margin:0}
 
-  .wrap{max-width:1050px;margin:20px auto;padding:16px}
-  header{text-align:center;margin-bottom:6px}
-  h1{font-size:36px;margin:6px 0;background:linear-gradient(90deg,var(--acc1),#d89bff,var(--acc2));-webkit-background-clip:text;color:transparent;font-weight:900}
-  .tag{color:rgba(255,255,255,0.9);margin-bottom:10px}
-  .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
-  .pill{background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.03);font-size:15px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px}
+    .photo{width:100%;height:180px;object-fit:cover;border-radius:12px;border:3px solid rgba(255,255,255,0.06);box-shadow:0 6px 18px rgba(0,0,0,.5)}
 
-  .message{font-size:18px;color:var(--gold1);margin:10px 0;font-weight:700;opacity:0;transform:translateY(6px);transition:all .7s ease}
-  .message.show{opacity:1;transform:translateY(0)}
+    .crackers{position:relative;margin-top:18px;height:120px}
+    .firework{position:absolute;left:50%;transform:translateX(-50%)}
 
-  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-  @media(max-width:880px){ .gallery{grid-template-columns:1fr;padding:0 12px} }
+    .controls{display:flex;align-items:center;gap:12px;margin-top:16px}
+    .btn{background:var(--accent);color:#000;padding:10px 14px;border-radius:12px;font-weight:600;border:none;cursor:pointer}
 
-  .card{border-radius:14px;padding:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));box-shadow:0 20px 45px rgba(0,0,0,0.5)}
-  .gold{border-radius:12px;padding:10px;background:linear-gradient(90deg,var(--gold1),var(--gold2));box-shadow:0 10px 30px rgba(0,0,0,0.45);transition:transform .4s}
-  .gold:hover{transform:translateY(-6px)}
-  .inner{border-radius:8px;overflow:hidden;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));position:relative}
-  .photo{display:block;width:100%;height:auto;object-fit:contain;border-radius:6px;max-height:68vh;opacity:0;transition:opacity .45s ease}
+    /* big center overlay when autoplay blocked */
+    .play-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.2));backdrop-filter:blur(3px);z-index:80;visibility:hidden;opacity:0;transition:all .25s}
+    .play-overlay.show{visibility:visible;opacity:1}
+    .play-overlay .box{background:rgba(255,255,255,0.06);padding:20px;border-radius:12px;text-align:center}
+    .play-overlay .play{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:999px;background:var(--accent);color:#000;font-weight:700;border:none}
 
-  /* subtle balloons (sides only) */
-  .balloon{position:fixed;width:94px;height:126px;border-radius:46% 46% 58% 58%;opacity:0.9;pointer-events:none;filter:drop-shadow(0 8px 18px rgba(0,0,0,0.35));z-index:20}
-  .balloon.left{left:6px;top:30vh;background:linear-gradient(180deg,#ff8db0,#ff3dbb)}
-  .balloon.right{right:6px;top:26vh;background:linear-gradient(180deg,#7aeaff,#0069a6)}
-  @media(max-width:640px){ .balloon{display:none} }
+    footer{opacity:.6;margin-top:18px;font-size:13px}
 
-  /* host badge */
-  .host-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);font-weight:800}
-  .host-badge .raj{background:linear-gradient(90deg,var(--gold1),var(--gold2));padding:6px 10px;border-radius:999px;color:#14001f}
-
-  footer{margin-top:18px;text-align:center;color:rgba(255,255,255,0.72);padding-bottom:18px}
-
-/* small visual performance tweaks */
-canvas{display:block}
-</style>
+    @media (max-width:520px){.title{font-size:22px}.photo{height:140px}}
+  </style>
 </head>
 <body>
-
-<div class="wrap">
-  <header>
-    <h1>🎉 Happy Birthday, Aadya 🎉</h1>
-    <div class="tag">Wishing you sparkle, laughter & endless smiles ✨</div>
-    <div class="pills">
-      <div class="pill">Age: 5 years</div>
-      <div class="pill">Born: November 22, 2020</div>
-    </div>
-    <div id="message" class="message">Aadya, you are our sunshine 🌟</div>
-  </header>
-
-  <!-- soft side balloons -->
-  <div class="balloon left" aria-hidden="true"></div>
-  <div class="balloon right" aria-hidden="true"></div>
-
-  <section class="gallery" aria-label="Photos of Aadya">
+  <div class="wrap">
     <div class="card">
-      <div class="gold">
-        <div class="inner">
-          <!-- local uploaded file path (tool will convert to hosted URL) -->
-          <img id="p1" class="photo" src="/mnt/data/32600d04-c9c0-4bff-aa41-07e2a4001a6c.png" alt="Aadya photo 1 — full image" loading="lazy">
+      <header>
+        <div>
+          <h1 class="title">Happy Birthday — Aadya 🎉</h1>
+          <p class="subtitle">Made with ❤️ — open this on mobile for the full effect</p>
         </div>
-      </div>
-    </div>
+      </header>
 
-    <div class="card">
-      <div class="gold">
-        <div class="inner">
-          <img id="p2" class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" alt="Aadya photo 2 — full image" loading="lazy">
-        </div>
+      <div class="gallery" id="gallery">
+        <!-- Images: upload these to your S3 bucket root as listed below -->
+        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" alt="aradya1">
+        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya.jpeg" alt="aradya">
+        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya2.jpeg" alt="aradya2">
+        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya3.jpeg" alt="aradya3">
+        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/rajuuuuuu.jpeg" alt="rajuuuuuu">
       </div>
-    </div>
-  </section>
 
-  <div style="text-align:center;margin-top:12px">
-    <div class="host-badge" role="contentinfo" aria-label="Hosted by RAJ">
-      <span style="opacity:0.9">Website Hosted by</span><span class="raj">RAJ</span>
+      <div class="crackers" aria-hidden>
+        <canvas id="fw" width="980" height="120" style="width:100%;height:120px"></canvas>
+      </div>
+
+      <div class="controls">
+        <button id="muteBtn" class="btn">Mute / Unmute</button>
+        <button id="confettiBtn" class="btn">Toggle Confetti</button>
+        <div style="flex:1"></div>
+        <small style="opacity:.8">Tip: If sound doesn't start, tap anywhere.</small>
+      </div>
+
+      <footer>Upload images to: <strong>cloudfront-static2 (root)</strong> — example path: <code>/aradya2.jpeg</code></footer>
     </div>
   </div>
 
-  <footer>Made with ❤️ — Celebrate Aadya</footer>
-</div>
+  <!-- Audio (upload your MP3 to the same S3 bucket root as shown below) -->
+  <audio id="bgAudio" loop preload="auto" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/happy_song.mp3"></audio>
 
-<!-- single combined canvas for light fireworks + confetti (top area only) -->
-<canvas id="effects" style="position:fixed;left:0;top:0;pointer-events:none;z-index:30;height:220px;width:100%"></canvas>
+  <!-- Small overlay that appears only if autoplay is blocked by the browser -->
+  <div id="overlay" class="play-overlay" aria-hidden>
+    <div class="box">
+      <div style="font-size:18px;font-weight:700">Tap to play the song</div>
+      <div style="margin-top:8px;opacity:.9">Autoplay with sound may be blocked by some browsers. Tap once to start.</div>
+      <button id="playNow" class="play">Play</button>
+    </div>
+  </div>
 
-<!-- AUDIO: Option B (silent intro trick + real music) -->
-<audio id="silent" autoplay>
-  <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAACAAACAAACAAACAAA" type="audio/mp3">
-</audio>
-<audio id="real" loop crossorigin="anonymous">
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
-</audio>
+  <script>
+    // --------------------
+    // Config: file list and S3 root
+    // --------------------
+    const S3_ROOT = 'https://cloudfront-static2.s3.ap-south-1.amazonaws.com/';
+    const REQUIRED_FILES = ['aradya1.jpeg','aradya.jpeg','aradya2.jpeg','aradya3.jpeg','rajuuuuuu.jpeg','happy_song.mp3'];
 
-<script>
-/* ======================
-   Lightweight optimized effects
-   - single canvas
-   - small particle counts & throttling
-   - fewer intervals
-   ====================== */
+    // --------------------
+    // Audio autoplay attempt
+    // --------------------
+    const audio = document.getElementById('bgAudio');
+    const overlay = document.getElementById('overlay');
+    const playNow = document.getElementById('playNow');
+    const muteBtn = document.getElementById('muteBtn');
+    const confettiBtn = document.getElementById('confettiBtn');
 
-const effects = document.getElementById('effects');
-const ectx = effects.getContext('2d');
+    let confettiOn = true;
 
-function resize() {
-  effects.width = window.innerWidth;
-  effects.height = 220; // top-only area
-}
-resize(); window.addEventListener('resize', resize);
-
-let particles = []; // fireworks + confetti combined, small arrays
-let lastTick = 0;
-
-// spawn medium celebration burst (10-12) but less heavy CPU
-function spawnBurst(x, y) {
-  const colors = ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'];
-  const count = 10 + Math.floor(Math.random()*3); // 10-12 as requested
-  for (let i=0;i<count;i++){
-    const angle = Math.random()*Math.PI*2;
-    const speed = 0.9 + Math.random()*2.2; // lighter speeds
-    particles.push({
-      type: 'spark',
-      x, y,
-      vx: Math.cos(angle)*speed,
-      vy: Math.sin(angle)*speed,
-      life: 40 + Math.random()*30,
-      color: colors[i % colors.length],
-      size: 1 + Math.random()*2
-    });
-  }
-}
-
-// light confetti pieces coming down from top (sparse)
-function spawnConfettiBatch() {
-  const w = effects.width;
-  for (let i=0;i<28;i++){ // reduced count
-    particles.push({
-      type:'conf',
-      x: Math.random()*w,
-      y: -10 - Math.random()*80,
-      vx: (Math.random()-0.5)*2,
-      vy: 1 + Math.random()*2,
-      life: 80 + Math.random()*80,
-      color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],
-      w: 6 + Math.random()*6,
-      h: 6 + Math.random()*6,
-      rot: Math.random()*360
-    });
-  }
-}
-
-// schedule bursts: left and right corners, moderate frequency
-setInterval(()=> {
-  spawnBurst(60 + Math.random()*140, 30 + Math.random()*14);
-  spawnBurst(effects.width - (60 + Math.random()*140), 30 + Math.random()*14);
-}, 1000); // ~1s
-
-// schedule confetti less often
-setInterval(()=> spawnConfettiBatch(), 2500);
-
-// single animation loop, but keep it light by capping operations per frame
-function tick(time){
-  // simple throttle: run update ~every frame but keep particle ops small
-  const now = time || performance.now();
-  const dt = now - lastTick;
-  lastTick = now;
-
-  ectx.clearRect(0,0,effects.width,effects.height);
-  // iterate backwards so we can splice
-  for (let i=particles.length-1;i>=0;i--){
-    const p = particles[i];
-    if (p.type === 'spark'){
-      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
-      const a = Math.max(0, p.life / 70);
-      ectx.fillStyle = rgbaFromHex(p.color, a);
-      ectx.beginPath(); ectx.arc(p.x, p.y, p.size, 0, Math.PI*2); ectx.fill();
-      if (p.life <= 0 || p.y > effects.height + 30) particles.splice(i,1);
-    } else { // confetti
-      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
-      ectx.save();
-      ectx.translate(p.x, p.y);
-      ectx.rotate((p.rot += 0.06));
-      ectx.fillStyle = p.color;
-      ectx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-      ectx.restore();
-      if (p.y > effects.height + 40 || p.life <= 0) particles.splice(i,1);
+    function tryPlay() {
+      audio.play().then(()=>{
+        // playing succeeded
+        overlay.classList.remove('show');
+      }).catch((e)=>{
+        // autoplay blocked — show small overlay
+        overlay.classList.add('show');
+      });
     }
-  }
-  requestAnimationFrame(tick);
-}
-requestAnimationFrame(tick);
 
-function rgbaFromHex(hex,a){
-  const c = hex.replace('#','');
-  const r = parseInt(c.substring(0,2),16), g = parseInt(c.substring(2,4),16), b = parseInt(c.substring(4,6),16);
-  return `rgba(${r},${g},${b},${a})`;
-}
+    // try autoplay on load (many browsers will block sound autoplay)
+    window.addEventListener('load', ()=>{
+      tryPlay();
+    });
 
-/* slow golden sparkles — few DOM elements, lightweight */
-function spawnSparkle(){
-  // spawn only occasionally and remove quickly
-  const el = document.createElement('div');
-  el.className = 'sparkle';
-  el.style.left = (8 + Math.random()*84) + 'vw';
-  el.style.top = (6 + Math.random()*6) + 'vh';
-  el.style.fontSize = (12 + Math.random()*10) + 'px';
-  el.style.opacity = 0.95;
-  el.innerHTML = '✨';
-  document.body.appendChild(el);
-  const dur = 4200 + Math.random()*4200;
-  el.animate([{transform:'translateY(0)',opacity:1},{transform:`translateY(${window.innerHeight * 0.55}px)`,opacity:0}], {duration:dur, easing:'linear'});
-  setTimeout(()=> el.remove(), dur+100);
-}
-// spawn less frequently than before
-setInterval(spawnSparkle, 1200);
+    // If overlay button clicked, play and hide overlay
+    playNow.addEventListener('click', ()=>{
+      audio.play().catch(()=>{}).finally(()=>overlay.classList.remove('show'));
+    });
 
-/* simple balloon float (few elements, low cost) */
-(function ballonFloat(){
-  const bleft = document.querySelector('.balloon.left');
-  const bright = document.querySelector('.balloon.right');
-  let t=0;
-  function f(){
-    t += 0.008;
-    if(bleft) bleft.style.transform = `translateY(${Math.sin(t)*6}px)`;
-    if(bright) bright.style.transform = `translateY(${Math.cos(t)*6}px)`;
-    requestAnimationFrame(f);
-  }
-  f();
-})();
+    // Mute toggle
+    muteBtn.addEventListener('click', ()=>{
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? 'Unmute' : 'Mute / Unmute';
+    });
 
-/* reveal message + photos */
-document.addEventListener('DOMContentLoaded', ()=>{
-  setTimeout(()=> document.getElementById('message').classList.add('show'), 600);
-  document.querySelectorAll('.photo').forEach(img=>{
-    if(img.complete) img.style.opacity = 1;
-    else img.addEventListener('load', ()=> img.style.opacity = 1);
-  });
-});
+    // Confetti toggle (simple canvas firework)
+    const canvas = document.getElementById('fw');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
 
-/* ===== Audio: Option B autoplay lightweight ===== */
-const silent = document.getElementById('silent');
-const real = document.getElementById('real');
-silent.volume = 0;
-silent.addEventListener('play', ()=> setTimeout(()=> real.play().catch(()=>{}), 280));
-real.play().catch(()=>{});
-['click','touchstart','scroll','keydown'].forEach(ev => window.addEventListener(ev, ()=> real.play().catch(()=>{}), {once:true, passive:true}));
+    function rand(min,max){return Math.random()*(max-min)+min}
 
-/* ensure images don't overflow on small screens */
-function adaptMax(){
-  document.querySelectorAll('.photo').forEach(img => img.style.maxHeight = (window.innerHeight * 0.72) + 'px');
-}
-adaptMax(); window.addEventListener('resize', adaptMax);
+    function spawn(){
+      for(let i=0;i<20;i++){
+        particles.push({x:rand(100,canvas.width-100),y:canvas.height,dx:rand(-2,2),dy:rand(-6,-2),life:rand(40,120),r:rand(1,3)})
+      }
+    }
 
-</script>
+    function step(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach((p,i)=>{
+        p.x+=p.dx; p.y+=p.dy; p.dy+=0.12; p.life--;
+        ctx.beginPath(); ctx.fillStyle='rgba(255,205,60,0.9)'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+        if(p.life<=0) particles.splice(i,1);
+      });
+      requestAnimationFrame(step);
+    }
+    step(); spawn();
+    confettiBtn.addEventListener('click', ()=>{ if(confettiOn){particles=[];confettiOn=false;confettiBtn.textContent='Start Confetti'} else {confettiOn=true;spawn();confettiBtn.textContent='Toggle Confetti'}});
+
+    // click anywhere to try play if overlay visible
+    document.addEventListener('click',(e)=>{
+      if(overlay.classList.contains('show')){
+        audio.play().catch(()=>{}).finally(()=>overlay.classList.remove('show'));
+      }
+    });
+
+    // Responsive canvas resize
+    function resizeCanvas(){
+      canvas.width = canvas.clientWidth * devicePixelRatio;
+      canvas.height = 120 * devicePixelRatio;
+    }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+
+    // Basic file existence check (helps you debug missing uploads)
+    (async function checkFiles(){
+      for(const f of REQUIRED_FILES){
+        try{
+          const res = await fetch(S3_ROOT+f,{method:'HEAD'});
+          if(!res.ok) console.warn('Missing or inaccessible:', f, res.status);
+        }catch(err){console.warn('Error checking', f, err)}
+      }
+    })();
+  </script>
 </body>
 </html>
