@@ -1,4 +1,4 @@
-name: Deploy to S3
+name: Deploy to S3 + Auto CloudFront Invalidate
 
 on:
   push:
@@ -20,5 +20,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Sync files to S3 (root)
-        run: aws s3 sync . s3://cloudfront-static2 --exclude ".git/*" --exclude ".github/*"
+      - name: Sync website to S3 ROOT
+        run: |
+          aws s3 sync Static-website/ s3://cloudfront-static2 --delete
+
+      - name: Create CloudFront Invalidation
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E1CY3BYXZMP02S \
+            --paths "/*"
