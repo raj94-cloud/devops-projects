@@ -1,4 +1,4 @@
-name: Deploy to S3 + CloudFront
+name: Deploy to S3 (No CloudFront)
 
 on:
   push:
@@ -20,12 +20,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Sync website to S3 (clean old files)
+      - name: Sync website to S3 (remove old files)
         run: |
           aws s3 sync ./Static-website s3://cloudfront-static2/ --delete --acl public-read
-
-      - name: Create CloudFront Invalidation
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id E1CY3BYXZMP02S \
-            --paths "/*"
