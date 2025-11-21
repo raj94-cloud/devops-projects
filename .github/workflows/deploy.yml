@@ -20,10 +20,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Sync ALL files from repo root to S3
-        run: |
-          aws s3 sync . s3://cloudfront-static2 \
-            --delete \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "README.md"
+      - name: Sync files to S3 (root)
+        run: aws s3 sync . s3://cloudfront-static2 --exclude ".git/*" --exclude ".github/*"
