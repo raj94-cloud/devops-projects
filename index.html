@@ -1,176 +1,279 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday 🎉</title>
-  <style>
-    :root{--bg1:#140035;--bg2:#050017;--card:#fff7;--accent:#ffce00}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Poppins',sans-serif;background:radial-gradient(circle at top,var(--bg1),var(--bg2) 70%);color:#fff}
-    .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px}
-    .card{width:100%;max-width:980px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.6);padding:20px;backdrop-filter:blur(6px)}
-    header{display:flex;gap:16px;align-items:center}
-    .title{font-size:32px;font-weight:700;margin:0}
-    .subtitle{opacity:.75;margin:0}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Aadya — Celebration 🎉</title>
+<style>
+  :root{
+    --bg1:#050016; --bg2:#0b0530;
+    --gold1:#ffd47a; --gold2:#ffb84d;
+    --acc1:#8ef0ff; --acc2:#ff9de6;
+    --raj:#ffb84d;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    color:#fff;
+    background:
+      radial-gradient(1000px 400px at 10% 8%, rgba(142,240,255,0.02), transparent 8%),
+      linear-gradient(180deg,var(--bg1),var(--bg2));
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
 
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px}
-    .photo{width:100%;height:180px;object-fit:cover;border-radius:12px;border:3px solid rgba(255,255,255,0.06);box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  .wrap{max-width:1100px;margin:20px auto;padding:18px}
+  header{text-align:center;margin-bottom:10px}
+  h1{font-size:38px;margin:8px 0;background:linear-gradient(90deg,var(--acc1),#d89bff,var(--acc2));-webkit-background-clip:text;color:transparent;font-weight:900}
+  .tag{color:rgba(255,255,255,0.9);margin-bottom:8px}
+  .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+  .pill{background:rgba(255,255,255,0.06);padding:8px 14px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.03);font-size:15px}
 
-    .crackers{position:relative;margin-top:18px;height:120px}
-    .firework{position:absolute;left:50%;transform:translateX(-50%)}
+  .message{font-size:18px;color:var(--gold1);margin:10px 0;font-weight:700;opacity:0;transform:translateY(8px);transition:all .7s ease}
+  .message.show{opacity:1;transform:translateY(0)}
 
-    .controls{display:flex;align-items:center;gap:12px;margin-top:16px}
-    .btn{background:var(--accent);color:#000;padding:10px 14px;border-radius:12px;font-weight:600;border:none;cursor:pointer}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  @media(max-width:860px){ .gallery{grid-template-columns:1fr;padding:0 12px;gap:14px} }
 
-    /* big center overlay when autoplay blocked */
-    .play-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.2));backdrop-filter:blur(3px);z-index:80;visibility:hidden;opacity:0;transition:all .25s}
-    .play-overlay.show{visibility:visible;opacity:1}
-    .play-overlay .box{background:rgba(255,255,255,0.06);padding:20px;border-radius:12px;text-align:center}
-    .play-overlay .play{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:999px;background:var(--accent);color:#000;font-weight:700;border:none}
+  .card{border-radius:14px;padding:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));box-shadow:0 18px 50px rgba(0,0,0,0.45)}
+  .gold{border-radius:12px;padding:10px;background:linear-gradient(90deg,var(--gold1),var(--gold2));box-shadow:0 12px 36px rgba(0,0,0,0.45);transition:transform .35s}
+  .gold:hover{transform:translateY(-6px)}
+  .inner{border-radius:8px;overflow:hidden;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));position:relative}
+  .photo, .video-el{display:block;width:100%;height:auto;object-fit:contain;border-radius:6px;max-height:72vh;opacity:0;transition:opacity .45s ease}
 
-    footer{opacity:.6;margin-top:18px;font-size:13px}
+  /* balloons (medium, sides only) */
+  .balloon{position:fixed;width:100px;height:140px;border-radius:46% 46% 58% 58%;opacity:0.95;pointer-events:none;filter:drop-shadow(0 8px 18px rgba(0,0,0,0.35));z-index:30}
+  .balloon.left1{left:6px;top:22vh;background:linear-gradient(180deg,#ff8db0,#ff3dbb)}
+  .balloon.left2{left:18px;top:38vh;background:linear-gradient(180deg,#ffd2a6,#ff8a5c);width:82px;height:110px}
+  .balloon.right1{right:6px;top:20vh;background:linear-gradient(180deg,#7aeaff,#0069a6)}
+  .balloon.right2{right:18px;top:36vh;background:linear-gradient(180deg,#c8a3ff,#ff9de6);width:82px;height:110px}
+  @media(max-width:640px){ .balloon{display:none} }
 
-    @media (max-width:520px){.title{font-size:22px}.photo{height:140px}}
-  </style>
+  /* host badge */
+  .host-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);font-weight:800}
+  .host-badge .raj{background:linear-gradient(90deg,var(--raj),#ffd07a);padding:6px 10px;border-radius:999px;color:#14001f;font-weight:900}
+
+  footer{margin-top:18px;text-align:center;color:rgba(255,255,255,0.72);padding-bottom:18px}
+
+  /* small performance: single canvas covering top area */
+  #effects{position:fixed;left:0;top:0;pointer-events:none;z-index:28;height:220px;width:100%}
+  .sparkle{position:fixed;font-size:14px;pointer-events:none;opacity:0.95;z-index:27}
+</style>
 </head>
 <body>
-  <div class="wrap">
+
+<div class="wrap">
+  <header>
+    <h1>🎉 Happy Birthday, Aadya 🎉</h1>
+    <div class="tag">Wishing you sparkle, laughter & endless smiles ✨</div>
+    <div class="pills">
+      <div class="pill">Age: 5 years</div>
+      <div class="pill">Born: November 22, 2020</div>
+    </div>
+    <div id="message" class="message">Aadya, you are our sunshine 🌟</div>
+  </header>
+
+  <!-- balloons (medium, sides only) -->
+  <div class="balloon left1" aria-hidden="true"></div>
+  <div class="balloon left2" aria-hidden="true"></div>
+  <div class="balloon right1" aria-hidden="true"></div>
+  <div class="balloon right2" aria-hidden="true"></div>
+
+  <section class="gallery" aria-label="Photos of Aadya">
+    <!-- LEFT: uploaded local image path (you already uploaded this) -->
     <div class="card">
-      <header>
-        <div>
-          <h1 class="title">Happy Birthday — Aadya 🎉</h1>
-          <p class="subtitle">Made with ❤️ — open this on mobile for the full effect</p>
+      <div class="gold">
+        <div class="inner">
+          <img id="p1" class="photo" src="/mnt/data/b3347196-ad81-4165-8468-150ac030b72f.png" alt="Aadya photo 1 — full image" loading="lazy">
         </div>
-      </header>
-
-      <div class="gallery" id="gallery">
-        <!-- Images: upload these to your S3 bucket root as listed below -->
-        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" alt="aradya1">
-        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya.jpeg" alt="aradya">
-        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya2.jpeg" alt="aradya2">
-        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya3.jpeg" alt="aradya3">
-        <img class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/rajuuuuuu.jpeg" alt="rajuuuuuu">
       </div>
+    </div>
 
-      <div class="crackers" aria-hidden>
-        <canvas id="fw" width="980" height="120" style="width:100%;height:120px"></canvas>
+    <!-- RIGHT: S3 image -->
+    <div class="card">
+      <div class="gold">
+        <div class="inner">
+          <img id="p2" class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" alt="Aadya photo 2 — full image" loading="lazy">
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="controls">
-        <button id="muteBtn" class="btn">Mute / Unmute</button>
-        <button id="confettiBtn" class="btn">Toggle Confetti</button>
-        <div style="flex:1"></div>
-        <small style="opacity:.8">Tip: If sound doesn't start, tap anywhere.</small>
+  <!-- VIDEO SECTION (framed like photos) -->
+  <section style="margin-top:22px;">
+    <div class="card" style="max-width:820px;margin:18px auto;">
+      <div class="gold">
+        <div class="inner">
+          <!-- Using your uploaded local video path -->
+          <video id="vid" class="video-el" src="/mnt/data/WhatsApp Video 2025-11-21 at 8.29.38 PM.mp4"
+                 autoplay muted loop playsinline controls
+                 poster="" preload="metadata"
+                 aria-label="Aadya video">
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
+      <div style="text-align:center;padding:10px;color:rgba(255,255,255,0.85);font-weight:700">Aadya’s special video</div>
+    </div>
+  </section>
 
-      <footer>Upload images to: <strong>cloudfront-static2 (root)</strong> — example path: <code>/aradya2.jpeg</code></footer>
+  <div style="text-align:center;margin-top:16px">
+    <div class="host-badge" role="contentinfo" aria-label="Hosted by RAJ">
+      <span style="opacity:0.9">Website Hosted by</span><span class="raj">RAJ</span>
     </div>
   </div>
 
-  <!-- Audio (upload your MP3 to the same S3 bucket root as shown below) -->
-  <audio id="bgAudio" loop preload="auto" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/happy_song.mp3"></audio>
+  <footer>Made with ❤️ — Celebrate Aadya</footer>
+</div>
 
-  <!-- Small overlay that appears only if autoplay is blocked by the browser -->
-  <div id="overlay" class="play-overlay" aria-hidden>
-    <div class="box">
-      <div style="font-size:18px;font-weight:700">Tap to play the song</div>
-      <div style="margin-top:8px;opacity:.9">Autoplay with sound may be blocked by some browsers. Tap once to start.</div>
-      <button id="playNow" class="play">Play</button>
-    </div>
-  </div>
+<!-- single combined effects canvas (lightweight) -->
+<canvas id="effects"></canvas>
 
-  <script>
-    // --------------------
-    // Config: file list and S3 root
-    // --------------------
-    const S3_ROOT = 'https://cloudfront-static2.s3.ap-south-1.amazonaws.com/';
-    const REQUIRED_FILES = ['aradya1.jpeg','aradya.jpeg','aradya2.jpeg','aradya3.jpeg','rajuuuuuu.jpeg','happy_song.mp3'];
+<!-- AUTOPLAY AUDIO (Option B) -->
+<audio id="silent" autoplay>
+  <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAACAAACAAACAAACAAA" type="audio/mp3">
+</audio>
+<audio id="music" loop crossorigin="anonymous">
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+</audio>
 
-    // --------------------
-    // Audio autoplay attempt
-    // --------------------
-    const audio = document.getElementById('bgAudio');
-    const overlay = document.getElementById('overlay');
-    const playNow = document.getElementById('playNow');
-    const muteBtn = document.getElementById('muteBtn');
-    const confettiBtn = document.getElementById('confettiBtn');
+<script>
+/*===========================
+  Lightweight combined effects
+  (throttled, mobile-friendly)
+  ===========================*/
 
-    let confettiOn = true;
+const canvas = document.getElementById('effects');
+const ctx = canvas.getContext('2d');
 
-    function tryPlay() {
-      audio.play().then(()=>{
-        // playing succeeded
-        overlay.classList.remove('show');
-      }).catch((e)=>{
-        // autoplay blocked — show small overlay
-        overlay.classList.add('show');
-      });
-    }
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = 220;
+}
+resize(); window.addEventListener('resize', resize);
 
-    // try autoplay on load (many browsers will block sound autoplay)
-    window.addEventListener('load', ()=>{
-      tryPlay();
+let parts = [];
+
+function spawnBurst(x,y) {
+  const colors = ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'];
+  const count = 10 + Math.floor(Math.random()*3);
+  for (let i=0;i<count;i++){
+    const ang = Math.random()*Math.PI*2;
+    const speed = 1.0 + Math.random()*2.3;
+    parts.push({
+      t:'spark',
+      x,y,
+      vx: Math.cos(ang)*speed,
+      vy: Math.sin(ang)*speed,
+      life: 42 + Math.random()*30,
+      color: colors[i % colors.length],
+      size: 1 + Math.random()*2
     });
+  }
+}
 
-    // If overlay button clicked, play and hide overlay
-    playNow.addEventListener('click', ()=>{
-      audio.play().catch(()=>{}).finally(()=>overlay.classList.remove('show'));
+function spawnConfettiBatch(){
+  const w = canvas.width;
+  for(let i=0;i<28;i++){
+    parts.push({
+      t:'conf',
+      x: Math.random()*w, y:-10 - Math.random()*80,
+      vx: (Math.random()-0.5)*2, vy: 1 + Math.random()*2,
+      life: 70 + Math.random()*80,
+      w: 6 + Math.random()*6, h: 6 + Math.random()*6,
+      col: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],
+      rot: Math.random()*360
     });
+  }
+}
 
-    // Mute toggle
-    muteBtn.addEventListener('click', ()=>{
-      audio.muted = !audio.muted;
-      muteBtn.textContent = audio.muted ? 'Unmute' : 'Mute / Unmute';
-    });
+setInterval(()=> {
+  spawnBurst(60 + Math.random()*120, 35 + Math.random()*10);
+  spawnBurst(canvas.width - (60 + Math.random()*120), 35 + Math.random()*10);
+}, 900);
 
-    // Confetti toggle (simple canvas firework)
-    const canvas = document.getElementById('fw');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+setInterval(spawnConfettiBatch, 2600);
 
-    function rand(min,max){return Math.random()*(max-min)+min}
-
-    function spawn(){
-      for(let i=0;i<20;i++){
-        particles.push({x:rand(100,canvas.width-100),y:canvas.height,dx:rand(-2,2),dy:rand(-6,-2),life:rand(40,120),r:rand(1,3)})
-      }
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let i=parts.length-1;i>=0;i--){
+    const p = parts[i];
+    if(p.t === 'spark'){
+      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+      const a = Math.max(0, p.life / 70);
+      ctx.fillStyle = hexToRgba(p.color, a);
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+      if(p.life <= 0 || p.y > canvas.height + 20) parts.splice(i,1);
+    } else {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot += 0.05);
+      ctx.fillStyle = p.col; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h); ctx.restore();
+      if(p.y > canvas.height + 40 || p.life <= 0) parts.splice(i,1);
     }
+  }
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
 
-    function step(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      particles.forEach((p,i)=>{
-        p.x+=p.dx; p.y+=p.dy; p.dy+=0.12; p.life--;
-        ctx.beginPath(); ctx.fillStyle='rgba(255,205,60,0.9)'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
-        if(p.life<=0) particles.splice(i,1);
-      });
-      requestAnimationFrame(step);
-    }
-    step(); spawn();
-    confettiBtn.addEventListener('click', ()=>{ if(confettiOn){particles=[];confettiOn=false;confettiBtn.textContent='Start Confetti'} else {confettiOn=true;spawn();confettiBtn.textContent='Toggle Confetti'}});
+function hexToRgba(hex,a){
+  const c = hex.replace('#','');
+  const r = parseInt(c.substring(0,2),16),
+        g = parseInt(c.substring(2,4),16),
+        b = parseInt(c.substring(4,6),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
 
-    // click anywhere to try play if overlay visible
-    document.addEventListener('click',(e)=>{
-      if(overlay.classList.contains('show')){
-        audio.play().catch(()=>{}).finally(()=>overlay.classList.remove('show'));
-      }
-    });
+/* sparse DOM sparkles (skip on very small screens) */
+function spawnSparkle(){
+  if(window.innerWidth < 420) return;
+  const el = document.createElement('div');
+  el.className = 'sparkle';
+  el.style.left = (6 + Math.random()*88) + 'vw';
+  el.style.top = (6 + Math.random()*6) + 'vh';
+  el.style.fontSize = (12 + Math.random()*10) + 'px';
+  el.innerHTML = '✨';
+  document.body.appendChild(el);
+  const dur = 4200 + Math.random()*4200;
+  el.animate([{transform:'translateY(0)',opacity:1},{transform:`translateY(${window.innerHeight * 0.55}px)`,opacity:0}], {duration:dur, easing:'linear'});
+  setTimeout(()=> el.remove(), dur+100);
+}
+setInterval(spawnSparkle, 1500);
 
-    // Responsive canvas resize
-    function resizeCanvas(){
-      canvas.width = canvas.clientWidth * devicePixelRatio;
-      canvas.height = 120 * devicePixelRatio;
-    }
-    window.addEventListener('resize', resizeCanvas); resizeCanvas();
+/* balloons float */
+(function balloonFloat(){
+  const b = document.querySelectorAll('.balloon');
+  let t = 0;
+  function f(){ t += 0.008;
+    b.forEach((el,i)=> el.style.transform = `translateY(${Math.sin(t + i)*6}px) rotate(${Math.sin(t/2 + i)*4}deg)`);
+    requestAnimationFrame(f);
+  }
+  f();
+})();
 
-    // Basic file existence check (helps you debug missing uploads)
-    (async function checkFiles(){
-      for(const f of REQUIRED_FILES){
-        try{
-          const res = await fetch(S3_ROOT+f,{method:'HEAD'});
-          if(!res.ok) console.warn('Missing or inaccessible:', f, res.status);
-        }catch(err){console.warn('Error checking', f, err)}
-      }
-    })();
-  </script>
+/* reveal message & media */
+document.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(()=> document.getElementById('message').classList.add('show'), 650);
+  document.querySelectorAll('.photo, .video-el').forEach(el=>{
+    if(el.complete) el.style.opacity = 1;
+    else el.addEventListener('loadeddata' in el ? 'loadeddata' : 'load', ()=> el.style.opacity = 1);
+  });
+});
+
+/* AUTOPLAY: Option B (silent intro + play) */
+const silent = document.getElementById('silent');
+const music = document.getElementById('music');
+silent.volume = 0;
+silent.addEventListener('play', ()=> setTimeout(()=> music.play().catch(()=>{}), 300));
+music.play().catch(()=>{});
+['click','touchstart','scroll','keydown'].forEach(ev => window.addEventListener(ev, ()=> music.play().catch(()=>{}), {once:true, passive:true}));
+
+/* responsive media sizing */
+function adaptMax(){
+  document.querySelectorAll('.photo, .video-el').forEach(el => el.style.maxHeight = (window.innerHeight * 0.72) + 'px');
+}
+adaptMax(); window.addEventListener('resize', adaptMax);
+
+</script>
 </body>
 </html>
