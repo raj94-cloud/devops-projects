@@ -1,158 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Aadya 🎉✨</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Aadya — Celebration</title>
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #0a0322, #050017 60%, #000);
-  color: white;
-  overflow-x: hidden;
-  text-align: center;
-}
+  :root{
+    --bg1:#040017; --bg2:#0b0630;
+    --accent1:#8ef0ff; --accent2:#ff9de6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#fff;background:linear-gradient(180deg,var(--bg1),var(--bg2));min-height:100vh;overflow:hidden}
+  /* Intro overlay */
+  #intro{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%, rgba(255,255,255,0.04), transparent 20%), rgba(3,1,20,0.9);z-index:9999;backdrop-filter:blur(6px);
+  }
+  .intro-card{width:92%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));border-radius:18px;padding:20px;display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:center;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+  @media(max-width:980px){ .intro-card{grid-template-columns:1fr; padding:14px} .intro-hero{order:1} .intro-right{order:2} }
+  .intro-hero{border-radius:12px;overflow:hidden;height:360px}
+  .intro-hero img{width:100%;height:100%;object-fit:cover;display:block}
+  .intro-right h1{margin:0;font-size:32px;line-height:1;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
+  .intro-right p{margin:10px 0 16px 0;opacity:0.95}
+  .start-btn{display:inline-flex;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#120018;font-weight:800;cursor:pointer;font-size:16px;box-shadow:0 12px 30px rgba(255,157,230,0.12)}
+  .small-ctrls{margin-top:10px;display:flex;gap:10px}
+  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer}
 
-/* Main Heading */
-h1 {
-  margin-top: 40px;
-  font-size: 42px;
-  background: linear-gradient(90deg, #8ef0ff, #d89bff, #ff9de6);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 800;
-}
+  /* Main page (after intro) */
+  #main{opacity:0;transform:scale(.98);transition:all .9s ease;pointer-events:none}
+  #main.show{opacity:1;transform:scale(1);pointer-events:auto}
+  .page{max-width:1100px;margin:30px auto;padding:20px;display:grid;grid-template-columns:1fr 360px;gap:24px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));border-radius:16px;padding:18px}
+  .hero{height:420px;border-radius:12px;overflow:hidden}
+  .hero img{width:100%;height:100%;object-fit:cover;display:block}
+  h1.big{font-size:40px;margin:10px 0 8px 0;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+  .badge{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700}
 
-/* Age / Born pills */
-.pill {
-  display: inline-block;
-  background: rgba(255,255,255,0.1);
-  padding: 12px 22px;
-  margin: 10px;
-  border-radius: 40px;
-  font-size: 18px;
-  border: 1px solid rgba(255,255,255,0.15);
-}
+  /* controls */
+  .controls{display:flex;flex-direction:column;gap:12px}
+  .bigplay{padding:12px 16px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#120018;font-weight:800;cursor:pointer}
+  .ghost2{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#fff;cursor:pointer}
+  #vis{height:80px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);overflow:hidden;padding:8px}
 
-/* Main large photo */
-.main-photo {
-  width: 85%;
-  max-width: 800px;
-  height: 420px;
-  background-size: cover;
-  background-position: center top;
-  border-radius: 16px;
-  margin: 30px auto;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-}
-
-/* Carousel at bottom */
-.carousel {
-  width: 150px;
-  height: 150px;
-  margin: 40px auto;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-.carousel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.9s;
-}
-.carousel img.active { opacity: 1; }
-
-/* Fireworks & Confetti Canvas */
-#fw, #conf {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2000;
-}
-
-/* Balloons */
-.balloon {
-  position: fixed;
-  width: 160px;
-  height: 220px;
-  z-index: 1500;
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-25px); }
-  100% { transform: translateY(0px); }
-}
+  footer{color:rgba(255,255,255,0.6);margin-top:12px;text-align:center}
+  /* confetti canvas */
+  #conf{position:fixed;inset:0;pointer-events:none;z-index:9998}
 </style>
 </head>
 <body>
 
-<canvas id="fw"></canvas>
+<!-- Intro overlay (shows first) -->
+<div id="intro" role="dialog" aria-modal="true">
+  <div class="intro-card" role="document">
+    <div class="intro-hero">
+      <!-- Aadya main photo: using uploaded file path -->
+      <img src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="Aadya main photo">
+    </div>
+    <div class="intro-right">
+      <h1>Happy Birthday, Aadya ✨</h1>
+      <p>Tap <strong>Start Celebration</strong> and we'll play the song, launch confetti and fireworks, and reveal the birthday page.</p>
 
-<!-- Balloons -->
-<img src="arad2.jpeg" class="balloon" style="left:20px; top:120px;">
-<img src="aradya1.jpeg" class="balloon" style="right:20px; top:150px;">
+      <div class="small-ctrls">
+        <button id="startBtn" class="start-btn" aria-label="Start celebration">► Start Celebration</button>
+        <button id="skipBtn" class="ghost" aria-label="Skip intro">Skip</button>
+      </div>
 
-<h1>🎉 Happy Birthday Aadya 🎉</h1>
-
-<div class="pill">✨ Age: 5 years</div>
-<div class="pill">🎂 Born: November 22, 2020</div>
-
-<div class="main-photo"
-  style="background-image:url('arad2.jpeg');">
+      <div style="margin-top:12px;color:rgba(255,255,255,0.7);font-size:13px">
+        Tip: Tap anywhere if autoplay is blocked.
+      </div>
+    </div>
+  </div>
 </div>
 
-<h2>🌟 Wishing you joy, magic & happiness 💖</h2>
+<!-- Confetti canvas (for intro & main) -->
+<canvas id="conf"></canvas>
 
-<!-- Music autoplay -->
-<audio id="bgAudio" autoplay loop preload="auto">
-  <source src="nagutha-nagutha-baalu.mp3" type="audio/mpeg">
-</audio>
+<!-- Main page (hidden until intro completes) -->
+<div id="main" aria-hidden="true">
+  <div class="page">
+    <div class="card">
+      <h1 class="big">Happy Birthday, Aadya 🎉</h1>
+      <div class="badges">
+        <div class="badge">Age: 5 years</div>
+        <div class="badge">Born: November 22, 2020</div>
+        <div class="badge">Wish: Infinite Joy</div>
+      </div>
 
-<h2>More Photos</h2>
+      <div class="hero">
+        <img id="heroImg" src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="Aadya hero">
+      </div>
 
-<div class="carousel" id="carousel">
-  <img src="arad2.jpeg" class="active">
-  <img src="aradya1.jpeg">
+      <p style="margin-top:12px">Celebrate with music, fireworks and confetti. Use the controls to pause, mute or download the song.</p>
+    </div>
+
+    <div class="card controls">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.8)">Now playing</div>
+          <div style="font-weight:800;margin-top:6px">Nagutha Nagutha Baalu</div>
+        </div>
+        <img src="/mnt/data/19b3782d-df95-40f3-96be-1e71c5f9dbbe.png" alt="thumb" style="width:86px;height:86px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)">
+      </div>
+
+      <div style="margin-top:12px">
+        <div style="display:flex;gap:10px">
+          <button id="play" class="bigplay">Play</button>
+          <button id="pause" class="ghost2">Pause</button>
+          <button id="mute" class="ghost2">Mute</button>
+        </div>
+
+        <div id="vis" aria-hidden="true"></div>
+
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <a id="dl" href="nagutha-nagutha-baalu.mp3" download class="ghost2" style="display:inline-flex;align-items:center">Download MP3</a>
+          <button id="print" class="ghost2">Print</button>
+        </div>
+      </div>
+      <footer>Made with ❤️ — Celebrate Aadya</footer>
+    </div>
+  </div>
 </div>
+
+<!-- Audio element (local file path or relative mp3) -->
+<audio id="audio" src="nagutha-nagutha-baalu.mp3" preload="auto" crossorigin="anonymous"></audio>
 
 <script>
-// Carousel
-const imgs = document.querySelectorAll('#carousel img');
-let idx = 0;
-setInterval(() => {
-  imgs[idx].classList.remove('active');
-  idx = (idx + 1) % imgs.length;
-  imgs[idx].classList.add('active');
-}, 3000);
+/* Helper: simple confetti/fireworks */
+const conf = document.getElementById('conf');
+const cctx = conf.getContext('2d');
+function resizeCanvas(){ conf.width = innerWidth; conf.height = innerHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
 
-// Autoplay fallback
-const audio = document.getElementById("bgAudio");
-document.body.addEventListener("click", () => audio.play(), { once: true });
-
-// Mini fireworks
-const fw = document.getElementById("fw");
-const ctx = fw.getContext("2d");
-fw.width = innerWidth; fw.height = innerHeight;
-
-function spark() {
-  for (let i = 0; i < 60; i++) {
-    setTimeout(() => {
-      ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
-      ctx.beginPath();
-      ctx.arc(Math.random()*fw.width, Math.random()*fw.height, 3, 0, Math.PI*2);
-      ctx.fill();
-    }, i * 20);
+let pieces = [];
+function launchConfetti() {
+  for (let i=0;i<120;i++){
+    pieces.push({
+      x: Math.random()*conf.width,
+      y: -10 - Math.random()*200,
+      vx: (Math.random()-0.5)*6,
+      vy: 2 + Math.random()*6,
+      size: 6 + Math.random()*8,
+      color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],
+      rot: Math.random()*360
+    });
   }
+  runConfetti();
 }
-setInterval(spark, 2500);
-</script>
+let running = false;
+function runConfetti(){
+  if(running) return;
+  running = true;
+  (function loop(){
+    cctx.clearRect(0,0,conf.width,conf.height);
+    for(let i=pieces.length-1;i>=0;i--){
+      const p = pieces[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.rot += 6;
+      cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
+      cctx.fillStyle = p.color; cctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+      cctx.restore();
+      if(p.y > conf.height + 40) pieces.splice(i,1);
+    }
+    if(pieces.length > 0) requestAnimationFrame(loop);
+    else running = false;
+  })();
+}
 
+/* audio + overlay logic */
+const audio = document.getElementById('audio');
+const intro = document.getElementById('intro');
+const main = document.getElementById('main');
+const startBtn = document.getElementById('startBtn');
+const skipBtn = document.getElementById('skipBtn');
+const overlayPlay = async () => {
+  try {
+    // resume AudioContext (improves reliability)
+    if (window.AudioContext || window.webkitAudioContext) {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === 'suspended') await ctx.resume();
+    }
+    await audio.play();
+    launchConfetti();
+    // fade out intro and reveal main
+    intro.style.transition = 'opacity .8s ease, transform .8s ease';
+    intro.style.opacity = '0';
+    intro.style.transform = 'scale(.98)';
+    setTimeout(()=>{ intro.style.display='none'; main.classList.add('show'); main.removeAttribute('aria-hidden'); }, 800);
+  } catch (e) {
+    // blocked — show a simple browser-friendly step
+    alert('Autoplay was blocked by your browser. Please tap Start to begin the celebration.');
+  }
+};
+
+startBtn.addEventListener('click', overlayPlay);
+skipBtn.addEventListener('click', ()=>{ intro.style.display='none'; main.classList.add('show'); main.removeAttribute('aria-hidden'); });
+
+// main controls
+document.getElementById('play').addEventListener('click', ()=>{ audio.play().catch(()=>{}); launchConfetti(); });
+document.getElementById('pause').addEventListener('click', ()=>{ audio.pause(); });
+document.getElementById('mute').addEventListener('click', ()=>{ audio.muted = !audio.muted; document.getElementById('mute').textContent = audio.muted ? 'Unmute' : 'Mute'; });
+document.getElementById('print').addEventListener('click', ()=>window.print());
+
+/* visualizer (simple bars) */
+function setupVisualizer(){
+  try {
+    const AudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = AudioCtx.createMediaElementSource(audio);
+    const analyser = AudioCtx.createAnalyser();
+    analyser.fftSize = 256;
+    source.connect(analyser);
+    analyser.connect(AudioCtx.destination);
+
+    const canvas = document.createElement('canvas');
+    canvas.width = document.getElementById('vis')?.clientWidth || 400;
+    canvas.height = 80;
+    document.getElementById('vis')?.appendChild(canvas);
+    const vctx = canvas.getContext('2d');
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function draw(){
+      requestAnimationFrame(draw);
+      analyser.getByteFrequencyData(dataArray);
+      vctx.clearRect(0,0,canvas.width,canvas.height);
+      const barWidth = (canvas.width / bufferLength) * 1.2;
+      let x=0;
+      for(let i=0;i<bufferLength;i++){
+        const v = dataArray[i]/255;
+        const h = v * canvas.height;
+        vctx.fillStyle = ['#8ef0ff','#ffd07a','#ff9de6','#a6ffb8'][i % 4];
+        vctx.fillRect(x, canvas.height - h, barWidth, h);
+        x += barWidth + 1;
+      }
+    }
+    draw();
+  } catch(e){}
+}
+audio.addEventListener('play', ()=> setupVisualizer());
+
+/* safety: if autoplay allowed, immediately start */
+window.addEventListener('load', async ()=>{
+  try {
+    await audio.play();
+    // if autoplay succeeded, immediately show main
+    intro.style.display='none';
+    main.classList.add('show');
+    launchConfetti();
+  } catch(e){
+    // else keep intro for user to click
+  }
+});
+</script>
 </body>
 </html>
