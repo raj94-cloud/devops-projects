@@ -1,4 +1,4 @@
-name: Deploy to S3 + Auto CloudFront Invalidate
+name: Deploy Static Website
 
 on:
   push:
@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Sync website to S3 ROOT
+      - name: Sync files to S3 (UPLOAD TO ROOT)
         run: |
-          aws s3 sync Static-website/ s3://cloudfront-static2 --delete
+          aws s3 sync ./Static-website s3://cloudfront-static2 --delete
 
-      - name: Create CloudFront Invalidation
+      - name: Create CloudFront invalidation
         run: |
           aws cloudfront create-invalidation \
             --distribution-id E1CY3BYXZMP02S \
