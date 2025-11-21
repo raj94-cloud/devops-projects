@@ -302,5 +302,184 @@
     }
   </style>
 
+  <!-- ✨ Glitter Falling -->
+  <style>
+    .glitter {position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:700;overflow:hidden;}
+    .glitter span {position:absolute;width:6px;height:6px;background:white;border-radius:50%;opacity:0.8;animation:glitterFall linear infinite;}
+    @keyframes glitterFall {0%{transform:translateY(-10px);}100%{transform:translateY(110vh);} }
+  </style>
+  <div class="glitter" id="glitter"></div>
+  <script>
+    for(let i=0;i<80;i++){
+      let g=document.createElement('span');
+      g.style.left=Math.random()*100+'%';
+      g.style.animationDuration=(4+Math.random()*4)+'s';
+      g.style.animationDelay=(Math.random()*4)+'s';
+      document.getElementById('glitter').appendChild(g);
+    }
+  </script>
+
+  <!-- 💗 Pink Romantic Fog -->
+  <style>
+    .fog {position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 50% 80%,rgba(255,60,150,0.25),transparent 60%);filter:blur(45px);mix-blend-mode:screen;pointer-events:none;z-index:200;}
+  </style>
+  <div class="fog"></div>
+
+  <!-- 🌙 Twinkling Stars Background -->
+  <style>
+    .stars {position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://i.imgur.com/YKY28eT.png');animation:twinkle 6s infinite alternate;opacity:0.4;z-index:100;pointer-events:none;}
+    @keyframes twinkle {0%{opacity:0.3;}100%{opacity:0.6;}}
+  </style>
+  <div class="stars"></div>
+
+  <!-- 🌹 Falling Rose Petals -->
+  <style>
+    .petal {position:fixed;top:-40px;font-size:32px;pointer-events:none;animation:petalFall linear infinite;}
+    @keyframes petalFall {0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);} }
+  </style>
+  <script>
+    for(let i=0;i<20;i++){
+      let p=document.createElement('div');
+      p.className='petal';
+      p.innerHTML='🌹';
+      p.style.left=Math.random()*100+'%';
+      p.style.animationDuration=(6+Math.random()*5)+'s';
+      p.style.animationDelay=Math.random()*5+'s';
+      document.body.appendChild(p);
+    }
+  </script>
+
+  <!-- 📸 Photo Carousel -->
+  <style>
+    .carousel-box {position:fixed;left:20px;bottom:20px;width:220px;height:220px;border-radius:20px;overflow:hidden;box-shadow:0 0 25px #ff2e8a;z-index:999;background:#000;}    
+    .carousel-box img {width:100%;height:100%;object-fit:cover;position:absolute;opacity:0;transition:opacity 1s;}
+  </style>
+  <div class="carousel-box" id="carousel">
+    <img src="/mnt/data/195ab13d-4ba2-4bbd-a2e2-c617471318ef.png" style="opacity:1;">
+    <img src="/mnt/data/195ab13d-4ba2-4bbd-a2e2-c617471318ef.png">
+    <img src="/mnt/data/195ab13d-4ba2-4bbd-a2e2-c617471318ef.png">
+  </div>
+  <script>
+    let idx=0;let pics=document.querySelectorAll('#carousel img');
+    setInterval(()=>{
+      pics[idx].style.opacity=0;
+      idx=(idx+1)%pics.length;
+      pics[idx].style.opacity=1;
+    },3000);
+  </script>
+
+  <!-- ❤️ Heart Beat Animation for Main Container -->
+  <style>
+    .container { animation: pageEntry 1.2s ease-out, heartbeat 2s infinite ease-in-out; }
+    @keyframes heartbeat {
+      0%,100%{ transform:scale(1); }
+      50%{ transform:scale(1.03); }
+    }
+    @keyframes pageEntry {
+      0%{ opacity:0; transform:translateY(40px) scale(0.95); }
+      100%{ opacity:1; transform:translateY(0) scale(1); }
+    }
+  </style>
+
+  <!-- 🔥 Fire Ring Around Heart Photo Frame -->
+  <style>
+    .fire-ring {
+      position:fixed;
+      right:20px;
+      bottom:220px;
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      background:url('https://i.imgur.com/9yE7KXw.png');
+      background-size:cover;
+      animation: spinFire 3s linear infinite;
+      pointer-events:none;
+      z-index:999;
+    }
+    @keyframes spinFire { 0%{transform:rotate(0deg);}100%{transform:rotate(360deg);} }
+  </style>
+  <div class="fire-ring"></div>
+
+  <!-- 🌈 Rainbow Sweep Across Page -->
+  <style>
+    .rainbow-sweep {
+      position:fixed;
+      top:0;
+      left:-200%;
+      width:300%;
+      height:5px;
+      background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);
+      animation: sweep 6s linear infinite;
+      z-index:1500;
+      opacity:0.9;
+    }
+    @keyframes sweep {
+      0%{ left:-200%; }
+      100%{ left:100%; }
+    }
+  </style>
+  <div class="rainbow-sweep"></div>
+
+  <!-- 💖 Popup Message for Bhagya -->
+  <style>
+    .popup-bg {
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.7);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter:blur(6px);
+      opacity:0;
+      pointer-events:none;
+      transition:0.4s;
+      z-index:2000;
+    }
+    .popup-box {
+      background:rgba(255,255,255,0.1);
+      padding:40px;
+      border-radius:20px;
+      width:80%;max-width:420px;
+      text-align:center;
+      box-shadow:0 0 25px pink;
+      animation: popScale 0.5s ease;
+    }
+    @keyframes popScale { 0%{transform:scale(0.7);}100%{transform:scale(1);} }
+    .popup-bg.show {opacity:1; pointer-events:auto;}
+    .popup-btn {
+      background:#ff78d1;
+      padding:12px 20px;
+      border-radius:12px;
+      color:black;
+      font-weight:700;
+      cursor:pointer;
+      border:0;
+      margin-top:20px;
+    }
+  </style>
+
+  <div class="popup-bg" id="msgPopup">
+    <div class="popup-box">
+      <h2 style="color:#ffb3e6;">A Special Message for You, Bhagya 💖</h2>
+      <p style="font-size:18px; line-height:1.6;">
+        You are the spark, the smile, the heartbeat, and the magic in my world.<br>
+        Today is your day — and I just want to say…<br><br>
+        <b>I’m blessed to have you. Happy Birthday, my love! 💕</b>
+      </p>
+      <button class="popup-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // Show popup after 2 seconds
+    setTimeout(()=>{
+      document.getElementById('msgPopup').classList.add('show');
+    },2000);
+
+    function closePopup(){
+      document.getElementById('msgPopup').classList.remove('show');
+    }
+  </script>
+
 </body>
 </html>
