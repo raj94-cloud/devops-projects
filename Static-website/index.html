@@ -3,135 +3,168 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Happy Birthday Bhagya 🎉</title>
+  <title>Happy Birthday Bhagya ✨💖</title>
   <style>
-    /* GRAND UPGRADED VERSION */
-    body{background:radial-gradient(circle at top,#0a1224,#050914,#02050b);}
-    .card{background:linear-gradient(145deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(18px);padding:48px;border-radius:26px;box-shadow:0 0 40px rgba(255,100,255,0.2),0 0 60px rgba(0,200,255,0.15);}
-    :root{--bg:#0f172a;--card:#0b1220;--accent:#ff6b81}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#091426 0%, #0b1b2f 50%, #071224 100%);color:#e6eef8}
-    .card{width:min(920px,94%);background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border-radius:18px;padding:36px;box-shadow:0 12px 40px rgba(2,6,23,0.7);position:relative;overflow:hidden}
-    h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px;letter-spacing:-0.02em}
-    p.lead{margin:0 0 18px;font-size:16px;opacity:0.95}
-    .meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-    .pill{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:999px;font-weight:600}
-    .big-emoji{font-size:64px;margin-left:12px}
-    .actions{display:flex;gap:12px}
-    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-    footer{position:absolute;right:18px;bottom:12px;font-size:12px;opacity:0.6}
+    body {
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top,#140035,#060010,#000);
+      color:white;
+      overflow-x:hidden;
+    }
 
-    /* confetti */
-    .confetti {pointer-events:none;position:absolute;inset:0;overflow:hidden}
-    .confetti i{position:absolute;display:block;width:10px;height:16px;opacity:0.95;transform-origin:center;will-change:transform;}
+    .container{
+      max-width:1000px;
+      margin:80px auto;
+      background:rgba(255,255,255,0.07);
+      border-radius:30px;
+      padding:60px;
+      backdrop-filter:blur(20px);
+      box-shadow:0 0 80px rgba(255,0,200,0.4),0 0 120px rgba(0,200,255,0.3);
+      position:relative;
+    }
 
-    /* floating hearts */
-    .hearts{position:absolute;left:12px;top:12px;display:flex;gap:6px}
-    .hearts span{font-size:22px;animation:float 3s ease-in-out infinite}
-    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    h1 {
+      font-size:50px;
+      margin-bottom:10px;
+      animation: glow 3s infinite ease-in-out;
+    }
 
-    /* responsive */
-    @media (max-width:560px){.card{padding:20px} .big-emoji{font-size:48px}}
+    @keyframes glow {
+      0% { text-shadow:0 0 10px #ff3dbb,0 0 20px #ff3dbb; }
+      50% { text-shadow:0 0 30px #ff71dd,0 0 60px #ff71dd; }
+      100% { text-shadow:0 0 10px #ff3dbb,0 0 20px #ff3dbb; }
+    }
+
+    .subtxt{
+      font-size:18px;
+      opacity:0.9;
+      margin-bottom:30px;
+    }
+
+    .pill-box{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:35px;
+    }
+
+    .pill{
+      background:rgba(255,255,255,0.1);
+      padding:10px 16px;
+      border-radius:50px;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,0.2);
+    }
+
+    button{
+      padding:12px 22px;
+      border:0;
+      border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .btn-main{
+      background:linear-gradient(45deg,#ff00f2,#ff7ae6,#ff00bf);
+      color:black;
+      box-shadow:0 0 20px #ff4ad8;
+    }
+
+    .btn-ghost{
+      background:transparent;
+      color:white;
+      border:1px solid rgba(255,255,255,0.3);
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .big-emoji{
+      font-size:80px;
+      animation: float 4s infinite ease-in-out;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-14px)}
+      100%{transform:translateY(0)}
+    }
+
+    /* Floating particles */
+    .particle{
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#ff3dbb;
+      animation: rise 6s infinite linear;
+      opacity:0.7;
+    }
+
+    @keyframes rise{
+      0%{ transform:translateY(0) scale(0.8); opacity:0.5; }
+      100%{ transform:translateY(-900px) scale(1.4); opacity:0; }
+    }
+
   </style>
 </head>
 <body>
-  <div class="card" role="main">
-    <div class="hearts">
-      <span>💖</span>
-      <span>💫</span>
-      <span>💞</span>
-    </div>
 
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <div>
-        <h1>Happy Birthday, Bhagya! 🎉🎂</h1>
-        <p class="lead">Wishing you a day filled with love, laughter and all your favorite things. You were born on <strong>June 30, 1996</strong>.</p>
+<div class="container">
+  <h1>Happy Birthday, Bhagya! 🎉💖</h1>
+  <p class="subtxt">May your day shine brighter than the stars ✨ and bring endless happiness. You were born on <b>June 30, 1996</b>.</p>
 
-        <div class="meta">
-          <div class="pill" id="age-pill">Age: calculating…</div>
-          <div class="pill">Born: <strong>June 30, 1996</strong></div>
-          <div class="pill">Wish: <em>Lots of smiles & sweet memories</em></div>
-        </div>
-
-        <div class="actions">
-          <button class="btn" id="surprise">Play Surprise ✨</button>
-          <button class="btn ghost" id="download">Download Card 📥</button>
-        </div>
-      </div>
-
-      <div style="text-align:right">
-        <div class="big-emoji">🎈🎉</div>
-        <div style="opacity:0.9;margin-top:6px;font-size:13px">Made with ❤ just for Bhagya</div>
-      </div>
-    </div>
-
-    <footer>Share this: <strong>Bhagya</strong> — Happy Birthday</footer>
-
-    <div class="confetti" id="confetti"></div>
+  <div class="pill-box">
+    <div class="pill" id="age-pill">Age: calculating…</div>
+    <div class="pill">Born: June 30, 1996</div>
+    <div class="pill">Special Wish: Infinite Joy & Love 💕</div>
   </div>
 
-  <script>
-    // calculate age from birthdate
-    (function(){
-      const birth = new Date('1996-06-30T00:00:00');
-      const now = new Date();
-      let age = now.getFullYear() - birth.getFullYear();
-      const m = now.getMonth() - birth.getMonth();
-      if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--;
-      document.getElementById('age-pill').textContent = 'Age: ' + age + ' years';
-    })();
+  <div class="row">
+    <div>
+      <button class="btn-main" id="surprise">✨ Surprise Effect</button>
+      <button class="btn-ghost" id="download">Download Card 📥</button>
+    </div>
+    <div class="big-emoji">🎁🎈</div>
+  </div>
+</div>
 
-    // simple confetti generator
-    function makeConfetti(count=90){
-      const wrap = document.getElementById('confetti');
-      const colors = ['#ff6b81','#ffd166','#06d6a0','#6a5acd','#ff9de2'];
-      for(let i=0;i<count;i++){
-        const el = document.createElement('i');
-        el.style.left = Math.random()*100 + '%';
-        el.style.top = -Math.random()*20 + '%';
-        el.style.width = (8+Math.random()*12) + 'px';
-        el.style.height = (10+Math.random()*18) + 'px';
-        el.style.background = colors[Math.floor(Math.random()*colors.length)];
-        el.style.transform = 'rotate('+ (Math.random()*360) +'deg)';
-        el.style.animation = 'drop ' + (3+Math.random()*4) + 's linear forwards';
-        el.style.opacity = 0.95;
-        el.style.borderRadius = '3px';
-        el.style.zIndex = 80;
-        wrap.appendChild(el);
+<script>
+  // Age Calculation
+  (function(){
+    const birth = new Date('1996-06-30');
+    const now = new Date();
+    let age = now.getFullYear() - birth.getFullYear();
+    const m = now.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--;
+    document.getElementById('age-pill').textContent = 'Age: ' + age + ' years';
+  })();
 
-        // create keyframes dynamically
-        const dur = 3 + Math.random()*4;
-        const tx = (Math.random()*200 - 100);
-        el.animate([
-          {transform: 'translateY(0) rotate(0deg)', opacity:1},
-          {transform: 'translateY(600px) rotate('+ (Math.random()*720) +'deg) translateX('+ tx +'px)', opacity:0.95}
-        ],{duration: dur*1000, easing:'linear', iterations:1});
-        setTimeout(()=> el.remove(), (dur+0.2)*1000);
-      }
+  // Surprise Effect
+  document.getElementById('surprise').addEventListener('click', ()=>{
+    for(let i=0;i<40;i++){
+      let p = document.createElement('div');
+      p.className='particle';
+      p.style.left = Math.random()*100 + '%';
+      p.style.top = '600px';
+      p.style.background = `hsl(${Math.random()*360},100%,70%)`;
+      p.style.animationDuration = (4 + Math.random()*3)+'s';
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(),7000);
     }
+  });
 
-    document.getElementById('surprise').addEventListener('click', ()=>{
-      makeConfetti(120);
-      const audio = new Audio();
-      // tiny built-in beep melody using data URI (short, no external files)
-      audio.src = 'data:audio/wav;base64,UklGRjQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=';
-      audio.play().catch(()=>{});
-    });
+  // Download – simple print
+  document.getElementById('download').addEventListener('click', ()=>{
+    window.print();
+  });
+</script>
 
-    // download as PNG (screenshot of card) - uses html2canvas-like simple approach
-    document.getElementById('download').addEventListener('click', ()=>{
-      const card = document.querySelector('.card');
-      // fallback: create printable page
-      const w = window.open();
-      w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Bhagya - Birthday Card</title></head><body style="margin:0;padding:20px;background:#071224;color:#fff;font-family:sans-serif">');
-      w.document.write(card.outerHTML);
-      w.document.write('</body></html>');
-      w.document.close();
-    });
-  </script>
-  <style>
-    @keyframes drop { to { transform: translateY(600px); opacity:0 } }
-  </style>
 </body>
 </html>
