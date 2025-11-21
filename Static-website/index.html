@@ -3,182 +3,59 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya — Starry Galaxy</title>
+<title>Happy Birthday Aadya ✨</title>
 
 <style>
-  :root{
-    --bg1:#040017; --bg2:#0b0630;
-    --accent1:#8ef0ff; --accent2:#ff9de6;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
   body{
-    margin:0; font-family:Inter, system-ui, "Segoe UI"; color:#fff;
-    background:linear-gradient(180deg,var(--bg1),var(--bg2));
-    min-height:100vh; overflow-x:hidden;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0b0630;
+    color:#fff;
+    text-align:center;
   }
-
-  .wrap{max-width:1200px;margin:24px auto;padding:18px;position:relative;z-index:30}
-
-  .card{
-    display:flex;gap:28px;align-items:stretch;
-    background:rgba(255,255,255,0.03);
-    border-radius:18px;padding:18px;
-    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  .container{
+    margin: 20px auto;
+    max-width:800px;
+    padding:20px;
   }
-
-  .left{flex:1;display:flex;align-items:center;justify-content:center;padding:12px}
-  .portrait-3d{width:100%;height:60vh;perspective:1200px}
-  .card-3d{
-    width:100%;height:100%;
-    border-radius:14px;overflow:hidden;
-    position:relative;transform-style:preserve-3d;
-    transition:.8s;
-    box-shadow:0 30px 80px rgba(0,0,0,0.7);
-    border:4px solid rgba(255,255,255,0.05);
+  img.main{
+    width:100%;
+    max-height:420px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 0 20px #ff9de6;
   }
-
-  .panel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:1s;backface-visibility:hidden}
-  .panel img{width:100%;height:100%;object-fit:cover}
-
-  .right{width:420px;padding:22px 16px;display:flex;flex-direction:column;gap:12px}
-  h1{font-size:40px;margin:0;background:linear-gradient(90deg,var(--accent1),#d89bff,#ff9de6);-webkit-background-clip:text;color:transparent}
-  .lead{opacity:0.9}
-  .pill{display:inline-block;padding:10px 14px;background:rgba(255,255,255,0.05);margin-right:10px;border-radius:999px}
-  .actions{margin-top:12px;display:flex;gap:12px}
-  .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
-  .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#000}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#fff}
-
-  .carousel{
-    position:fixed;left:14px;bottom:14px;width:120px;height:120px;border-radius:14px;
-    overflow:hidden;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,0.6)
+  .pill{
+    display:inline-block;
+    background:#ffffff22;
+    padding:10px 20px;
+    border-radius:50px;
+    margin:10px;
+    font-weight:bold;
   }
-  .carousel img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:.8s}
-  .carousel img.active{opacity:1}
-
-  #fw,#stars{position:fixed;inset:0;pointer-events:none;z-index:5}
+  audio{margin-top:20px;}
 </style>
 </head>
 
 <body>
 
-<canvas id="fw"></canvas>
-<canvas id="stars"></canvas>
+<div class="container">
+  <h1>🎉 Happy Birthday Aadya 🎉</h1>
 
-<div class="wrap">
-  <div class="card">
-    
-    <div class="left">
-      <div class="portrait-3d">
-        <div class="card-3d" id="card3d">
-          <div class="panel a"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg"></div>
-          <div class="panel b"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg"></div>
-          <div class="panel c"><img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg"></div>
-        </div>
-      </div>
-    </div>
+  <img class="main" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg">
 
-    <div class="right">
-      <h1>Happy Birthday, Aadya ✨🌟</h1>
-      <p class="lead">May your world be full of sparkle, joy & magic.</p>
+  <h2>✨ Age: 5 years</h2>
+  <div class="pill">Born: November 22, 2020</div>
 
-      <span class="pill">Age: 5 years</span>
-      <span class="pill">Born: November 22, 2020</span>
+  <p>May your day be filled with stars, magic and happiness 💖</p>
 
-      <p class="note">Celebrating the brightest little star!</p>
+  <audio controls autoplay loop>
+    <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3">
+  </audio>
 
-      <div class="actions">
-        <button class="btn btn-primary" onclick="window.print()">📥 Print</button>
-        <button class="btn btn-ghost" onclick="alert('Wish sent! 🎉')">🎉 Wish</button>
-      </div>
-    </div>
-
-  </div>
+  <h3>More Photos</h3>
+  <img class="main" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg">
 </div>
-
-<div class="carousel">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" class="active">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg">
-</div>
-
-<audio id="bgAudio" loop preload="auto">
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3">
-</audio>
-
-<script>
-/* 3D rotation */
-(function(){
-  const p=document.querySelectorAll('.panel');let s=0;
-  function up(){p.forEach((e,i)=>{const ps=(i-s+3)%3;
-    if(ps===0)e.style.transform="translateZ(0)";
-    else if(ps===1)e.style.transform="translateZ(-80px) rotateY(20deg)";
-    else e.style.transform="translateZ(-160px) rotateY(40deg)";});
-  }
-  setInterval(()=>{s=(s+1)%3;up();},3000);
-})();
-
-/* Carousel switching */
-(function(){
-  const imgs=document.querySelectorAll('.carousel img');let i=0;
-  setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active');},3000);
-})();
-
-/* Audio autoplay */
-(function(){
-  const a=document.getElementById('bgAudio');
-  a.play().catch(()=>{});
-  ['click','touchstart'].forEach(x=>addEventListener(x,()=>a.play(),{once:true}));
-})();
-
-/* Falling stars */
-(function(){
-  const c=document.getElementById('stars'),ctx=c.getContext('2d');let w,h;
-  function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
-  addEventListener('resize',rs);
-  let stars=[];
-  function ns(){return{x:Math.random()*w,y:-10,s:2+Math.random()*3}}
-  function t(){
-    ctx.clearRect(0,0,w,h);
-    if(Math.random()<.06)stars.push(ns());
-    stars=stars.filter(s=>s.y<h);
-    stars.forEach(s=>{
-      s.x+=s.s*3;s.y+=s.s*3;
-      ctx.strokeStyle="rgba(255,255,255,.9)";
-      ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x+10,s.y+10);ctx.stroke();
-    });
-    requestAnimationFrame(t);
-  } t();
-})();
-
-/* Fireworks */
-(function(){
-  const c=document.getElementById('fw'),ctx=c.getContext('2d');let w,h;
-  function rs(){w=c.width=innerWidth;h=c.height=innerHeight}rs();
-  addEventListener('resize',rs);
-  let parts=[];
-  function burst(){
-    const x=Math.random()*w,y=Math.random()*h*.5;
-    const colors=["#8ef0ff","#ff9de6","#ffd07a"];
-    let col=colors[Math.floor(Math.random()*colors.length)];
-    for(let i=0;i<28;i++){
-      const a=Math.random()*Math.PI*2,sp=2+Math.random()*4;
-      parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:90,col});
-    }
-  }
-  setInterval(burst,1500);
-  function t(){
-    ctx.clearRect(0,0,w,h);
-    parts.forEach((p,i)=>{
-      p.x+=p.vx;p.y+=p.vy;p.vy+=0.02;p.life--;
-      ctx.fillStyle=p.col.replace(")",`,${p.life/90})`).replace("rgb","rgba");
-      ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fill();
-      if(p.life<=0)parts.splice(i,1);
-    });
-    requestAnimationFrame(t);
-  } t();
-})();
-</script>
 
 </body>
 </html>
