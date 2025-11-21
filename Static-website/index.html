@@ -1,61 +1,159 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Happy Birthday Aadya ✨</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aadya 🎉✨</title>
 
 <style>
-  body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0b0630;
-    color:#fff;
-    text-align:center;
-  }
-  .container{
-    margin: 20px auto;
-    max-width:800px;
-    padding:20px;
-  }
-  img.main{
-    width:100%;
-    max-height:420px;
-    object-fit:cover;
-    border-radius:12px;
-    box-shadow:0 0 20px #ff9de6;
-  }
-  .pill{
-    display:inline-block;
-    background:#ffffff22;
-    padding:10px 20px;
-    border-radius:50px;
-    margin:10px;
-    font-weight:bold;
-  }
-  audio{margin-top:20px;}
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0a0322, #050017 60%, #000);
+  color: white;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* Main Heading */
+h1 {
+  margin-top: 40px;
+  font-size: 42px;
+  background: linear-gradient(90deg, #8ef0ff, #d89bff, #ff9de6);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+/* Age / Born pills */
+.pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: 12px 22px;
+  margin: 10px;
+  border-radius: 40px;
+  font-size: 18px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Main large photo */
+.main-photo {
+  width: 85%;
+  max-width: 800px;
+  height: 420px;
+  background-size: cover;
+  background-position: center top;
+  border-radius: 16px;
+  margin: 30px auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+/* Carousel at bottom */
+.carousel {
+  width: 150px;
+  height: 150px;
+  margin: 40px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.9s;
+}
+.carousel img.active { opacity: 1; }
+
+/* Fireworks & Confetti Canvas */
+#fw, #conf {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+/* Balloons */
+.balloon {
+  position: fixed;
+  width: 160px;
+  height: 220px;
+  z-index: 1500;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0px); }
+}
 </style>
 </head>
-
 <body>
 
-<div class="container">
-  <h1>🎉 Happy Birthday Aadya 🎉</h1>
+<canvas id="fw"></canvas>
+<canvas id="conf"></canvas>
 
-  <img class="main" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg">
+<!-- Balloons -->
+<img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" class="balloon" style="left:20px; top:120px;">
+<img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" class="balloon" style="right:20px; top:150px;">
 
-  <h2>✨ Age: 5 years</h2>
-  <div class="pill">Born: November 22, 2020</div>
+<h1>🎉 Happy Birthday Aadya 🎉</h1>
 
-  <p>May your day be filled with stars, magic and happiness 💖</p>
+<div class="pill">✨ Age: 5 years</div>
+<div class="pill">🎂 Born: November 22, 2020</div>
 
-  <audio controls autoplay loop>
-    <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3">
-  </audio>
-
-  <h3>More Photos</h3>
-  <img class="main" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg">
+<div class="main-photo"
+  style="background-image:url('https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg');">
 </div>
+
+<h2>🌟 Wishing you joy, magic & happiness 💖</h2>
+
+<!-- Music autoplay -->
+<audio id="bgAudio" autoplay loop preload="auto">
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
+</audio>
+
+<h2>More Photos</h2>
+
+<div class="carousel" id="carousel">
+  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" class="active">
+  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg">
+</div>
+
+<script>
+// Carousel
+const imgs = document.querySelectorAll('#carousel img');
+let idx = 0;
+setInterval(() => {
+  imgs[idx].classList.remove('active');
+  idx = (idx + 1) % imgs.length;
+  imgs[idx].classList.add('active');
+}, 3000);
+
+// Autoplay fallback
+const audio = document.getElementById("bgAudio");
+document.body.addEventListener("click", () => audio.play(), { once: true });
+
+// Fireworks + Confetti (lightweight mini version)
+const fw = document.getElementById("fw");
+const ctx = fw.getContext("2d");
+fw.width = innerWidth; fw.height = innerHeight;
+
+function spark() {
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      ctx.fillStyle = `hsl(${Math.random()*360},100%,60%)`;
+      ctx.beginPath();
+      ctx.arc(Math.random()*fw.width, Math.random()*fw.height, 3, 0, Math.PI*2);
+      ctx.fill();
+    }, i * 20);
+  }
+}
+setInterval(spark, 2500);
+</script>
 
 </body>
 </html>
