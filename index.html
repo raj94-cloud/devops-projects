@@ -8,71 +8,48 @@
   :root{
     --bg1:#050016; --bg2:#0b0530;
     --gold1:#ffd47a; --gold2:#ffb84d;
-    --accent1:#8ef0ff; --accent2:#ff9de6;
-    --raj-accent: #ffb84d;
+    --acc1:#8ef0ff; --acc2:#ff9de6;
   }
   *{box-sizing:border-box}
   body{
-    margin:0; font-family:"Poppins",system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    margin:0; font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
     color:#fff; background: radial-gradient(1200px 600px at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden;
   }
 
-  .wrap{max-width:1180px;margin:26px auto;padding:18px}
-  header{text-align:center;margin-bottom:8px}
-  h1{font-size:40px;margin:8px 0;background:linear-gradient(90deg,var(--accent1),#d89bff,var(--accent2));
-      -webkit-background-clip:text;color:transparent;font-weight:900}
-  .tagline{color:rgba(255,255,255,0.88);margin-bottom:12px;font-size:15px}
-  .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-  .pill{background:rgba(255,255,255,0.06);padding:10px 16px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.03)}
+  .wrap{max-width:1050px;margin:20px auto;padding:16px}
+  header{text-align:center;margin-bottom:6px}
+  h1{font-size:36px;margin:6px 0;background:linear-gradient(90deg,var(--acc1),#d89bff,var(--acc2));-webkit-background-clip:text;color:transparent;font-weight:900}
+  .tag{color:rgba(255,255,255,0.9);margin-bottom:10px}
+  .pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+  .pill{background:rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;font-weight:700;border:1px solid rgba(255,255,255,0.03);font-size:15px}
 
-  /* message auto-appear */
-  .message{font-size:20px;color:var(--gold1);margin:10px 0;font-weight:700;opacity:0;transform:translateY(6px);transition:all .8s ease}
+  .message{font-size:18px;color:var(--gold1);margin:10px 0;font-weight:700;opacity:0;transform:translateY(6px);transition:all .7s ease}
   .message.show{opacity:1;transform:translateY(0)}
 
-  /* Gallery */
-  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-  @media(max-width:880px){ .gallery{grid-template-columns:1fr;gap:14px;padding:0 14px} }
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  @media(max-width:880px){ .gallery{grid-template-columns:1fr;padding:0 12px} }
 
-  .card{border-radius:16px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));box-shadow:0 30px 70px rgba(0,0,0,0.55);position:relative;overflow:visible}
+  .card{border-radius:14px;padding:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));box-shadow:0 20px 45px rgba(0,0,0,0.5)}
+  .gold{border-radius:12px;padding:10px;background:linear-gradient(90deg,var(--gold1),var(--gold2));box-shadow:0 10px 30px rgba(0,0,0,0.45);transition:transform .4s}
+  .gold:hover{transform:translateY(-6px)}
+  .inner{border-radius:8px;overflow:hidden;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));position:relative}
+  .photo{display:block;width:100%;height:auto;object-fit:contain;border-radius:6px;max-height:68vh;opacity:0;transition:opacity .45s ease}
 
-  /* gold frame */
-  .gold-border{border-radius:14px;padding:12px;background:linear-gradient(90deg,var(--gold1),var(--gold2));box-shadow:0 18px 50px rgba(0,0,0,0.46)}
-  .gold-inner{border-radius:10px;overflow:hidden;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.02));position:relative}
-  .photo{display:block;width:100%;height:auto;object-fit:contain;border-radius:8px;max-height:72vh;transition:transform .6s ease, opacity .5s ease;opacity:0}
-  .photo.visible{opacity:1}
+  /* subtle balloons (sides only) */
+  .balloon{position:fixed;width:94px;height:126px;border-radius:46% 46% 58% 58%;opacity:0.9;pointer-events:none;filter:drop-shadow(0 8px 18px rgba(0,0,0,0.35));z-index:20}
+  .balloon.left{left:6px;top:30vh;background:linear-gradient(180deg,#ff8db0,#ff3dbb)}
+  .balloon.right{right:6px;top:26vh;background:linear-gradient(180deg,#7aeaff,#0069a6)}
+  @media(max-width:640px){ .balloon{display:none} }
 
-  /* pulsing glow */
-  .gold-border{animation:pulse 4.8s ease-in-out infinite}
-  @keyframes pulse{0%{box-shadow:0 12px 36px rgba(255,190,90,0.04)}50%{box-shadow:0 20px 56px rgba(255,190,90,0.09)}100%{box-shadow:0 12px 36px rgba(255,190,90,0.04)}}
+  /* host badge */
+  .host-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);font-weight:800}
+  .host-badge .raj{background:linear-gradient(90deg,var(--gold1),var(--gold2));padding:6px 10px;border-radius:999px;color:#14001f}
 
-  /* balloons (medium style, sides only) */
-  .balloon{position:fixed;width:110px;height:150px;border-radius:46% 46% 58% 58%;opacity:0.95;pointer-events:none;filter:drop-shadow(0 10px 20px rgba(0,0,0,0.45));z-index:30}
-  .balloon.left{left:8px;top:28vh;background:linear-gradient(180deg,#ff8db0,#ff3dbb)}
-  .balloon.left2{left:18px;top:40vh;background:linear-gradient(180deg,#ffd2a6,#ff8a5c);width:90px;height:120px}
-  .balloon.right{right:8px;top:24vh;background:linear-gradient(180deg,#7aeaff,#0069a6)}
-  .balloon.right2{right:18px;top:40vh;background:linear-gradient(180deg,#c8a3ff,#ff9de6);width:90px;height:120px}
-  @media(max-width:640px){ .balloon, .balloon.left2, .balloon.right2{display:none} }
+  footer{margin-top:18px;text-align:center;color:rgba(255,255,255,0.72);padding-bottom:18px}
 
-  /* sparkles */
-  .sparkle{position:fixed;font-size:16px;pointer-events:none;opacity:0.95;z-index:20;transform:translateY(-20px)}
-
-  /* confetti (light top) */
-  .confetti{position:fixed;width:8px;height:10px;top:-18px;pointer-events:none;z-index:25}
-
-  /* fireworks canvas (top area only) */
-  #fw{position:fixed;top:0;left:0;pointer-events:none;z-index:12;height:210px;width:100%}
-
-  /* stylish hosted by RAJ */
-  .host-badge{
-    margin-top:20px; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255,255,255,0.06); font-weight:800; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-  }
-  .host-badge .raj { background: linear-gradient(90deg,var(--gold1),var(--gold2)); color:#14001f; padding:6px 10px; border-radius:999px; font-weight:900; }
-
-  footer{margin-top:24px;text-align:center;color:rgba(255,255,255,0.75);padding-bottom:28px;font-size:15px}
+/* small visual performance tweaks */
+canvas{display:block}
 </style>
 </head>
 <body>
@@ -80,164 +57,216 @@
 <div class="wrap">
   <header>
     <h1>🎉 Happy Birthday, Aadya 🎉</h1>
-    <div class="tagline">Wishing you sparkle, laughter & endless smiles ✨</div>
+    <div class="tag">Wishing you sparkle, laughter & endless smiles ✨</div>
     <div class="pills">
       <div class="pill">Age: 5 years</div>
       <div class="pill">Born: November 22, 2020</div>
     </div>
-
     <div id="message" class="message">Aadya, you are our sunshine 🌟</div>
   </header>
 
-  <!-- balloons (side-only, medium) -->
+  <!-- soft side balloons -->
   <div class="balloon left" aria-hidden="true"></div>
-  <div class="balloon left2" aria-hidden="true"></div>
   <div class="balloon right" aria-hidden="true"></div>
-  <div class="balloon right2" aria-hidden="true"></div>
 
   <section class="gallery" aria-label="Photos of Aadya">
-    <div class="card" aria-hidden="false">
-      <div class="gold-border">
-        <div class="gold-inner">
-          <img id="p1" class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya photo 1 — full image" loading="lazy">
+    <div class="card">
+      <div class="gold">
+        <div class="inner">
+          <!-- local uploaded file path (tool will convert to hosted URL) -->
+          <img id="p1" class="photo" src="/mnt/data/32600d04-c9c0-4bff-aa41-07e2a4001a6c.png" alt="Aadya photo 1 — full image" loading="lazy">
         </div>
       </div>
     </div>
 
-    <div class="card" aria-hidden="false">
-      <div class="gold-border">
-        <div class="gold-inner">
+    <div class="card">
+      <div class="gold">
+        <div class="inner">
           <img id="p2" class="photo" src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg" alt="Aadya photo 2 — full image" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
-  <div style="text-align:center;margin-top:18px">
+  <div style="text-align:center;margin-top:12px">
     <div class="host-badge" role="contentinfo" aria-label="Hosted by RAJ">
-      <span style="opacity:0.9">Website Hosted by</span>
-      <span class="raj">RAJ</span>
+      <span style="opacity:0.9">Website Hosted by</span><span class="raj">RAJ</span>
     </div>
   </div>
 
   <footer>Made with ❤️ — Celebrate Aadya</footer>
 </div>
 
-<!-- fireworks (top) -->
-<canvas id="fw"></canvas>
+<!-- single combined canvas for light fireworks + confetti (top area only) -->
+<canvas id="effects" style="position:fixed;left:0;top:0;pointer-events:none;z-index:30;height:220px;width:100%"></canvas>
 
-<!-- AUDIO: Option B autoplay (silent intro + real music) -->
-<audio id="silentAudio" autoplay>
+<!-- AUDIO: Option B (silent intro trick + real music) -->
+<audio id="silent" autoplay>
   <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAACAAACAAACAAACAAA" type="audio/mp3">
 </audio>
-<audio id="realAudio" loop crossorigin="anonymous">
+<audio id="real" loop crossorigin="anonymous">
   <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* reveal message and show photos smoothly */
-document.addEventListener('DOMContentLoaded', ()=>{
-  setTimeout(()=> document.getElementById('message').classList.add('show'), 600);
-  document.querySelectorAll('.photo').forEach(img=>{
-    if(img.complete) img.classList.add('visible');
-    else img.addEventListener('load', ()=> img.classList.add('visible'));
-  });
-});
+/* ======================
+   Lightweight optimized effects
+   - single canvas
+   - small particle counts & throttling
+   - fewer intervals
+   ====================== */
 
-/* ====== autoplay trick (Option B) ====== */
-const silent = document.getElementById('silentAudio');
-const real = document.getElementById('realAudio');
-silent.volume = 0;
-silent.addEventListener('play', ()=> setTimeout(()=> real.play().catch(()=>{}), 300));
-real.play().catch(()=>{});
-['click','touchstart','scroll','keydown'].forEach(ev => window.addEventListener(ev, ()=> real.play().catch(()=>{}), {once:true, passive:true}));
+const effects = document.getElementById('effects');
+const ectx = effects.getContext('2d');
 
-/* ====== fireworks: medium celebration (10-12 burst count) ====== */
-const fw = document.getElementById('fw');
-const fctx = fw.getContext('2d');
-function resizeFW(){ fw.width = innerWidth; fw.height = 210; }
-resizeFW(); window.addEventListener('resize', resizeFW);
+function resize() {
+  effects.width = window.innerWidth;
+  effects.height = 220; // top-only area
+}
+resize(); window.addEventListener('resize', resize);
 
-let parts = [];
-function spawnBurst(x,y){
-  const colors = ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8','#ffd7b8'];
-  const count = 10 + Math.floor(Math.random()*3); // 10-12
-  for(let i=0;i<count;i++){
-    const a = Math.random()*Math.PI*2;
-    const s = 1.2 + Math.random()*2.6;
-    parts.push({x,y,vx:Math.cos(a)*s, vy:Math.sin(a)*s, life:60 + Math.random()*40, color: colors[Math.floor(Math.random()*colors.length)], size:1+Math.random()*2});
+let particles = []; // fireworks + confetti combined, small arrays
+let lastTick = 0;
+
+// spawn medium celebration burst (10-12) but less heavy CPU
+function spawnBurst(x, y) {
+  const colors = ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'];
+  const count = 10 + Math.floor(Math.random()*3); // 10-12 as requested
+  for (let i=0;i<count;i++){
+    const angle = Math.random()*Math.PI*2;
+    const speed = 0.9 + Math.random()*2.2; // lighter speeds
+    particles.push({
+      type: 'spark',
+      x, y,
+      vx: Math.cos(angle)*speed,
+      vy: Math.sin(angle)*speed,
+      life: 40 + Math.random()*30,
+      color: colors[i % colors.length],
+      size: 1 + Math.random()*2
+    });
   }
 }
-function updateFW(){
-  fctx.clearRect(0,0,fw.width,fw.height);
-  for(let i=parts.length-1;i>=0;i--){
-    const p = parts[i];
-    p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
-    const a = Math.max(0,p.life/90);
-    fctx.fillStyle = hexToRGBA(p.color, a);
-    fctx.beginPath(); fctx.arc(p.x,p.y,p.size,0,Math.PI*2); fctx.fill();
-    if(p.life<=0) parts.splice(i,1);
-  }
-  requestAnimationFrame(updateFW);
-}
-updateFW();
-function hexToRGBA(hex,a){ const c = hex.replace('#',''); const r=parseInt(c.slice(0,2),16), g=parseInt(c.slice(2,4),16), b=parseInt(c.slice(4,6),16); return `rgba(${r},${g},${b},${a})`; }
-// fire bursts left & right every ~1s
-setInterval(()=>{ spawnBurst(80 + Math.random()*140, 40 + Math.random()*20); spawnBurst(fw.width - (80 + Math.random()*140), 40 + Math.random()*20); }, 950);
 
-/* ====== confetti (light, top) ====== */
-const confCanvas = document.createElement('canvas'); confCanvas.style.position='fixed'; confCanvas.style.inset='0'; confCanvas.style.pointerEvents='none'; confCanvas.style.zIndex=22; document.body.appendChild(confCanvas);
-const cctx = confCanvas.getContext('2d');
-function resizeConf(){ confCanvas.width = innerWidth; confCanvas.height = innerHeight; }
-resizeConf(); window.addEventListener('resize', resizeConf);
-let confs = [];
-function spawnConfetti(){
-  for(let i=0;i<80;i++){
-    confs.push({x:Math.random()*confCanvas.width,y:-10 - Math.random()*200,vx:(Math.random()-0.5)*4,vy:2 + Math.random()*4,w:6 + Math.random()*8,h:6 + Math.random()*6,color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],rot:Math.random()*360});
+// light confetti pieces coming down from top (sparse)
+function spawnConfettiBatch() {
+  const w = effects.width;
+  for (let i=0;i<28;i++){ // reduced count
+    particles.push({
+      type:'conf',
+      x: Math.random()*w,
+      y: -10 - Math.random()*80,
+      vx: (Math.random()-0.5)*2,
+      vy: 1 + Math.random()*2,
+      life: 80 + Math.random()*80,
+      color: ['#ff9de6','#8ef0ff','#ffd07a','#a6ffb8'][Math.floor(Math.random()*4)],
+      w: 6 + Math.random()*6,
+      h: 6 + Math.random()*6,
+      rot: Math.random()*360
+    });
   }
 }
-function runConfetti(){
-  cctx.clearRect(0,0,confCanvas.width,confCanvas.height);
-  for(let i=confs.length-1;i>=0;i--){
-    const p = confs[i];
-    p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.rot += 4;
-    cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
-    cctx.fillStyle = p.color; cctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); cctx.restore();
-    if(p.y > confCanvas.height + 40) confs.splice(i,1);
-  }
-  requestAnimationFrame(runConfetti);
-}
-setInterval(spawnConfetti, 1800);
-runConfetti();
 
-/* ====== slow golden sparkles (sparse) ====== */
+// schedule bursts: left and right corners, moderate frequency
+setInterval(()=> {
+  spawnBurst(60 + Math.random()*140, 30 + Math.random()*14);
+  spawnBurst(effects.width - (60 + Math.random()*140), 30 + Math.random()*14);
+}, 1000); // ~1s
+
+// schedule confetti less often
+setInterval(()=> spawnConfettiBatch(), 2500);
+
+// single animation loop, but keep it light by capping operations per frame
+function tick(time){
+  // simple throttle: run update ~every frame but keep particle ops small
+  const now = time || performance.now();
+  const dt = now - lastTick;
+  lastTick = now;
+
+  ectx.clearRect(0,0,effects.width,effects.height);
+  // iterate backwards so we can splice
+  for (let i=particles.length-1;i>=0;i--){
+    const p = particles[i];
+    if (p.type === 'spark'){
+      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+      const a = Math.max(0, p.life / 70);
+      ectx.fillStyle = rgbaFromHex(p.color, a);
+      ectx.beginPath(); ectx.arc(p.x, p.y, p.size, 0, Math.PI*2); ectx.fill();
+      if (p.life <= 0 || p.y > effects.height + 30) particles.splice(i,1);
+    } else { // confetti
+      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+      ectx.save();
+      ectx.translate(p.x, p.y);
+      ectx.rotate((p.rot += 0.06));
+      ectx.fillStyle = p.color;
+      ectx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ectx.restore();
+      if (p.y > effects.height + 40 || p.life <= 0) particles.splice(i,1);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+function rgbaFromHex(hex,a){
+  const c = hex.replace('#','');
+  const r = parseInt(c.substring(0,2),16), g = parseInt(c.substring(2,4),16), b = parseInt(c.substring(4,6),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+/* slow golden sparkles — few DOM elements, lightweight */
 function spawnSparkle(){
+  // spawn only occasionally and remove quickly
   const el = document.createElement('div');
   el.className = 'sparkle';
-  el.style.left = (5 + Math.random()*90) + 'vw';
-  el.style.top = (5 + Math.random()*6) + 'vh';
-  el.style.fontSize = (12 + Math.random()*14) + 'px';
+  el.style.left = (8 + Math.random()*84) + 'vw';
+  el.style.top = (6 + Math.random()*6) + 'vh';
+  el.style.fontSize = (12 + Math.random()*10) + 'px';
+  el.style.opacity = 0.95;
   el.innerHTML = '✨';
   document.body.appendChild(el);
-  const dur = 4500 + Math.random()*6500;
-  el.animate([{transform:'translateY(0)',opacity:1},{transform:`translateY(${window.innerHeight * 0.6}px)`,opacity:0}], {duration:dur, easing:'linear'});
+  const dur = 4200 + Math.random()*4200;
+  el.animate([{transform:'translateY(0)',opacity:1},{transform:`translateY(${window.innerHeight * 0.55}px)`,opacity:0}], {duration:dur, easing:'linear'});
   setTimeout(()=> el.remove(), dur+100);
 }
-setInterval(spawnSparkle, 700);
+// spawn less frequently than before
+setInterval(spawnSparkle, 1200);
 
-/* ====== balloon gentle float motion ====== */
-(function floatB(){
-  const bs = document.querySelectorAll('.balloon');
+/* simple balloon float (few elements, low cost) */
+(function ballonFloat(){
+  const bleft = document.querySelector('.balloon.left');
+  const bright = document.querySelector('.balloon.right');
   let t=0;
-  function f(){ t+=0.01; bs.forEach((b,i)=> b.style.transform = `translateY(${Math.sin(t + i)*10}px) rotate(${Math.sin(t/2 + i)*4}deg)` ); requestAnimationFrame(f); }
+  function f(){
+    t += 0.008;
+    if(bleft) bleft.style.transform = `translateY(${Math.sin(t)*6}px)`;
+    if(bright) bright.style.transform = `translateY(${Math.cos(t)*6}px)`;
+    requestAnimationFrame(f);
+  }
   f();
 })();
 
-/* ====== ensure photos fit on very small screens ====== */
-function adaptPhotoMax(){
+/* reveal message + photos */
+document.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(()=> document.getElementById('message').classList.add('show'), 600);
+  document.querySelectorAll('.photo').forEach(img=>{
+    if(img.complete) img.style.opacity = 1;
+    else img.addEventListener('load', ()=> img.style.opacity = 1);
+  });
+});
+
+/* ===== Audio: Option B autoplay lightweight ===== */
+const silent = document.getElementById('silent');
+const real = document.getElementById('real');
+silent.volume = 0;
+silent.addEventListener('play', ()=> setTimeout(()=> real.play().catch(()=>{}), 280));
+real.play().catch(()=>{});
+['click','touchstart','scroll','keydown'].forEach(ev => window.addEventListener(ev, ()=> real.play().catch(()=>{}), {once:true, passive:true}));
+
+/* ensure images don't overflow on small screens */
+function adaptMax(){
   document.querySelectorAll('.photo').forEach(img => img.style.maxHeight = (window.innerHeight * 0.72) + 'px');
 }
-adaptPhotoMax(); window.addEventListener('resize', adaptPhotoMax);
+adaptMax(); window.addEventListener('resize', adaptMax);
 
 </script>
 </body>
