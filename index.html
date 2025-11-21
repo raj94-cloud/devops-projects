@@ -1,176 +1,223 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Happy Birthday Aadya 🎉✨</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Aadya — Celebrate 🎉</title>
 <style>
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #140035, #050017 70%);
-  font-family: "Poppins", sans-serif;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-/* Heading */
-h1 {
-  margin-top: 40px;
-  font-size: 48px;
-  font-weight: 900;
-  background: linear-gradient(90deg, #ffb7ff, #d5b3ff, #8ee8ff);
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: glow 4s infinite ease-in-out;
-}
-@keyframes glow {
-  0% { text-shadow: 0 0 15px #ffb7ff; }
-  50% { text-shadow: 0 0 35px #ffffff; }
-  100% { text-shadow: 0 0 15px #ffb7ff; }
-}
-
-/* Pills */
-.pill {
-  display: inline-block;
-  background: rgba(255,255,255,0.1);
-  padding: 12px 22px;
-  margin: 8px;
-  border-radius: 30px;
-  font-size: 18px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-/* Golden frame */
-.frame {
-  margin: 30px auto;
-  padding: 10px;
-  width: 90%;
-  max-width: 600px;
-  background: linear-gradient(135deg, #ffd47a, #ffb44d, #ffe7a2);
-  border-radius: 18px;
-  box-shadow: 0 0 25px rgba(255,215,125,0.4);
-}
-.frame img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 14px;
-}
-
-/* Footer */
-footer {
-  margin: 30px 0;
-  font-size: 16px;
-  color: #d8cfff;
-}
-
-/* Confetti (top only) */
-.confetti {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  top: -20px;
-  animation: fall linear forwards;
-  opacity: 0.8;
-}
-@keyframes fall {
-  to {
-    transform: translateY(150px) rotate(360deg);
-    opacity: 0;
+  :root{
+    --bg1:#080019; --bg2:#0b0630;
+    --accent1:#8ef0ff; --accent2:#ff9de6;
+    --gold1:#ffd47a; --gold2:#ffb84d;
   }
-}
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(142,240,255,0.02), transparent 8%), linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#fff; -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
 
-/* Top fireworks */
-#fw {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 5;
-}
+  /* Page container */
+  .wrap { max-width:1100px; margin:28px auto; padding:20px; }
+
+  /* Title */
+  header { text-align:center; margin-bottom:10px; position:relative; padding-top:6px }
+  h1 { margin:6px 0 6px; font-size:42px; font-weight:900;
+       background: linear-gradient(90deg,var(--accent1),#d89bff,var(--accent2));
+       -webkit-background-clip:text;color:transparent;
+       animation: titleGlow 4s ease-in-out infinite; }
+  @keyframes titleGlow { 0%{filter:blur(0px)}50%{filter:blur(.2px)}100%{filter:blur(0px)} }
+
+  .subtitle { color:rgba(255,255,255,0.88); margin-bottom:10px; font-size:16px; }
+
+  /* Pills */
+  .pills { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:18px; }
+  .pill { background:rgba(255,255,255,0.06); padding:10px 18px; border-radius:999px; font-weight:700; border:1px solid rgba(255,255,255,0.04); }
+
+  /* Photo layout: two columns desktop, stacked mobile */
+  .gallery { display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:start; }
+  @media (max-width:880px){ .gallery{ grid-template-columns: 1fr; } }
+
+  /* Golden frame container */
+  .gold-frame {
+    border-radius:18px;
+    padding:12px; /* outer padding for gold ring */
+    background: linear-gradient(135deg, rgba(255,208,122,0.14), rgba(255,184,77,0.08));
+    box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+  }
+
+  .gold-inner {
+    border-radius:12px;
+    padding:10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* IMPORTANT: show full photo (no cropping) */
+  .photo {
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:640px; /* prevents giant images but keeps aspect */
+    object-fit: contain; /* ensures full image visible */
+    border-radius:8px;
+    transition: transform .6s ease, box-shadow .4s ease, opacity .8s ease;
+    opacity:0; transform: translateY(14px);
+  }
+  .photo.visible { opacity:1; transform: translateY(0); }
+
+  /* subtle glow border */
+  .gold-inner::after{
+    content:"";
+    position:absolute; inset:0; border-radius:12px;
+    pointer-events:none;
+    box-shadow: 0 0 34px rgba(255,200,90,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* header sparkle (light and non-intrusive) */
+  .sparkle-bar {
+    height:24px; width:100%; margin-bottom:8px; overflow:hidden; position:relative;
+    pointer-events:none;
+  }
+  .sparkle-dot{
+    position:absolute; top:2px; width:6px; height:6px; border-radius:50%;
+    opacity:0.9; filter:blur(.2px);
+    animation: sparkleMove linear infinite;
+  }
+  @keyframes sparkleMove {
+    from { transform: translateY(0) scale(.9); opacity:.95 }
+    to   { transform: translateY(0) scale(1); opacity:.6 }
+  }
+
+  /* footer */
+  footer { text-align:center; color:rgba(255,255,255,0.75); margin-top:20px; font-size:15px; }
+
+  /* fade-in for text */
+  .fade-in { opacity:0; transform: translateY(6px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-in.show { opacity:1; transform: translateY(0); }
+
+  /* reduce effects on very small screens */
+  @media (max-width:420px){
+    h1{font-size:28px}
+    .photo{ max-height:420px }
+  }
 </style>
 </head>
-
 <body>
 
-<!-- Fireworks -->
-<canvas id="fw"></canvas>
+<div class="wrap">
 
-<h1>🎉 Happy Birthday, Aadya 🎉</h1>
+  <header>
+    <div class="sparkle-bar" aria-hidden="true"></div>
+    <h1 class="fade-in" id="title">🎉 Happy Birthday, Aadya 🎉</h1>
+    <div class="subtitle fade-in" style="max-width:820px;margin:8px auto 0">Wishing you laughter, sparkle and endless smiles — have a magical day!</div>
+    <div class="pills fade-in" style="margin-top:14px">
+      <div class="pill">Age: 5 years</div>
+      <div class="pill">Born: November 22, 2020</div>
+    </div>
+  </header>
 
-<div class="pill">Age: 5 years</div>
-<div class="pill">Born: November 22, 2020</div>
+  <!-- TWO PHOTOS: full visible, no cropping -->
+  <section class="gallery" role="region" aria-label="Photos of Aadya">
+    <div class="gold-frame">
+      <div class="gold-inner">
+        <img
+          id="photo1"
+          class="photo"
+          src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg"
+          alt="Aadya photo 1 — full image"
+          loading="lazy"
+        />
+      </div>
+    </div>
 
-<div class="frame">
-  <img src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/arad2.jpeg" alt="Aadya">
+    <div class="gold-frame">
+      <div class="gold-inner">
+        <img
+          id="photo2"
+          class="photo"
+          src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/aradya1.jpeg"
+          alt="Aadya photo 2 — full image"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <footer class="fade-in">Website Hosted by <strong>RAJ</strong></footer>
 </div>
 
-<footer>Website Hosted by <b>RAJ</b></footer>
+<!-- ===== Audio: Option B autoplay (best-effort) ===== -->
+<!-- Silent intro (data URI) + real music -->
+<audio id="silentAudio" autoplay>
+  <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAACAAACAAACAAACAAACAAA" type="audio/mp3">
+</audio>
 
-<!-- ✔ Option B: Instant autoplay -->
-<audio id="music" autoplay loop>
-  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" />
+<audio id="bgMusic" loop crossorigin="anonymous">
+  <source src="https://cloudfront-static2.s3.ap-south-1.amazonaws.com/nagutha-nagutha-baalu.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const music = document.getElementById("music");
-
-// Try to autoplay immediately
-music.play().catch(() => {});
-
-// iPhone fix: play on first interaction
-["touchstart","click","scroll"].forEach(evt=>{
-  window.addEventListener(evt, () => music.play(), {once:true});
+/* --- show elements with fade-in after DOM ready --- */
+document.addEventListener('DOMContentLoaded', ()=> {
+  document.getElementById('title').classList.add('show');
+  document.querySelectorAll('.fade-in').forEach(el=> el.classList.add('show'));
+  // reveal photos smoothly when loaded
+  document.querySelectorAll('.photo').forEach(img=>{
+    if(img.complete) img.classList.add('visible');
+    else img.addEventListener('load', ()=> img.classList.add('visible'));
+  });
 });
 
-/* Light confetti */
-function spawnConfetti() {
-  for (let i = 0; i < 15; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = ["#ff9de6", "#8ef0ff", "#ffd07a", "#a6ffb8"][Math.floor(Math.random()*4)];
-    c.style.animationDuration = (1 + Math.random()*1.5) + "s";
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 2000);
+/* --- light sparkle generation (non-intrusive) --- */
+(function makeSparkles(){
+  const bar = document.querySelector('.sparkle-bar');
+  if(!bar) return;
+  const colors = ['#ffd07a','#ff9de6','#8ef0ff','#ffd7b8'];
+  for(let i=0;i<14;i++){
+    const d = document.createElement('div');
+    d.className = 'sparkle-dot';
+    d.style.left = (i*7 + Math.random()*6) + '%';
+    d.style.background = colors[i%colors.length];
+    d.style.animationDuration = (1.6 + Math.random()*1.6) + 's';
+    d.style.opacity = 0.9 - Math.random()*0.4;
+    bar.appendChild(d);
   }
-}
-setInterval(spawnConfetti, 1300);
+})();
 
-/* Elegant top fireworks */
-const fw = document.getElementById("fw");
-const ctx = fw.getContext("2d");
-fw.width = innerWidth;
-fw.height = 180;
+/* ====== Audio autoplay: silent intro trick (Option B) ====== */
+const silent = document.getElementById('silentAudio');
+const bg = document.getElementById('bgMusic');
 
-function firework() {
-  let x = Math.random() * fw.width;
-  let y = 50;
+silent.volume = 0; // ensure silent
 
-  for (let i = 0; i < 20; i++) {
-    let a = Math.random() * Math.PI * 2;
-    let s = Math.random() * 2 + 1;
-    let px = x, py = y;
-    let vx = Math.cos(a)*s, vy = Math.sin(a)*s;
-    let life = 25;
+silent.addEventListener('play', ()=>{
+  // small delay then try real music
+  setTimeout(()=> {
+    bg.play().catch(()=>{ /* fallback on interaction below */ });
+  }, 300);
+});
 
-    (function burst() {
-      ctx.fillStyle = "hsl(" + Math.random()*360 + ",100%,60%)";
-      ctx.beginPath();
-      ctx.arc(px, py, 2, 0, Math.PI*2);
-      ctx.fill();
-      px += vx;
-      py += vy;
-      vy += 0.03;
-      life--;
-      if (life > 0) requestAnimationFrame(burst);
-    })();
-  }
-}
-setInterval(firework, 1500);
+// immediate autoplay attempt
+bg.play().catch(()=>{ /* ignored - browsers may block */ });
+
+// guarantee start on first user gesture (covers iPhone)
+['click','touchstart','scroll','keydown'].forEach(ev=>{
+  window.addEventListener(ev, ()=> bg.play().catch(()=>{}), {once:true, passive:true});
+});
+
+/* make sure images never crop: if image aspect is tall, reduce height to avoid covering content */
+window.addEventListener('resize', ()=> {
+  document.querySelectorAll('.photo').forEach(img=>{
+    img.style.maxHeight = (window.innerHeight * 0.7) + 'px';
+  });
+});
+/* initial set */
+document.querySelectorAll('.photo').forEach(img=>{
+  img.style.maxHeight = (window.innerHeight * 0.7) + 'px';
+});
 </script>
-
 </body>
 </html>
