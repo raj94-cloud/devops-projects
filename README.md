@@ -7,3 +7,5 @@ git add .
 git commit -m "Fix deploy.yml correctly"
 git push
 git commit
+
+git commit
